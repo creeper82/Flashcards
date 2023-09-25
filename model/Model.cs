@@ -1,15 +1,16 @@
 namespace Flashcards;
 using Microsoft.EntityFrameworkCore;
-
+using System.Collections.Generic;
 
 public class FlashcardsContext : DbContext
 {
-    public DbSet<Deck> Decks { get; set; }
-    public DbSet<Card> Cards { get; set; }
+    public DbSet<Deck> Decks => Set<Deck>();
+    public DbSet<Card> Cards => Set<Card>();
 
     public string DbPath { get; }
 
-    public FlashcardsContext() {
+    public FlashcardsContext()
+    {
         var folder = Environment.SpecialFolder.LocalApplicationData;
         var path = Environment.GetFolderPath(folder);
         DbPath = Path.Join(path, "flashcards.db");
@@ -26,7 +27,7 @@ public class FlashcardsContext : DbContext
 public class Deck
 {
     public int Id { get; set; }
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     public List<Card> Cards { get; } = new();
 }
@@ -34,10 +35,10 @@ public class Deck
 public class Card
 {
     public int Id { get; set; }
-    public string Front { get; set; }
-    public string Back { get; set; }
+    public required string Front { get; set; }
+    public required string Back { get; set; }
 
     public int DeckId { get; set; }
-    public Deck Deck { get; set; }
+    public required Deck Deck { get; set; }
 
 }
