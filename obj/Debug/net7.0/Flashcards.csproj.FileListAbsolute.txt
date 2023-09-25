@@ -56,3 +56,7 @@ C:\Users\jansz\Desktop\Lokalne\GitHub\Flashcards\obj\Debug\net7.0\refint\Flashca
 C:\Users\jansz\Desktop\Lokalne\GitHub\Flashcards\obj\Debug\net7.0\Flashcards.pdb
 C:\Users\jansz\Desktop\Lokalne\GitHub\Flashcards\obj\Debug\net7.0\Flashcards.genruntimeconfig.cache
 C:\Users\jansz\Desktop\Lokalne\GitHub\Flashcards\obj\Debug\net7.0\ref\Flashcards.dll
+C:\Users\jansz\Desktop\Lokalne\GitHub\Flashcards\bin\Debug\net7.0\Humanizer.dll
+C:\Users\jansz\Desktop\Lokalne\GitHub\Flashcards\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\jansz\Desktop\Lokalne\GitHub\Flashcards\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\jansz\Desktop\Lokalne\GitHub\Flashcards\bin\Debug\net7.0\System.CodeDom.dll
