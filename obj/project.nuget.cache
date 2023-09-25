@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "exVxymaPV/n+kXO3Nmuy9iXkUtTo8jGMgaMnQ0TIGPi8Mmxyt+DNcYFxQU2l/ia5QLmKkMR8AAvFa3ubk41wgA==",
+  "dgSpecHash": "8CPbL7UtVJwk+UNsul0Kx7rvZvZFXvM1vSBO8pQYiQllQMUaRXyP6j3LVbsNvZkKgGXMagjt35MdHMBi2sRqcg==",
   "success": true,
   "projectFilePath": "C:\\Users\\jansz\\Desktop\\Lokalne\\GitHub\\Flashcards\\Flashcards.csproj",
   "expectedPackageFiles": [
@@ -27,7 +27,11 @@
     "C:\\Users\\jansz\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.4\\sqlitepclraw.provider.e_sqlite3.2.1.4.nupkg.sha512",
     "C:\\Users\\jansz\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\jansz\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
-    "C:\\Users\\jansz\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
+    "C:\\Users\\jansz\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
+    "C:\\Users\\jansz\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.11\\microsoft.netcore.app.ref.7.0.11.nupkg.sha512",
+    "C:\\Users\\jansz\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.11\\microsoft.windowsdesktop.app.ref.7.0.11.nupkg.sha512",
+    "C:\\Users\\jansz\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.11\\microsoft.aspnetcore.app.ref.7.0.11.nupkg.sha512",
+    "C:\\Users\\jansz\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.11\\microsoft.netcore.app.host.win-x64.7.0.11.nupkg.sha512"
   ],
   "logs": []
 }
