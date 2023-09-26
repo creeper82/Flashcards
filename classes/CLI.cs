@@ -54,8 +54,6 @@ public static class CLI
 
         float surroundLength = (UiWidth - text.Length) / 2f;
 
-        Console.WriteLine($"\n{text} -- ui width is {UiWidth}, surround length is {surroundLength}, text width is {text.Length}\n");
-
         return (
             Repeat(SurroundChar, (int)Math.Ceiling(surroundLength)) +
             text +
