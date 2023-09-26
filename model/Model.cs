@@ -9,11 +9,15 @@ public class FlashcardsContext : DbContext
 
     public string DbPath { get; }
 
-    public FlashcardsContext()
+    public FlashcardsContext(string? DbPath = null)
     {
         var folder = Environment.SpecialFolder.LocalApplicationData;
-        var path = Environment.GetFolderPath(folder);
-        DbPath = Path.Join(path, "flashcards.db");
+
+        // Create app folder in AppData/Local (MS Windows) if it doesn't exist yet
+        var appPath = Path.Join(Environment.GetFolderPath(folder), "Flashcards_CS");
+        Directory.CreateDirectory(appPath);
+
+        this.DbPath = DbPath ?? Path.Join(appPath,"flashcards.db");
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
