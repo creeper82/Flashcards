@@ -2,12 +2,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Flashcards;
 
-public class Database
+public class FlashcardsDatabase
 {
     public FlashcardsContext db = new();
     public string Path = "";
 
-    public Database()
+    public FlashcardsDatabase()
     {
         Path = db.DbPath;
         db.Database.Migrate();
