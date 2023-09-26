@@ -10,6 +10,7 @@ public class Database
     public Database()
     {
         Path = db.DbPath;
+        db.Database.Migrate();
     }
 
     // READ
