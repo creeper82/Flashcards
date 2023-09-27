@@ -21,7 +21,10 @@ public static class App
             
             try
             {
-                deckChoiceList.waitForArrowKey();
+                ConsoleKey consoleKey = Console.ReadKey().Key;
+                if (consoleKey == ConsoleKey.UpArrow) deckChoiceList.moveForward();
+                else if (consoleKey == ConsoleKey.DownArrow) deckChoiceList.moveBackward();
+                else if (consoleKey == ConsoleKey.Enter) CLI.Deck(deckChoiceList.selectedItem);
             }
             catch (InvalidOperationException) { break; }
         }
