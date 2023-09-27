@@ -41,28 +41,13 @@ public static partial class CLI
             this.maxIndex = choices.Count();
         }
 
-        public void waitForArrowKey()
+        public void moveForward()
         {
-            try
-            {
-                ConsoleKey key = Console.ReadKey(false).Key;
-                if (key == ConsoleKey.UpArrow)
-                {
-                    if (selectedIndex > 0) selectedIndex--;
-                }
-                else if (key == ConsoleKey.DownArrow)
-                {
-                    if (selectedIndex < maxIndex - 1) selectedIndex++;
-                }
-            }
-            catch (InvalidOperationException)
-            {
-                ClearConsole();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Error. Your program console doesn't support arrow keys. Try to use another console");
-                throw;
-            }
+            if (selectedIndex < maxIndex - 1) selectedIndex++;
+        }
 
+        public void moveBackward() {
+            if (selectedIndex > 0) selectedIndex--;
         }
     }
 
@@ -216,7 +201,7 @@ public static partial class CLI
 
         foreach (Option option in options)
         {
-            result += option.ToString();
+            result += option.ToString() + "\n";
         }
 
         return result;
