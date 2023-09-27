@@ -1,9 +1,57 @@
+using System.Collections;
 using Flashcards;
 
 namespace CLI;
 
 public static class CLI
 {
+    public class ChoiceList<T>
+    {
+        public int selectedIndex = 0;
+
+        public T selectedItem
+        {
+            get
+            {
+                return choices.ToList()[selectedIndex];
+            }
+        }
+
+        public int maxIndex = 0;
+        public IEnumerable<T> choices;
+
+        public ChoiceList(IEnumerable<T> choices)
+        {
+            this.choices = choices;
+            this.maxIndex = choices.Count();
+        }
+
+        public void waitForArrowKey()
+        {
+            try
+            {
+                ConsoleKey key = Console.ReadKey(false).Key;
+                if (key == ConsoleKey.UpArrow)
+                {
+                    if (selectedIndex > 0) selectedIndex--;
+                }
+                else if (key == ConsoleKey.DownArrow)
+                {
+                    if (selectedIndex < maxIndex) selectedIndex++;
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                ClearConsole();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error. Your program console doesn't support arrow keys. Try to use another console");
+                throw;
+            }
+
+        }
+    }
+
+
     private static int UiWidth
     {
         get
@@ -19,6 +67,18 @@ public static class CLI
                 return 64;
             }
 
+        }
+    }
+
+    private static void ClearConsole()
+    {
+        try
+        {
+            Console.Clear();
+        }
+        catch (Exception)
+        {
+            Console.Write("\x1B[2J\x1B[H");
         }
     }
 
@@ -84,37 +144,38 @@ public static class CLI
     }
 
     // Create a list with top+bottom dashed border and elements inside
-    private static string List(IEnumerable<String> strings, int? selectedIndex = null)
+    private static string List(IEnumerable<string> sourceStrings, int? selectedIndex = null)
     {
-        int width = 0;
+        int listWidth = 0;
 
-        const string NOT_SELECTED_STRING = "[ ]";
+        const string NONSELECTED_STRING = "[ ]";
         const string SELECTED_STRING = "[•]";
 
-        // Determine element with largest width
-        int elementIndex = 0;
-        foreach (string elem in strings)
+        // Map the list to add unicode prefixes listed in constants above, depending on the selected element
+        List<string> strings = sourceStrings.Select((elem, index) => (index == selectedIndex ? SELECTED_STRING : NONSELECTED_STRING) + " " + elem).ToList();
+
+
+        // Determine the element with largest width
+        foreach (string listElement in strings)
         {
-            string elemWithSelection = (elementIndex == selectedIndex ? SELECTED_STRING : NOT_SELECTED_STRING) + " " + elem;
-            if (elemWithSelection.Length > width) width = elemWithSelection.Length;
-            elementIndex++;
+            if (listElement.Length > listWidth) listWidth = listElement.Length;
         }
 
-        if (width == 0) return "";
+        if (listWidth == 0) return "";
         else
         {
             // Top border
-            string list = "\n" + Repeat('-', width);
+            string list = "\n" + Repeat('-', listWidth);
 
             // Elements
-            foreach (string elem in strings)
+            foreach (string listElement in strings)
             {
-                list += "\n" + elem;
-                if (elem.Length < width) list += Spaces(width - elem.Length);
+                list += "\n" + listElement;
+                if (listElement.Length < listWidth) list += Spaces(listWidth - listElement.Length);
             }
 
             // Bottom border
-            list += "\n" + Repeat('-', width);
+            list += "\n" + Repeat('-', listWidth);
 
             return MultilineCenteredText(list);
         }
@@ -136,7 +197,7 @@ public static class CLI
 
     public static void Menu(IEnumerable<Deck> decks, int selectedDeckIndex)
     {
-        Console.Clear();
+        ClearConsole();
         Console.WriteLine(
             UiFrame(
                 (
