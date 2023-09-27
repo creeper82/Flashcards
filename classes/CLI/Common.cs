@@ -4,6 +4,22 @@ namespace CLI;
 
 public static partial class CLI
 {
+    public class Option
+    {
+        public string key = "";
+        public string optionText = "";
+
+        public Option(string key, string optionText)
+        {
+            this.key = key;
+            this.optionText = optionText;
+        }
+
+        public override string ToString()
+        {
+            return $"[ {key} ] - {optionText}";
+        }
+    }
     public class ChoiceList<T>
     {
         public int selectedIndex = 0;
@@ -36,7 +52,7 @@ public static partial class CLI
                 }
                 else if (key == ConsoleKey.DownArrow)
                 {
-                    if (selectedIndex < maxIndex) selectedIndex++;
+                    if (selectedIndex < maxIndex - 1) selectedIndex++;
                 }
             }
             catch (InvalidOperationException)
@@ -192,5 +208,17 @@ public static partial class CLI
             HorizontalLine('-')
         );
 
+    }
+
+    private static string OptionList(List<Option> options)
+    {
+        string result = "";
+
+        foreach (Option option in options)
+        {
+            result += option.ToString();
+        }
+
+        return result;
     }
 }

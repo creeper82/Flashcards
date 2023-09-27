@@ -5,6 +5,7 @@ public static partial class CLI {
     public static void Menu(IEnumerable<Deck> decks, int selectedDeckIndex)
     {
         ClearConsole();
+        // Display menu
         Console.WriteLine(
             UiFrame(
                 (
@@ -12,6 +13,10 @@ public static partial class CLI {
                     DeckList(decks, selectedDeckIndex)
                 ),
                 "Flashcards")
+        );
+        // Display options
+        Console.WriteLine(
+            OptionList(Options.MenuOptions) + "\n"
         );
     }
 }
