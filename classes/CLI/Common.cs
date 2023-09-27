@@ -1,9 +1,8 @@
-using System.Collections;
 using Flashcards;
 
 namespace CLI;
 
-public static class CLI
+public static partial class CLI
 {
     public class ChoiceList<T>
     {
@@ -193,18 +192,5 @@ public static class CLI
             HorizontalLine('-')
         );
 
-    }
-
-    public static void Menu(IEnumerable<Deck> decks, int selectedDeckIndex)
-    {
-        ClearConsole();
-        Console.WriteLine(
-            UiFrame(
-                (
-                    MultilineCenteredText("Welcome to Flashcards!\nHere are your decks:\n") +
-                    DeckList(decks, selectedDeckIndex)
-                ),
-                "Flashcards")
-        );
     }
 }
