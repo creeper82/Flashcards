@@ -77,21 +77,27 @@ public static class CLI
 
     }
 
-    private static string DeckList(IEnumerable<Deck> decks)
+    private static string DeckList(IEnumerable<Deck> decks, int? selectedDeckIndex = null)
     {
         var list = decks.Select(deck => deck.Name);
-        return List(list);
+        return List(list, selectedDeckIndex);
     }
 
     // Create a list with top+bottom dashed border and elements inside
-    private static string List(IEnumerable<String> strings)
+    private static string List(IEnumerable<String> strings, int? selectedIndex = null)
     {
         int width = 0;
 
+        const string NOT_SELECTED_STRING = "[ ]";
+        const string SELECTED_STRING = "[•]";
+
         // Determine element with largest width
+        int elementIndex = 0;
         foreach (string elem in strings)
         {
-            if (elem.Length > width) width = elem.Length;
+            string elemWithSelection = (elementIndex == selectedIndex ? SELECTED_STRING : NOT_SELECTED_STRING) + " " + elem;
+            if (elemWithSelection.Length > width) width = elemWithSelection.Length;
+            elementIndex++;
         }
 
         if (width == 0) return "";
@@ -128,14 +134,14 @@ public static class CLI
 
     }
 
-    public static void Menu(IEnumerable<Deck> decks)
+    public static void Menu(IEnumerable<Deck> decks, int selectedDeckIndex)
     {
         Console.Clear();
         Console.WriteLine(
             UiFrame(
                 (
                     MultilineCenteredText("Welcome to Flashcards!\nHere are your decks:\n") +
-                    DeckList(decks)
+                    DeckList(decks, selectedDeckIndex)
                 ),
                 "Flashcards")
         );
