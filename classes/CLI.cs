@@ -12,6 +12,7 @@ public static class CLI
             {
                 return Console.WindowWidth - 2;
             }
+
             // Default window width if it couldn't be acquired
             catch (Exception)
             {
@@ -19,7 +20,6 @@ public static class CLI
             }
 
         }
-        set { }
     }
 
     // Adds margin to before and after string
