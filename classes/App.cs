@@ -9,6 +9,8 @@ public static class App {
         database.CreateDeck("Aaaa");
         database.CreateDeck("Sample dec");
         database.CreateDeck("Another deck");
-        CLI.Menu(database.GetDecks());
+
+        int selectedDeckIndex = 0;
+        CLI.Menu(database.GetDecks(), selectedDeckIndex);
     }
 }
