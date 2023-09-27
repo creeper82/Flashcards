@@ -22,6 +22,15 @@ public static partial class CLI {
 
     internal static void Deck(Deck deck)
     {
-        throw new NotImplementedException();
+        ClearConsole();
+
+        Console.WriteLine(
+            UiFrame(
+                CenteredText("Deck screen not implemented yet"),
+                deck.Name
+            )
+        );
+
+        Console.WriteLine(OptionList(new() {new("enter", "go back")}));
     }
 }
