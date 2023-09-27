@@ -16,7 +16,12 @@ public static partial class CLI {
         );
         // Display options
         Console.WriteLine(
-            OptionList(Options.MenuOptions) + "\n"
+            OptionList(Options.MenuOptions)
         );
+    }
+
+    internal static void Deck(Deck deck)
+    {
+        throw new NotImplementedException();
     }
 }
