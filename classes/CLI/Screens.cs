@@ -26,7 +26,8 @@ public static partial class CLI {
 
         Console.WriteLine(
             UiFrame(
-                CenteredText($"The selected deck has ID {deck.Id}"),
+                CenteredText($"The selected deck has ID {deck.Id}") + "\n" +
+                CenteredText($"Created at {deck.CreationTimestamp}"),
                 deck.Name
             )
         );
