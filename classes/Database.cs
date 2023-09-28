@@ -29,7 +29,7 @@ public class FlashcardsDatabase
         return cards;
     }
 
-    public IEnumerable<Card> GetDeckCards(Deck Deck)
+    public static IEnumerable<Card> GetDeckCards(Deck Deck)
     {
         var cards = Deck.Cards;
         return cards;
@@ -39,7 +39,7 @@ public class FlashcardsDatabase
 
     public Deck CreateDeck(string Name)
     {
-        var Deck = new Deck { Name = Name };
+        var Deck = new Deck { Name = Name, CreationTimestamp = DateTime.UtcNow };
         db.Add(Deck);
         db.SaveChanges();
 
@@ -48,7 +48,7 @@ public class FlashcardsDatabase
 
     public Card CreateCard(Deck Deck, string Front, string Back)
     {
-        var Card = new Card { Front = Front, Back = Back, Deck = Deck };
+        var Card = new Card { Front = Front, Back = Back, Deck = Deck, CreationTimestamp = DateTime.UtcNow };
         Deck.Cards.Add(Card);
         db.SaveChanges();
 
