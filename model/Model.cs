@@ -17,7 +17,7 @@ public class FlashcardsContext : DbContext
         var appPath = Path.Join(Environment.GetFolderPath(folder), "Flashcards_CS");
         Directory.CreateDirectory(appPath);
 
-        this.DbPath = DbPath ?? Path.Join(appPath,"flashcards.db");
+        this.DbPath = DbPath ?? Path.Join(appPath, "flashcards.db");
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -32,6 +32,7 @@ public class Deck
 {
     public int Id { get; set; }
     public required string Name { get; set; }
+    public required DateTime CreationTimestamp { get; set; }
 
     public List<Card> Cards { get; } = new();
 }
@@ -41,6 +42,7 @@ public class Card
     public int Id { get; set; }
     public required string Front { get; set; }
     public required string Back { get; set; }
+    public required DateTime CreationTimestamp { get; set; }
 
     public int DeckId { get; set; }
     public required Deck Deck { get; set; }
