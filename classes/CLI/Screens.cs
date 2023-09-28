@@ -26,7 +26,7 @@ public static partial class CLI {
 
         Console.WriteLine(
             UiFrame(
-                CenteredText("Deck screen not implemented yet"),
+                CenteredText($"The selected deck has ID {deck.Id}"),
                 deck.Name
             )
         );
