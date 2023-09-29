@@ -8,11 +8,11 @@ public static partial class CLI {
         // Display menu
         Console.WriteLine(
             UiFrame(
-                (
                     MultilineCenteredText("Welcome to Flashcards!\nHere are your decks:\n") +
-                    DeckList(decks, selectedDeckIndex)
-                ),
-                "Flashcards")
+                    DeckList(decks, selectedDeckIndex),
+
+                    "Flashcards"
+                    )
         );
         // Display options
         Console.WriteLine(
