@@ -18,7 +18,7 @@ public static class App
         while (true)
         {
             CLI.Menu(deckChoiceList.choices, deckChoiceList.selectedIndex);
-            
+
             try
             {
                 ConsoleKey consoleKey = Console.ReadKey().Key;
@@ -31,7 +31,8 @@ public static class App
 
     }
 
-    public static void Deck(Deck deck) {
+    public static void Deck(Deck deck)
+    {
         CLI.Deck(deck);
         Console.ReadKey();
     }
