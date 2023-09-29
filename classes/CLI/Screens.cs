@@ -1,7 +1,8 @@
 using Flashcards;
 namespace CLI;
 
-public static partial class CLI {
+public static partial class CLI
+{
     public static void Menu(IEnumerable<Deck> decks, int selectedDeckIndex)
     {
         ClearConsole();
@@ -14,6 +15,7 @@ public static partial class CLI {
                     "Flashcards"
                     )
         );
+
         // Display options
         Console.WriteLine(
             OptionList(Options.MenuOptions)
@@ -32,6 +34,7 @@ public static partial class CLI {
             )
         );
 
-        Console.WriteLine(OptionList(new() {new("enter", "go back")}));
+        // Display options
+        Console.WriteLine(OptionList(new() { new("enter", "go back") }));
     }
 }
