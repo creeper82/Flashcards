@@ -24,7 +24,7 @@ public static partial class CLI
     {
         public int selectedIndex = 0;
 
-        public T SelectedItem
+        public T selectedItem
         {
             get
             {
@@ -41,17 +41,13 @@ public static partial class CLI
             this.maxIndex = choices.Count();
         }
 
-        public void MoveForward()
+        public void moveForward()
         {
             if (selectedIndex < maxIndex - 1) selectedIndex++;
         }
 
-        public void MoveBackward() {
+        public void moveBackward() {
             if (selectedIndex > 0) selectedIndex--;
-        }
-
-        public void ResetPointer() {
-            selectedIndex = 0;
         }
     }
 
