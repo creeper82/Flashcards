@@ -15,8 +15,11 @@ public static class App
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
         CLI.ChoiceList<Deck> deckChoiceList = new(database.GetDecks());
+
         while (true)
         {
+            deckChoiceList.ResetPointer();
+
             CLI.Menu(deckChoiceList.choices, deckChoiceList.selectedIndex);
 
             try
@@ -25,16 +28,16 @@ public static class App
                 switch (consoleKey)
                 {
                     case ConsoleKey.UpArrow:
-                        deckChoiceList.moveBackward();
+                        deckChoiceList.MoveBackward();
                         break;
                     case ConsoleKey.DownArrow:
-                        deckChoiceList.moveForward();
+                        deckChoiceList.MoveForward();
                         break;
                     case ConsoleKey.Enter:
-                        Deck(deckChoiceList.selectedItem);
+                        Deck(deckChoiceList.SelectedItem);
                         break;
                     case ConsoleKey.Delete:
-                        database.RemoveDeck(deckChoiceList.selectedItem);
+                        database.RemoveDeck(deckChoiceList.SelectedItem);
                         break;
                 }
 
