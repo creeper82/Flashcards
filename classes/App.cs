@@ -18,6 +18,7 @@ public static class App
 
         while (true)
         {
+            deckChoiceList.CheckOutOfBoundsPointer();
             CLI.Menu(deckChoiceList.choices, deckChoiceList.selectedIndex);
 
             try
