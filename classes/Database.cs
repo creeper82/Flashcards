@@ -61,4 +61,10 @@ public class FlashcardsDatabase
     {
         db.Decks.ExecuteDelete();
     }
+
+    public void RemoveDeck(Deck deck)
+    {
+        db.Remove(deck);
+        db.SaveChanges();
+    }
 }
