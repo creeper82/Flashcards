@@ -22,9 +22,22 @@ public static class App
             try
             {
                 ConsoleKey consoleKey = Console.ReadKey().Key;
-                if (consoleKey == ConsoleKey.UpArrow) deckChoiceList.moveBackward();
-                else if (consoleKey == ConsoleKey.DownArrow) deckChoiceList.moveForward();
-                else if (consoleKey == ConsoleKey.Enter) Deck(deckChoiceList.selectedItem);
+                switch (consoleKey)
+                {
+                    case ConsoleKey.UpArrow:
+                        deckChoiceList.moveBackward();
+                        break;
+                    case ConsoleKey.DownArrow:
+                        deckChoiceList.moveForward();
+                        break;
+                    case ConsoleKey.Enter:
+                        Deck(deckChoiceList.selectedItem);
+                        break;
+                    case ConsoleKey.Delete:
+                        database.RemoveDeck(deckChoiceList.selectedItem);
+                        break;
+                }
+
             }
             catch (InvalidOperationException) { break; }
         }
