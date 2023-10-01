@@ -32,22 +32,33 @@ public static partial class CLI
             }
         }
 
-        public int maxIndex = 0;
+        public int MaxIndex
+        {
+            get
+            {
+                return choices.Count();
+            }
+        }
         public IEnumerable<T> choices;
 
         public ChoiceList(IEnumerable<T> choices)
         {
             this.choices = choices;
-            this.maxIndex = choices.Count();
         }
 
         public void MoveForward()
         {
-            if (selectedIndex < maxIndex - 1) selectedIndex++;
+            if (selectedIndex < MaxIndex) selectedIndex++;
         }
 
-        public void MoveBackward() {
+        public void MoveBackward()
+        {
             if (selectedIndex > 0) selectedIndex--;
+        }
+
+        public void CheckOutOfBoundsPointer()
+        {
+            if (selectedIndex > MaxIndex) selectedIndex = MaxIndex;
         }
     }
 
