@@ -14,7 +14,7 @@ public static class App
 
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        CLI.ChoiceList<Deck> deckChoiceList = new(database.GetDecks());
+        ChoiceList<Deck> deckChoiceList = new(database.GetDecks());
 
         while (true)
         {
