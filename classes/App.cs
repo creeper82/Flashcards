@@ -36,20 +36,11 @@ public static class App
                         Deck(deckChoiceList.SelectedItem);
                         break;
                     case ConsoleKey.Delete:
-                        Deck deck = deckChoiceList.SelectedItem;
-                        int cards = deck.Cards.Count;
+                        RemoveDeckDialog(database, deckChoiceList.SelectedItem);
+                        break;
 
-                        if (Dialogs.Confirm(
-                            title: "Remove deck",
-                            message: $"Do you want to remove the deck: {deck.Name}?\n\n" +
-                            (cards > 0 ? $"Number of cards in deck: {deck.Cards.Count}" : "This deck has no cards"),
-                            
-                            okButton: "remove",
-                            cancelButton: "cancel"
-                        ))
-                        {
-                            database.RemoveDeck(deckChoiceList.SelectedItem);
-                        }
+                    case ConsoleKey.N:
+
 
                         break;
                 }
@@ -58,6 +49,23 @@ public static class App
             catch (InvalidOperationException) { break; }
         }
 
+    }
+
+    private static void RemoveDeckDialog(FlashcardsDatabase database, Deck deck)
+    {
+        int cards = deck.Cards.Count;
+
+        if (Dialogs.Confirm(
+            title: "Remove deck",
+            message: $"Do you want to remove the deck: {deck.Name}?\n\n" +
+            (cards > 0 ? $"Number of cards in deck: {deck.Cards.Count}" : "This deck has no cards"),
+
+            okButton: "remove",
+            cancelButton: "cancel"
+        ))
+        {
+            database.RemoveDeck(deck);
+        }
     }
 
     public static void Deck(Deck deck)
