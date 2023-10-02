@@ -2,57 +2,68 @@ using Flashcards;
 
 namespace CLI;
 
-public static partial class CLI
+public class Option
 {
-    public class Option
+    public string key = "";
+    public string optionText = "";
+
+    public Option(string key, string optionText)
     {
-        public string key = "";
-        public string optionText = "";
-
-        public Option(string key, string optionText)
-        {
-            this.key = key;
-            this.optionText = optionText;
-        }
-
-        public override string ToString()
-        {
-            return $"[ {key} ] - {optionText}";
-        }
+        this.key = key;
+        this.optionText = optionText;
     }
-    public class ChoiceList<T>
+
+    public override string ToString()
     {
-        public int selectedIndex = 0;
+        return $"[ {key} ] - {optionText}";
+    }
+}
 
-        public T selectedItem
+public class ChoiceList<T>
+{
+    public int selectedIndex = 0;
+
+    public T SelectedItem
+    {
+        get
         {
-            get
-            {
-                return choices.ToList()[selectedIndex];
-            }
-        }
-
-        public int maxIndex = 0;
-        public IEnumerable<T> choices;
-
-        public ChoiceList(IEnumerable<T> choices)
-        {
-            this.choices = choices;
-            this.maxIndex = choices.Count();
-        }
-
-        public void moveForward()
-        {
-            if (selectedIndex < maxIndex - 1) selectedIndex++;
-        }
-
-        public void moveBackward() {
-            if (selectedIndex > 0) selectedIndex--;
+            return choices.ToList()[selectedIndex];
         }
     }
 
+    public int MaxIndex
+    {
+        get
+        {
+            return choices.Count() - 1;
+        }
+    }
+    public IEnumerable<T> choices;
 
-    private static int UiWidth
+    public ChoiceList(IEnumerable<T> choices)
+    {
+        this.choices = choices;
+    }
+
+    public void MoveForward()
+    {
+        if (selectedIndex < MaxIndex) selectedIndex++;
+    }
+
+    public void MoveBackward()
+    {
+        if (selectedIndex > 0) selectedIndex--;
+    }
+
+    public void CheckOutOfBoundsPointer()
+    {
+        if (selectedIndex > MaxIndex) selectedIndex = MaxIndex;
+    }
+}
+
+public static class Components
+{
+    internal static int UiWidth
     {
         get
         {
@@ -70,12 +81,13 @@ public static partial class CLI
         }
     }
 
-    private static void ClearConsole()
+    internal static void ClearConsole()
     {
         try
         {
             Console.Clear();
         }
+        // Other method to clear console
         catch (Exception)
         {
             Console.Write("\x1B[2J\x1B[H");
@@ -83,7 +95,7 @@ public static partial class CLI
     }
 
     // Adds margin to before and after string
-    private static string Margin(this string Str, int Margin = 1, char MarginChar = ' ')
+    internal static string Margin(this string Str, int Margin = 1, char MarginChar = ' ')
     {
         return (
             Repeat(MarginChar, Margin) +
@@ -102,12 +114,12 @@ public static partial class CLI
         return Repeat(' ', count);
     }
 
-    private static string HorizontalLine(char Char)
+    internal static string HorizontalLine(char Char)
     {
         return Repeat(Char, UiWidth);
     }
 
-    private static string CenteredText(string text, char SurroundChar = ' ')
+    internal static string CenteredText(string text, char SurroundChar = ' ')
     {
 
         if (text == "") return Repeat(SurroundChar, UiWidth);
@@ -121,7 +133,7 @@ public static partial class CLI
         );
     }
 
-    private static string MultilineCenteredText(string Text)
+    internal static string MultilineCenteredText(string Text)
     {
         var lines = Text.Split("\n");
         string result = "";
@@ -137,14 +149,14 @@ public static partial class CLI
 
     }
 
-    private static string DeckList(IEnumerable<Deck> decks, int? selectedDeckIndex = null)
+    internal static string DeckList(IEnumerable<Deck> decks, int? selectedDeckIndex = null)
     {
         var list = decks.Select(deck => deck.Name);
         return List(list, selectedDeckIndex);
     }
 
     // Create a list with top+bottom dashed border and elements inside
-    private static string List(IEnumerable<string> sourceStrings, int? selectedIndex = null)
+    internal static string List(IEnumerable<string> sourceStrings, int? selectedIndex = null)
     {
         int listWidth = 0;
 
@@ -181,7 +193,7 @@ public static partial class CLI
         }
     }
 
-    private static string UiFrame(string inner, string title = "")
+    internal static string UiFrame(string inner, string title = "")
     {
         return (
             CenteredText(
@@ -195,7 +207,7 @@ public static partial class CLI
 
     }
 
-    private static string OptionList(List<Option> options)
+    internal static string OptionList(List<Option> options)
     {
         string result = "";
 
