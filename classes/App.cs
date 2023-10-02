@@ -36,7 +36,21 @@ public static class App
                         Deck(deckChoiceList.SelectedItem);
                         break;
                     case ConsoleKey.Delete:
-                        database.RemoveDeck(deckChoiceList.SelectedItem);
+                        Deck deck = deckChoiceList.SelectedItem;
+                        int cards = deck.Cards.Count;
+
+                        if (Dialogs.Confirm(
+                            title: "Remove deck",
+                            message: $"Do you want to remove the deck: {deck.Name}?\n\n" +
+                            (cards > 0 ? $"Number of cards in deck: {deck.Cards.Count}" : "This deck has no cards"),
+                            
+                            okButton: "remove",
+                            cancelButton: "cancel"
+                        ))
+                        {
+                            database.RemoveDeck(deckChoiceList.SelectedItem);
+                        }
+
                         break;
                 }
 
