@@ -2,70 +2,6 @@ using Flashcards;
 
 namespace CLI;
 
-public class Option
-{
-    public string key = "";
-    public string optionText = "";
-
-    public Option(string key, string optionText)
-    {
-        this.key = key;
-        this.optionText = optionText;
-    }
-
-    public override string ToString()
-    {
-        return $"[ {key} ] - {optionText}";
-    }
-}
-
-public class ChoiceList<T>
-{
-    public int selectedIndex = 0;
-
-    public T SelectedItem
-    {
-        get
-        {
-            return choices.ToList()[selectedIndex];
-        }
-    }
-
-    public int MaxIndex
-    {
-        get
-        {
-            return choices.Count() - 1;
-        }
-    }
-    public IEnumerable<T> choices;
-
-    public ChoiceList(IEnumerable<T> choices)
-    {
-        this.choices = choices;
-    }
-
-    public void MoveForward()
-    {
-        if (selectedIndex < MaxIndex) selectedIndex++;
-    }
-
-    public void MoveBackward()
-    {
-        if (selectedIndex > 0) selectedIndex--;
-    }
-
-    public void CheckOutOfBoundsPointer()
-    {
-        if (selectedIndex > MaxIndex) selectedIndex = MaxIndex;
-        if (selectedIndex < 0) selectedIndex = 0;
-    }
-
-    public void MoveToChoice(T item) {
-        selectedIndex = choices.ToList().IndexOf(item);
-    }
-}
-
 public static class Components
 {
     internal static int UiWidth
@@ -212,11 +148,11 @@ public static class Components
 
     }
 
-    internal static string OptionList(List<Option> options)
+    internal static string KeyboardActionList(List<KeyboardAction> options)
     {
         string result = "";
 
-        foreach (Option option in options)
+        foreach (KeyboardAction option in options)
         {
             result += option.ToString() + "\n";
         }
