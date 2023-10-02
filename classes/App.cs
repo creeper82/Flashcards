@@ -16,7 +16,9 @@ public static class App
 
         ChoiceList<Deck> deckChoiceList = new(database.GetDecks());
 
-        while (true)
+        bool running = true;
+
+        while (running)
         {
             deckChoiceList.CheckOutOfBoundsPointer();
             Screens.Menu(deckChoiceList.choices, deckChoiceList.selectedIndex);
@@ -26,6 +28,7 @@ public static class App
                 ConsoleKey consoleKey = Console.ReadKey().Key;
                 switch (consoleKey)
                 {
+                    // Navigation
                     case ConsoleKey.UpArrow:
                         deckChoiceList.MoveBackward();
                         break;
@@ -36,14 +39,18 @@ public static class App
                     case ConsoleKey.Enter:
                         Deck(deckChoiceList.SelectedItem);
                         break;
+                    // Deck editing
                     case ConsoleKey.Delete:
                         RemoveDeckDialog(database, deckChoiceList.SelectedItem);
                         break;
-
                     case ConsoleKey.N:
                     case ConsoleKey.F2:
                         Deck renamedDeck = RenameDeckAction(database, deckChoiceList.SelectedItem);
                         deckChoiceList.MoveToChoice(renamedDeck);
+                        break;
+                    // Exit app
+                    case ConsoleKey.Escape:
+                        running = false;
                         break;
                 }
 
