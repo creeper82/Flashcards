@@ -61,7 +61,7 @@ public class ChoiceList<T>
     }
 }
 
-public static partial class Components
+public static class Components
 {
     internal static int UiWidth
     {
