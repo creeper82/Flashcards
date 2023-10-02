@@ -43,10 +43,15 @@ public static class App
                     case ConsoleKey.Delete:
                         RemoveDeckDialog(database, deckChoiceList.SelectedItem);
                         break;
-                    case ConsoleKey.N:
+                    case ConsoleKey.R:
                     case ConsoleKey.F2:
                         Deck renamedDeck = RenameDeckAction(database, deckChoiceList.SelectedItem);
                         deckChoiceList.MoveToChoice(renamedDeck);
+                        break;
+                    // New deck
+                    case ConsoleKey.N:
+                        Deck newDeck = NewDeckAction(database);
+                        deckChoiceList.MoveToChoice(newDeck);
                         break;
                     // Exit app
                     case ConsoleKey.Escape:
@@ -86,6 +91,10 @@ public static class App
         if (newName != "") database.RenameDeck(deck, newName.Trim());
 
         return deck;
+    }
+
+    private static Deck NewDeckAction(FlashcardsDatabase database) {
+        return database.CreateDeck("added deck");
     }
 
     public static void Deck(Deck deck)
