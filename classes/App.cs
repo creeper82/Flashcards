@@ -14,12 +14,12 @@ public static class App
 
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        CLI.ChoiceList<Deck> deckChoiceList = new(database.GetDecks());
+        ChoiceList<Deck> deckChoiceList = new(database.GetDecks());
 
         while (true)
         {
             deckChoiceList.CheckOutOfBoundsPointer();
-            CLI.Menu(deckChoiceList.choices, deckChoiceList.selectedIndex);
+            Screens.Menu(deckChoiceList.choices, deckChoiceList.selectedIndex);
 
             try
             {
@@ -48,7 +48,7 @@ public static class App
 
     public static void Deck(Deck deck)
     {
-        CLI.Deck(deck);
+        Screens.Deck(deck);
         Console.ReadKey();
     }
 }
