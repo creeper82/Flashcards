@@ -31,6 +31,24 @@ public static class Dialogs
                 )
             );
         }
+
+        public static void InputScreen(
+            string title,
+            string message = "",
+            string bottomNote = ""
+        ) {
+            ClearConsole();
+
+            Console.WriteLine(
+                UiFrame(
+                    inner: MultilineCenteredText(message),
+                    title: title
+                )
+            );
+            if (bottomNote != "") Console.WriteLine(bottomNote);
+            Console.WriteLine("Leave empty to cancel");
+            Console.Write(">>> ");
+        }
     }
 
     public static bool Confirm(
@@ -49,5 +67,17 @@ public static class Dialogs
             default:
                 return false;
         }
+    }
+
+    public static string Input(
+        string title,
+        string message = "",
+        string bottomNote = ""
+    )
+    {
+        DialogScreens.InputScreen(title: title, message: message, bottomNote: bottomNote);
+        string userInput = Console.ReadLine() ?? "";
+
+        return userInput;
     }
 }
