@@ -104,12 +104,12 @@ public static partial class Components
         );
     }
 
-    internal static string Repeat(char Char, int length)
+    private static string Repeat(char Char, int length)
     {
         return new string(Char, length);
     }
 
-    internal static string Spaces(int count)
+    private static string Spaces(int count)
     {
         return Repeat(' ', count);
     }
