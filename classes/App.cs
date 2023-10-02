@@ -32,6 +32,7 @@ public static class App
                     case ConsoleKey.DownArrow:
                         deckChoiceList.MoveForward();
                         break;
+                    case ConsoleKey.Spacebar:
                     case ConsoleKey.Enter:
                         Deck(deckChoiceList.SelectedItem);
                         break;
@@ -40,6 +41,7 @@ public static class App
                         break;
 
                     case ConsoleKey.N:
+                    case ConsoleKey.F2:
                         Deck renamedDeck = RenameDeckAction(database, deckChoiceList.SelectedItem);
                         deckChoiceList.MoveToChoice(renamedDeck);
                         break;
@@ -74,7 +76,7 @@ public static class App
             message: $"Enter a new name for deck: {deck.Name}"
         );
 
-        if (newName != "") database.RenameDeck(deck, newName);
+        if (newName != "") database.RenameDeck(deck, newName.Trim());
 
         return deck;
     }
