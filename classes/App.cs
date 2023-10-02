@@ -14,32 +14,17 @@ public static class App
 
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        ChoiceList<Deck> deckChoiceList = new(database.GetDecks());
-
+        CLI.ChoiceList<Deck> deckChoiceList = new(database.GetDecks());
         while (true)
         {
-            deckChoiceList.CheckOutOfBoundsPointer();
-            Screens.Menu(deckChoiceList.choices, deckChoiceList.selectedIndex);
+            CLI.Menu(deckChoiceList.choices, deckChoiceList.selectedIndex);
 
             try
             {
                 ConsoleKey consoleKey = Console.ReadKey().Key;
-                switch (consoleKey)
-                {
-                    case ConsoleKey.UpArrow:
-                        deckChoiceList.MoveBackward();
-                        break;
-                    case ConsoleKey.DownArrow:
-                        deckChoiceList.MoveForward();
-                        break;
-                    case ConsoleKey.Enter:
-                        Deck(deckChoiceList.SelectedItem);
-                        break;
-                    case ConsoleKey.Delete:
-                        database.RemoveDeck(deckChoiceList.SelectedItem);
-                        break;
-                }
-
+                if (consoleKey == ConsoleKey.UpArrow) deckChoiceList.moveBackward();
+                else if (consoleKey == ConsoleKey.DownArrow) deckChoiceList.moveForward();
+                else if (consoleKey == ConsoleKey.Enter) Deck(deckChoiceList.selectedItem);
             }
             catch (InvalidOperationException) { break; }
         }
@@ -48,7 +33,7 @@ public static class App
 
     public static void Deck(Deck deck)
     {
-        Screens.Deck(deck);
+        CLI.Deck(deck);
         Console.ReadKey();
     }
 }
