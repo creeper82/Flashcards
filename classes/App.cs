@@ -19,7 +19,7 @@ public static class App
         while (true)
         {
             deckChoiceList.CheckOutOfBoundsPointer();
-            CLI.Menu(deckChoiceList.choices, deckChoiceList.selectedIndex);
+            Screens.Menu(deckChoiceList.choices, deckChoiceList.selectedIndex);
 
             try
             {
@@ -48,7 +48,7 @@ public static class App
 
     public static void Deck(Deck deck)
     {
-        CLI.Deck(deck);
+        Screens.Deck(deck);
         Console.ReadKey();
     }
 }

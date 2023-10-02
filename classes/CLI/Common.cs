@@ -61,12 +61,9 @@ public class ChoiceList<T>
     }
 }
 
-public static partial class CLI
+public static partial class Components
 {
-    
-
-
-    private static int UiWidth
+    internal static int UiWidth
     {
         get
         {
@@ -84,12 +81,13 @@ public static partial class CLI
         }
     }
 
-    private static void ClearConsole()
+    internal static void ClearConsole()
     {
         try
         {
             Console.Clear();
         }
+        // Other method to clear console
         catch (Exception)
         {
             Console.Write("\x1B[2J\x1B[H");
@@ -97,7 +95,7 @@ public static partial class CLI
     }
 
     // Adds margin to before and after string
-    private static string Margin(this string Str, int Margin = 1, char MarginChar = ' ')
+    internal static string Margin(this string Str, int Margin = 1, char MarginChar = ' ')
     {
         return (
             Repeat(MarginChar, Margin) +
@@ -106,22 +104,22 @@ public static partial class CLI
         );
     }
 
-    private static string Repeat(char Char, int length)
+    internal static string Repeat(char Char, int length)
     {
         return new string(Char, length);
     }
 
-    private static string Spaces(int count)
+    internal static string Spaces(int count)
     {
         return Repeat(' ', count);
     }
 
-    private static string HorizontalLine(char Char)
+    internal static string HorizontalLine(char Char)
     {
         return Repeat(Char, UiWidth);
     }
 
-    private static string CenteredText(string text, char SurroundChar = ' ')
+    internal static string CenteredText(string text, char SurroundChar = ' ')
     {
 
         if (text == "") return Repeat(SurroundChar, UiWidth);
@@ -135,7 +133,7 @@ public static partial class CLI
         );
     }
 
-    private static string MultilineCenteredText(string Text)
+    internal static string MultilineCenteredText(string Text)
     {
         var lines = Text.Split("\n");
         string result = "";
@@ -151,14 +149,14 @@ public static partial class CLI
 
     }
 
-    private static string DeckList(IEnumerable<Deck> decks, int? selectedDeckIndex = null)
+    internal static string DeckList(IEnumerable<Deck> decks, int? selectedDeckIndex = null)
     {
         var list = decks.Select(deck => deck.Name);
         return List(list, selectedDeckIndex);
     }
 
     // Create a list with top+bottom dashed border and elements inside
-    private static string List(IEnumerable<string> sourceStrings, int? selectedIndex = null)
+    internal static string List(IEnumerable<string> sourceStrings, int? selectedIndex = null)
     {
         int listWidth = 0;
 
@@ -195,7 +193,7 @@ public static partial class CLI
         }
     }
 
-    private static string UiFrame(string inner, string title = "")
+    internal static string UiFrame(string inner, string title = "")
     {
         return (
             CenteredText(
@@ -209,7 +207,7 @@ public static partial class CLI
 
     }
 
-    private static string OptionList(List<Option> options)
+    internal static string OptionList(List<Option> options)
     {
         string result = "";
 
