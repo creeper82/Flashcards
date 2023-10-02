@@ -1,9 +1,7 @@
 using Flashcards;
 namespace CLI;
 
-using static Components;
-
-public static class Screens
+public static partial class CLI
 {
     public static void Menu(IEnumerable<Deck> decks, int selectedDeckIndex)
     {
