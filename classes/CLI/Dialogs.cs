@@ -23,10 +23,10 @@ public static class Dialogs
             );
             // Display options
             Console.WriteLine(
-                OptionList(
+                KeyboardActionList(
                     new() {
-                        new Option("y", okButton),
-                        new Option("n", cancelButton)
+                        new KeyboardAction("y", okButton),
+                        new KeyboardAction("n", cancelButton)
                     }
                 )
             );

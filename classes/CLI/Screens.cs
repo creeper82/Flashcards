@@ -20,7 +20,7 @@ public static class Screens
 
         // Display options
         Console.WriteLine(
-            OptionList(Options.MenuOptions)
+            KeyboardActionList(KeyboardActions.DeckScreen)
         );
     }
 
@@ -37,6 +37,6 @@ public static class Screens
         );
 
         // Display options
-        Console.WriteLine(OptionList(new() { new("enter", "go back") }));
+        Console.WriteLine(KeyboardActionList(new() { new("enter", "go back") }));
     }
 }
