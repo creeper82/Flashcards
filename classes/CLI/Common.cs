@@ -58,6 +58,11 @@ public class ChoiceList<T>
     public void CheckOutOfBoundsPointer()
     {
         if (selectedIndex > MaxIndex) selectedIndex = MaxIndex;
+        if (selectedIndex < 0) selectedIndex = 0;
+    }
+
+    public void MoveToChoice(T item) {
+        selectedIndex = choices.ToList().IndexOf(item);
     }
 }
 

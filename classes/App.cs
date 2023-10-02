@@ -40,8 +40,8 @@ public static class App
                         break;
 
                     case ConsoleKey.N:
-
-
+                        Deck renamedDeck = RenameDeckAction(database, deckChoiceList.SelectedItem);
+                        deckChoiceList.MoveToChoice(renamedDeck);
                         break;
                 }
 
@@ -66,6 +66,17 @@ public static class App
         {
             database.RemoveDeck(deck);
         }
+    }
+
+    private static Deck RenameDeckAction(FlashcardsDatabase database, Deck deck) {
+        string newName = Dialogs.Input(
+            title: "Rename deck",
+            message: $"Enter a new name for deck: {deck.Name}"
+        );
+
+        if (newName != "") database.RenameDeck(deck, newName);
+
+        return deck;
     }
 
     public static void Deck(Deck deck)
