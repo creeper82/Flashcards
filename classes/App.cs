@@ -50,8 +50,8 @@ public static class App
                         break;
                     // New deck
                     case ConsoleKey.N:
-                        Deck newDeck = NewDeckAction(database);
-                        deckChoiceList.MoveToChoice(newDeck);
+                        Deck? newDeck = NewDeckAction(database);
+                        if(newDeck != null) deckChoiceList.MoveToChoice(newDeck);
                         break;
                     // Exit app
                     case ConsoleKey.Escape:
@@ -86,15 +86,21 @@ public static class App
         string newName = Dialogs.Input(
             title: "Rename deck",
             message: $"Enter a new name for deck: {deck.Name}"
-        );
+        ).Trim();
 
-        if (newName != "") database.RenameDeck(deck, newName.Trim());
+        if (newName != "") database.RenameDeck(deck, newName);
 
         return deck;
     }
 
-    private static Deck NewDeckAction(FlashcardsDatabase database) {
-        return database.CreateDeck("added deck");
+    private static Deck? NewDeckAction(FlashcardsDatabase database) {
+        string newName = Dialogs.Input(
+            title: "New deck",
+            message: "Enter deck name"
+        ).Trim();
+
+        if (newName != "") return database.CreateDeck(newName);
+        return null;
     }
 
     public static void Deck(Deck deck)
