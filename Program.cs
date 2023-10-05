@@ -4,8 +4,6 @@ using Microsoft.Data.Sqlite;
 
 var db = new FlashcardsDatabase();
 
-Console.WriteLine($"Database path is {db.Path}");
-
 try
 {
     App.Start(db);
