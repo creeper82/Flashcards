@@ -18,7 +18,7 @@ public static partial class CLI
 
         // Display options
         Console.WriteLine(
-            KeyboardActionList(KeyboardActions.DeckScreen)
+            OptionList(Options.MenuOptions)
         );
     }
 
@@ -35,6 +35,6 @@ public static partial class CLI
         );
 
         // Display options
-        Console.WriteLine(KeyboardActionList(new() { new("enter", "go back") }));
+        Console.WriteLine(OptionList(new() { new("enter", "go back") }));
     }
 }
