@@ -12,7 +12,7 @@ public static class Screens
         Console.WriteLine(
             UiFrame(
                     MultilineCenteredText("Welcome to Flashcards!\nHere are your decks:\n") +
-                    DeckList(decks, selectedDeckIndex),
+                    (decks.Any() ? DeckList(decks, selectedDeckIndex) : CenteredText("You have no decks. Add a new deck with [N]")),
 
                     "Flashcards"
                     )
@@ -20,7 +20,7 @@ public static class Screens
 
         // Display options
         Console.WriteLine(
-            KeyboardActionList(KeyboardActions.DeckScreen)
+            KeyboardActionList(decks.Any() ? KeyboardActions.DeckScreen : KeyboardActions.DeckScreenEmpty)
         );
     }
 

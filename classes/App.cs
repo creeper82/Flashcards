@@ -26,6 +26,7 @@ public static class App
             try
             {
                 ConsoleKey consoleKey = Console.ReadKey().Key;
+
                 switch (consoleKey)
                 {
                     // Navigation
@@ -34,19 +35,6 @@ public static class App
                         break;
                     case ConsoleKey.DownArrow:
                         deckChoiceList.MoveForward();
-                        break;
-                    case ConsoleKey.Spacebar:
-                    case ConsoleKey.Enter:
-                        Deck(deckChoiceList.SelectedItem);
-                        break;
-                    // Deck editing
-                    case ConsoleKey.Delete:
-                        RemoveDeckDialog(database, deckChoiceList.SelectedItem);
-                        break;
-                    case ConsoleKey.R:
-                    case ConsoleKey.F2:
-                        Deck renamedDeck = RenameDeckAction(database, deckChoiceList.SelectedItem);
-                        deckChoiceList.MoveToChoice(renamedDeck);
                         break;
                     // New deck
                     case ConsoleKey.N:
@@ -57,6 +45,27 @@ public static class App
                     case ConsoleKey.Escape:
                         running = false;
                         break;
+                }
+                // Only if the user has decks
+                if (deckChoiceList.choices.Any())
+                {
+                    switch (consoleKey)
+                    {
+                        // Navigation
+                        case ConsoleKey.Spacebar:
+                        case ConsoleKey.Enter:
+                            Deck(deckChoiceList.SelectedItem);
+                            break;
+                        // Deck editing
+                        case ConsoleKey.Delete:
+                            RemoveDeckDialog(database, deckChoiceList.SelectedItem);
+                            break;
+                        case ConsoleKey.R:
+                        case ConsoleKey.F2:
+                            Deck renamedDeck = RenameDeckAction(database, deckChoiceList.SelectedItem);
+                            deckChoiceList.MoveToChoice(renamedDeck);
+                            break;
+                    }
                 }
 
             }

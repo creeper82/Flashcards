@@ -30,4 +30,9 @@ public static class KeyboardActions
         KeyboardAction.LineSeparator,
         new("n", "create new deck")
     };
+
+    public static List<KeyboardAction> DeckScreenEmpty { get; } = new() {
+        new("up/down", "move selection"),
+        new("n", "create new deck")
+    };
 }
