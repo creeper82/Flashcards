@@ -55,13 +55,7 @@ public class FlashcardsDatabase
         return Card;
     }
 
-    // UPDATE
-    public void RenameDeck(Deck deck, string newName) {
-        deck.Name = newName;
-        db.SaveChanges();
-    }
-
-    // DELETE
+    // REMOVE
 
     public void ResetAll()
     {
