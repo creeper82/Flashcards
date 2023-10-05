@@ -20,7 +20,8 @@ public static class App
 
         while (running)
         {
-            CLI.Menu(deckChoiceList.choices, deckChoiceList.selectedIndex);
+            deckChoiceList.CheckOutOfBoundsPointer();
+            Screens.Menu(deckChoiceList.choices, deckChoiceList.selectedIndex);
 
             try
             {
@@ -50,7 +51,7 @@ public static class App
                     // New deck
                     case ConsoleKey.N:
                         Deck? newDeck = NewDeckAction(database);
-                        if(newDeck != null) deckChoiceList.MoveToChoice(newDeck);
+                        if (newDeck != null) deckChoiceList.MoveToChoice(newDeck);
                         break;
                     // Exit app
                     case ConsoleKey.Escape:
@@ -81,7 +82,8 @@ public static class App
         }
     }
 
-    private static Deck RenameDeckAction(FlashcardsDatabase database, Deck deck) {
+    private static Deck RenameDeckAction(FlashcardsDatabase database, Deck deck)
+    {
         string newName = Dialogs.Input(
             title: "Rename deck",
             message: $"Enter a new name for deck: {deck.Name}"
@@ -92,7 +94,8 @@ public static class App
         return deck;
     }
 
-    private static Deck? NewDeckAction(FlashcardsDatabase database) {
+    private static Deck? NewDeckAction(FlashcardsDatabase database)
+    {
         string newName = Dialogs.Input(
             title: "New deck",
             message: "Enter deck name"
@@ -104,7 +107,7 @@ public static class App
 
     public static void Deck(Deck deck)
     {
-        CLI.Deck(deck);
+        Screens.Deck(deck);
         Console.ReadKey();
     }
 }
