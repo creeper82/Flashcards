@@ -11,6 +11,7 @@ public static class App
         database.CreateDeck("Aaaa");
         database.CreateDeck("Sample dec");
         database.CreateDeck("Another deck");
+        database.CreateCard(database.GetDecks().First(), "a", "b");
 
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
@@ -47,14 +48,14 @@ public static class App
                         break;
                 }
                 // Only if the user has decks
-                if (deckChoiceList.choices.Any())
+                if (deckChoiceList.SelectedItem != null)
                 {
                     switch (consoleKey)
                     {
                         // Navigation
                         case ConsoleKey.Spacebar:
                         case ConsoleKey.Enter:
-                            Deck(deckChoiceList.SelectedItem);
+                            Deck(database, deckChoiceList.SelectedItem);
                             break;
                         // Deck editing
                         case ConsoleKey.Delete:
@@ -114,9 +115,50 @@ public static class App
         return null;
     }
 
-    public static void Deck(Deck deck)
+    public static void Deck(FlashcardsDatabase database, Deck deck)
     {
-        Screens.Deck(deck);
-        Console.ReadKey();
+        bool running = true;
+
+        while (running)
+        {
+            Screens.Deck(deck);
+            ConsoleKey consoleKey = Console.ReadKey().Key;
+
+            switch (consoleKey)
+            {
+                case ConsoleKey.Delete:
+                    RemoveDeckDialog(database, deck);
+                    break;
+                case ConsoleKey.R:
+                case ConsoleKey.F2:
+                    RenameDeckAction(database, deck);
+                    break;
+                case ConsoleKey.C:
+                    DeckCardList(database, deck);
+                    break;
+                case ConsoleKey.I:
+                    //TODO: implement deck details
+                    break;
+                case ConsoleKey.Escape:
+                    running = false;
+                    break;
+            }
+        }
+
+    }
+
+    public static void DeckCardList(FlashcardsDatabase database, Deck deck)
+    {
+        ChoiceList<Card> cardChoiceList = new(deck.Cards);
+
+        bool running = true;
+
+        while (running)
+        {
+            cardChoiceList.CheckOutOfBoundsPointer();
+            Screens.CardEditor(cardChoiceList.SelectedItem, deck.Name);
+
+            ConsoleKey consoleKey = Console.ReadKey().Key;
+        }
     }
 }
