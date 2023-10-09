@@ -22,7 +22,7 @@ public class KeyboardAction
 // List of commonly used keyboard actions in screens
 public static class KeyboardActions
 {
-    public static List<KeyboardAction> DeckScreen { get; } = new() {
+    public static List<KeyboardAction> DeckListScreen { get; } = new() {
         new("up/down", "move selection"),
         new("enter", "open deck"),
         new("del", "delete deck"),
@@ -31,8 +31,27 @@ public static class KeyboardActions
         new("n", "create new deck")
     };
 
-    public static List<KeyboardAction> DeckScreenEmpty { get; } = new() {
+    public static List<KeyboardAction> DeckListScreenEmpty { get; } = new() {
         new("up/down", "move selection"),
         new("n", "create new deck")
+    };
+
+    public static List<KeyboardAction> DeckScreen { get; } = new() {
+        new("enter", "study cards"),
+        new("del", "delete deck"),
+        new("r", "rename deck"),
+        new("c", "cards in deck"),
+        new("i", "deck details"),
+        KeyboardAction.LineSeparator,
+        new("esc", "go back")
+    };
+    
+    public static List<KeyboardAction> DeckScreenEmpty { get; } = new() {
+        new("del", "delete deck"),
+        new("r", "rename deck"),
+        new("c", "cards in deck"),
+        new("i", "deck details"),
+        KeyboardAction.LineSeparator,
+        new("esc", "go back")
     };
 }
