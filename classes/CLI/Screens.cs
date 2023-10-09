@@ -69,7 +69,7 @@ public static class Screens
             Console.WriteLine(
                 UiFrame(
                     CenteredText(
-                        $"Card {currentCardNumber} of ${maxCardNumber}  **  ASCENDING"
+                        $"Card {currentCardNumber} of {maxCardNumber}  **  ASCENDING"
                     ) + "\n\n" +
                     DeckCard(card, true),
                     deckName
