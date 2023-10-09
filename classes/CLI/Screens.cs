@@ -48,7 +48,7 @@ public static class Screens
         Console.WriteLine(KeyboardActionList(deck.Cards.Any() ? KeyboardActions.DeckScreen : KeyboardActions.DeckScreenEmpty));
     }
 
-    internal static void CardEditor(Card? card, string deckName)
+    internal static void CardEditor(Card? card, int currentCardNumber, int maxCardNumber, string deckName)
     {
         ClearConsole();
 
@@ -69,7 +69,7 @@ public static class Screens
             Console.WriteLine(
                 UiFrame(
                     CenteredText(
-                        "Card 1 of 9999  **  ASCENDING"
+                        $"Card {currentCardNumber} of ${maxCardNumber}  **  ASCENDING"
                     ) + "\n\n" +
                     DeckCard(card, true),
                     deckName

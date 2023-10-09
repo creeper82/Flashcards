@@ -156,7 +156,12 @@ public static class App
         while (running)
         {
             cardChoiceList.CheckOutOfBoundsPointer();
-            Screens.CardEditor(cardChoiceList.SelectedItem, deck.Name);
+            Screens.CardEditor(
+                card: cardChoiceList.SelectedItem,
+                currentCardNumber: cardChoiceList.selectedIndex + 1,
+                maxCardNumber: cardChoiceList.MaxIndex - 1,
+                deckName: deck.Name
+            );
 
             ConsoleKey consoleKey = Console.ReadKey().Key;
         }
