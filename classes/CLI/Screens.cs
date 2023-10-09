@@ -12,15 +12,18 @@ public static class Screens
         Console.WriteLine(
             UiFrame(
                     MultilineCenteredText("Welcome to Flashcards!\nHere are your decks:\n") +
-                    (decks.Any() ? DeckList(decks, selectedDeckIndex) : CenteredText("You have no decks. Add a new deck with [N]")),
-
+                    (
+                        decks.Any()
+                        ? DeckList(decks, selectedDeckIndex)
+                        : CenteredText("You have no decks. Add a new deck with [N]")
+                    ),
                     "Flashcards"
                     )
         );
 
         // Display options
         Console.WriteLine(
-            KeyboardActionList(decks.Any() ? KeyboardActions.DeckScreen : KeyboardActions.DeckScreenEmpty)
+            KeyboardActionList(decks.Any() ? KeyboardActions.DeckListScreen : KeyboardActions.DeckListScreenEmpty)
         );
     }
 
@@ -30,13 +33,48 @@ public static class Screens
 
         Console.WriteLine(
             UiFrame(
-                CenteredText($"The selected deck has ID {deck.Id}") + "\n" +
-                CenteredText($"Created at {deck.CreationTimestamp.ToLocalTime()}"),
+                // CenteredText($"The selected deck has ID {deck.Id}") + "\n" +
+                // CenteredText($"Created at {deck.CreationTimestamp.ToLocalTime()}")
+                MultilineCenteredText(
+                    deck.Cards.Any()
+                    ? $"This deck has {deck.Cards.Count} cards"
+                    : "This deck is empty\nOpen card editor with [C]"
+                ),
                 deck.Name
             )
         );
 
         // Display options
-        Console.WriteLine(KeyboardActionList(new() { new("enter", "go back") }));
+        Console.WriteLine(KeyboardActionList(deck.Cards.Any() ? KeyboardActions.DeckScreen : KeyboardActions.DeckScreenEmpty));
+    }
+
+    internal static void CardEditor(Card? card, string deckName)
+    {
+        ClearConsole();
+
+        if (card == null)
+        {
+            Console.WriteLine(
+                UiFrame(
+                    MultilineCenteredText(
+                        "This deck has no cards\n" +
+                        "Add a new card with [N]"
+                    ),
+                    deckName
+                )
+            );
+        }
+        else
+        {
+            Console.WriteLine(
+                UiFrame(
+                    CenteredText(
+                        "Card 1 of 9999  **  ASCENDING"
+                    ) + "\n\n" +
+                    DeckCard(card, true),
+                    deckName
+                )
+            );
+        }
     }
 }
