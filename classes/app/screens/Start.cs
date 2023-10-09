@@ -8,10 +8,13 @@ public static partial class App
     public static void Start(FlashcardsDatabase database)
     {
         database.ResetAll();
-        database.CreateDeck("Aaaa");
+        // sample decks
+        database.CreateDeck("Angol");
         database.CreateDeck("Sample dec");
         database.CreateDeck("Another deck");
-        database.CreateCard(database.GetDecks().First(), "a", "b");
+        // sample cards
+        database.CreateCard(database.GetDecks().First(), "feeble", "słaby");
+        database.CreateCard(database.GetDecks().First(), "shrubs", "kitel");
 
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
