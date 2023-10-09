@@ -1,0 +1,39 @@
+namespace FlashcardsApp;
+
+using Flashcards;
+using CLI;
+
+public static partial class App
+{
+    public static void Deck(FlashcardsDatabase database, Deck deck)
+    {
+        bool running = true;
+
+        while (running)
+        {
+            Screens.Deck(deck);
+            running = Interactions.HandleDeck(database, deck);
+        }
+
+    }
+
+    public static void DeckCardList(FlashcardsDatabase database, Deck deck)
+    {
+        ChoiceList<Card> cardChoiceList = new(deck.Cards);
+
+        bool running = true;
+
+        while (running)
+        {
+            cardChoiceList.CheckOutOfBoundsPointer();
+            Screens.CardEditor(
+                card: cardChoiceList.SelectedItem,
+                currentCardNumber: cardChoiceList.selectedIndex + 1,
+                maxCardNumber: cardChoiceList.MaxIndex + 1,
+                deckName: deck.Name
+            );
+
+            ConsoleKey consoleKey = Console.ReadKey().Key;
+        }
+    }
+}
