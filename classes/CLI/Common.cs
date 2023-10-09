@@ -55,9 +55,9 @@ public static class Components
         return Repeat(' ', count);
     }
 
-    internal static string HorizontalLine(char Char)
+    internal static string HorizontalLine(char Char, int? length = null)
     {
-        return Repeat(Char, UiWidth);
+        return CenteredText(Repeat(Char, length ?? UiWidth));
     }
 
     internal static string CenteredText(string text, char SurroundChar = ' ')
@@ -88,6 +88,23 @@ public static class Components
         return result;
 
 
+    }
+
+    internal static string DeckCard(Card card, bool revealed = false)
+    {
+        int maxWidth = Math.Max(card.Front.Length, card.Back.Length);
+
+        if (!revealed)
+        {
+            return MultilineCenteredText(card.Front);
+        }
+        else {
+            return (
+                MultilineCenteredText(card.Front) + "\n" +
+                HorizontalLine('-', Math.Min(maxWidth + 4, UiWidth)) + "\n" +
+                MultilineCenteredText(card.Back) + "\n"
+            );
+        }
     }
 
     internal static string DeckList(IEnumerable<Deck> decks, int? selectedDeckIndex = null)
