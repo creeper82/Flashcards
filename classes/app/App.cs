@@ -159,7 +159,7 @@ public static class App
             Screens.CardEditor(
                 card: cardChoiceList.SelectedItem,
                 currentCardNumber: cardChoiceList.selectedIndex + 1,
-                maxCardNumber: cardChoiceList.MaxIndex - 1,
+                maxCardNumber: cardChoiceList.MaxIndex + 1,
                 deckName: deck.Name
             );
 
