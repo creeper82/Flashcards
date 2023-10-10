@@ -4,11 +4,11 @@ public class ChoiceList<T>
 {
     public int selectedIndex = 0;
 
-    public T SelectedItem
+    public T? SelectedItem
     {
         get
         {
-            return choices.ToList()[selectedIndex];
+            return choices.Any() ? choices.ToList()[selectedIndex] : default;
         }
     }
 
