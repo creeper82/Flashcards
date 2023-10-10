@@ -21,7 +21,7 @@ public static class Screens
                     )
         );
 
-        // Display options
+        // Display keyboard actions
         Console.WriteLine(
             KeyboardActionList(decks.Any() ? KeyboardActions.DeckListScreen : KeyboardActions.DeckListScreenEmpty)
         );
@@ -44,7 +44,7 @@ public static class Screens
             )
         );
 
-        // Display options
+        // Display keyboard actions
         Console.WriteLine(KeyboardActionList(deck.Cards.Any() ? KeyboardActions.DeckScreen : KeyboardActions.DeckScreenEmpty));
     }
 
