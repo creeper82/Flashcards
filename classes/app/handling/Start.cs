@@ -1,11 +1,10 @@
 namespace FlashcardsApp;
 
 using Flashcards;
-using CLI;
 
 public static partial class Interactions
 {
-    public static bool HandleMenu(FlashcardsDatabase database, ChoiceList<Deck> deckChoiceList)
+    public static bool HandleMenu(FlashcardsDatabase database, CLI.ChoiceList<Deck> deckChoiceList)
     {
         ConsoleKey consoleKey = Console.ReadKey().Key;
 
