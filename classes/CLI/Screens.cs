@@ -76,5 +76,7 @@ public static class Screens
                 )
             );
         }
+        // Display keyboard actions
+        Console.WriteLine(KeyboardActionList(card != null ? KeyboardActions.CardEditorScreen : KeyboardActions.CardEditorScreenEmpty));
     }
 }
