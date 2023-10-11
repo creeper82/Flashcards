@@ -82,6 +82,17 @@ public static class Components
         );
     }
 
+    internal static string RightAlignedText(string text, char SurroundChar = ' ') {
+        if (text == "") return Repeat(SurroundChar, UiWidth);
+
+        int surroundLength = UiWidth - text.Length;
+
+        if (surroundLength < 0) return text;
+
+        return Repeat(SurroundChar, surroundLength) + text;
+
+    }
+
     internal static string CenteredText(string Text, char SurroundChar = ' ')
     {
         var lines = Text.Split("\n");
