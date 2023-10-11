@@ -25,7 +25,7 @@ public class ChoiceList<T>
     {
         get
         {
-            if (selectedIndex >= MaxIndex - (PaginationCount / 2)) return MaxIndex - PaginationCount + 1;
+            if (selectedIndex >= MaxIndex - (PaginationCount / 2)) return Math.Max(0, MaxIndex - PaginationCount + 1);
             return Math.Max(0, selectedIndex - (PaginationCount / 2));
         }
     }
