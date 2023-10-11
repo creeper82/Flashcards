@@ -20,7 +20,7 @@ public static partial class Interactions
             // New deck
             case ConsoleKey.N:
                 Deck? newDeck = NewDeckAction(database);
-                if (newDeck != null) deckChoiceList.MoveToChoice(newDeck);
+                if (newDeck is not null) deckChoiceList.MoveToChoice(newDeck);
                 break;
             // Help menu
             case ConsoleKey.H:
@@ -31,7 +31,7 @@ public static partial class Interactions
                 return false;
         }
         // Only if the user has decks
-        if (deckChoiceList.SelectedItem != null)
+        if (deckChoiceList.SelectedItem is not null)
         {
             switch (consoleKey)
             {

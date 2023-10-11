@@ -10,7 +10,7 @@ public static partial class Interactions
         Card? card = cardChoiceList.SelectedItem;
 
         // Options only available when there are any cards
-        if (card != null)
+        if (card is not null)
         {
             switch (consoleKey)
             {
