@@ -74,8 +74,8 @@ public static class KeyboardActions
     };
 
     public static List<KeyboardAction> CardEditorScreen {get; } = new() {
-        new("f", "edit card front"),
-        new("b", "edit card back"),
+        new("up", "edit card front"),
+        new("down", "edit card back"),
         new("enter", "save changes"),
         KeyboardAction.LineSeparator,
         new("esc", "discard changes")
