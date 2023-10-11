@@ -169,7 +169,7 @@ public static class Components
         }
     }
 
-    internal static string UiFrame(string inner, string title = "")
+    internal static string UiFrame(string inner, string title = "", bool horizontalScroll = false, bool verticalScroll = false)
     {
         return (
             CenteredText(
@@ -177,7 +177,9 @@ public static class Components
                 title != "" ? title.Margin() : "",
                 '-'
             ) + "\n\n" +
-            inner + "\n\n" +
+            inner + "\n" +
+            (verticalScroll ? RightAlignedText("∧") + "\n" + RightAlignedText("∨") : "") +
+            (horizontalScroll ? RightAlignedText("<>") : "") + "\n" +
             HorizontalLine('-')
         );
 

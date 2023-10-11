@@ -11,13 +11,14 @@ public static class Screens
         // Display menu
         Console.WriteLine(
             UiFrame(
-                    CenteredText("Welcome to Flashcards!\nHere are your decks:\n") +
+                    inner: CenteredText("Welcome to Flashcards!\nHere are your decks:\n") +
                     (
                         decks.Any()
                         ? DeckList(decks, selectedDeckIndex, startIndex)
                         : CenteredText("You have no decks. Add a new deck with [N]")
                     ),
-                    "Flashcards"
+                    title: "Flashcards",
+                    verticalScroll: true
                     )
         );
 
@@ -68,11 +69,12 @@ public static class Screens
         {
             Console.WriteLine(
                 UiFrame(
-                    CenteredText(
+                    inner: CenteredText(
                         $"Card {currentCardNumber} of {maxCardNumber}  **  ASCENDING"
                     ) + "\n\n" +
                     DeckCard(card, true),
-                    deckName
+                    title: deckName,
+                    horizontalScroll: true
                 )
             );
         }
