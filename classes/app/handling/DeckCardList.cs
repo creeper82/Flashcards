@@ -7,10 +7,13 @@ public static partial class Interactions
     public static bool HandleDeckCardList(FlashcardsDatabase database, CLI.ChoiceList<Card> cardChoiceList)
     {
         ConsoleKey consoleKey = Console.ReadKey().Key;
+        Card? card = cardChoiceList.SelectedItem;
 
         // Options only available when there are any cards
-        if (cardChoiceList.SelectedItem != null) {
-            switch (consoleKey) {
+        if (card != null)
+        {
+            switch (consoleKey)
+            {
                 case ConsoleKey.LeftArrow:
                     cardChoiceList.MoveBackward();
                     break;
@@ -21,11 +24,12 @@ public static partial class Interactions
                     // Edit current card
                     break;
                 case ConsoleKey.Delete:
-                    // Delete current card
+                    RemoveCardAction(database, card);
                     break;
-                
+
             }
         }
+
         // Options available no matter if there are any cards
         switch (consoleKey)
         {
