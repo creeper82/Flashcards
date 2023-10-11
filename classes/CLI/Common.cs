@@ -55,7 +55,8 @@ public static class Components
         return Repeat(' ', count);
     }
 
-    private static string Truncate(string str, int width) {
+    private static string Truncate(string str, int width)
+    {
         if (str.Length > width) return str[..(width - 3)] + "...";
         return str;
     }
@@ -93,8 +94,6 @@ public static class Components
         }
 
         return result;
-
-
     }
 
     internal static string DeckCard(Card card, bool revealed = false)
@@ -105,7 +104,8 @@ public static class Components
         {
             return CenteredText(card.Front);
         }
-        else {
+        else
+        {
             return (
                 CenteredText(card.Front) + "\n" +
                 HorizontalLine('-', Math.Min(maxWidth + 4, UiWidth)) + "\n" +
