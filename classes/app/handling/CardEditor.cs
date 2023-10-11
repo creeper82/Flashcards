@@ -22,10 +22,14 @@ public static partial class Interactions
             case ConsoleKey.Spacebar:
                 return new HandleCardEditorResult.SaveChanges();
             case ConsoleKey.F:
-                card.Front = CLI.Dialogs.Input("Edit front", $"Currently: {card.Front}");
+            case ConsoleKey.UpArrow:
+                string newFront = CLI.Dialogs.Input("Edit front", $"Currently: {card.Front}").Trim();
+                if(newFront != "") card.Front = newFront;
                 break;
             case ConsoleKey.B:
-                card.Back = CLI.Dialogs.Input("Edit back", $"Currently: {card.Back}");
+            case ConsoleKey.DownArrow:
+                string newBack = CLI.Dialogs.Input("Edit back", $"Currently: {card.Back}").Trim();
+                if (newBack != "") card.Back = newBack;
                 break;
             case ConsoleKey.Escape:
                 return new HandleCardEditorResult.CancelChanges();
