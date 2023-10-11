@@ -47,4 +47,8 @@ public class Card
     public int DeckId { get; set; }
     public required Deck Deck { get; set; }
 
+    public Card Clone() {
+        return new Card() {Front = Front, Back = Back, Deck = Deck, CreationTimestamp = CreationTimestamp};
+    }
+
 }
