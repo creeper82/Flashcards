@@ -59,7 +59,7 @@ public static class KeyboardActions
         new("esc", "go back")
     };
 
-    public static List<KeyboardAction> CardEditorScreen { get; } = new() {
+    public static List<KeyboardAction> DeckCardListScreen { get; } = new() {
         new("left/right", "move selection"),
         new("enter", "edit card"),
         new("del", "delete card"),
@@ -68,8 +68,16 @@ public static class KeyboardActions
         new("esc", "go back")
     };
 
-    public static List<KeyboardAction> CardEditorScreenEmpty { get; } = new() {
+    public static List<KeyboardAction> DeckCardListScreenEmpty { get; } = new() {
         new("n", "create new card"),
         new("esc", "go back")
+    };
+
+    public static List<KeyboardAction> CardEditorScreen {get; } = new() {
+        new("f", "edit card front"),
+        new("b", "edit card back"),
+        new("enter", "save changes"),
+        KeyboardAction.LineSeparator,
+        new("esc", "discard changes")
     };
 }

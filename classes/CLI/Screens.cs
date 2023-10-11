@@ -77,7 +77,20 @@ public static class Screens
             );
         }
         // Display keyboard actions
-        Console.WriteLine(KeyboardActionList(card != null ? KeyboardActions.CardEditorScreen : KeyboardActions.CardEditorScreenEmpty));
+        Console.WriteLine(KeyboardActionList(card != null ? KeyboardActions.DeckCardListScreen : KeyboardActions.DeckCardListScreenEmpty));
+    }
+
+    internal static void CardEditor(Card card) {
+        ClearConsole();
+
+        Console.WriteLine(
+                UiFrame(
+                    DeckCard(card, true),
+                    "Edit card"
+                )
+        );
+
+        Console.WriteLine(KeyboardActionList(KeyboardActions.CardEditorScreen));
     }
 
     internal static void Help()

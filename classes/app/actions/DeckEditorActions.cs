@@ -15,4 +15,9 @@ public static partial class Interactions
             database.RemoveCard(card);
         }
     }
+
+    private static void EditCardAction(FlashcardsDatabase database, Card card) {
+        var editedCard = App.CardEditor(database, card);
+        database.UpdateCard(card, editedCard.Front, editedCard.Back);
+    }
 }

@@ -21,7 +21,7 @@ public static partial class Interactions
                     cardChoiceList.MoveForward();
                     break;
                 case ConsoleKey.Enter:
-                    // Edit current card
+                    EditCardAction(database, card);
                     break;
                 case ConsoleKey.Delete:
                     RemoveCardAction(database, card);
