@@ -18,7 +18,7 @@ public static class Screens
                         : CenteredText("You have no decks. Add a new deck with [N]")
                     ),
                     title: "Flashcards",
-                    verticalScroll: true
+                    verticalScroll: decks.Any()
                     )
         );
 
