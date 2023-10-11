@@ -30,12 +30,14 @@ public static class KeyboardActions
         new("del", "delete deck"),
         new("r", "rename deck"),
         KeyboardAction.LineSeparator,
-        new("n", "create new deck")
+        new("n", "create new deck"),
+        new("h", "open help")
     };
 
     public static List<KeyboardAction> DeckListScreenEmpty { get; } = new() {
         new("up/down", "move selection"),
-        new("n", "create new deck")
+        new("n", "create new deck"),
+        new("h", "open help")
     };
 
     public static List<KeyboardAction> DeckScreen { get; } = new() {
