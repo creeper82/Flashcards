@@ -22,6 +22,10 @@ public static partial class Interactions
                 Deck? newDeck = NewDeckAction(database);
                 if (newDeck != null) deckChoiceList.MoveToChoice(newDeck);
                 break;
+            // Help menu
+            case ConsoleKey.H:
+                App.Help();
+                break;
             // Exit app
             case ConsoleKey.Escape:
                 return false;
