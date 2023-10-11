@@ -12,7 +12,7 @@ public static partial class Interactions
         {
             case ConsoleKey.Delete:
                 RemoveDeckAction(database, deck);
-                break;
+                return false;
             case ConsoleKey.R:
             case ConsoleKey.F2:
                 RenameDeckAction(database, deck);
