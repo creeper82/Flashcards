@@ -74,4 +74,9 @@ public class FlashcardsDatabase
         db.Remove(deck);
         db.SaveChanges();
     }
+
+    public void RemoveCard(Card card) {
+        db.Remove(card);
+        db.SaveChanges();
+    }
 }
