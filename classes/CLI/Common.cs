@@ -107,14 +107,14 @@ public static class Components
         }
     }
 
-    internal static string DeckList(IEnumerable<Deck> decks, int? selectedDeckIndex = null)
+    internal static string DeckList(IEnumerable<Deck> decks, int? selectedDeckIndex = null, int? startIndex = 0)
     {
         var list = decks.Select(deck => deck.Name);
-        return List(list, selectedDeckIndex);
+        return List(list, selectedDeckIndex, startIndex);
     }
 
     // Create a list with top+bottom dashed border and elements inside
-    internal static string List(IEnumerable<string> sourceStrings, int? selectedIndex = null)
+    internal static string List(IEnumerable<string> sourceStrings, int? selectedIndex = null, int? startIndex = 0)
     {
         int listWidth = 0;
 
@@ -122,7 +122,7 @@ public static class Components
         const string SELECTED_STRING = "[•]";
 
         // Map the list to add unicode prefixes listed in constants above, depending on the selected element
-        List<string> strings = sourceStrings.Select((elem, index) => (index == selectedIndex ? SELECTED_STRING : NONSELECTED_STRING) + " " + elem).ToList();
+        List<string> strings = sourceStrings.Select((elem, index) => (index + startIndex == selectedIndex ? SELECTED_STRING : NONSELECTED_STRING) + " " + elem).ToList();
 
 
         // Determine the element with largest width
