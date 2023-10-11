@@ -5,7 +5,7 @@ using static Components;
 
 public static class Screens
 {
-    public static void Menu(IEnumerable<Deck> decks, int selectedDeckIndex)
+    public static void Menu(IEnumerable<Deck> decks, int selectedDeckIndex, int startIndex = 0)
     {
         ClearConsole();
         // Display menu
@@ -14,7 +14,7 @@ public static class Screens
                     MultilineCenteredText("Welcome to Flashcards!\nHere are your decks:\n") +
                     (
                         decks.Any()
-                        ? DeckList(decks, selectedDeckIndex)
+                        ? DeckList(decks, selectedDeckIndex, startIndex)
                         : CenteredText("You have no decks. Add a new deck with [N]")
                     ),
                     "Flashcards"
