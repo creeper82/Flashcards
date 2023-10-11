@@ -62,6 +62,12 @@ public class FlashcardsDatabase
         db.SaveChanges();
     }
 
+    public void UpdateCard(Card card, string? newFront = null, string? newBack = null) {
+        if(newFront is not null) card.Front = newFront;
+        if(newBack is not null) card.Back = newBack;
+        db.SaveChanges();
+    }
+
     // DELETE
 
     public void ResetAll()
