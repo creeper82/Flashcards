@@ -13,7 +13,7 @@ public static partial class App {
     while (running)
     {
         cardChoiceList.CheckOutOfBoundsPointer();
-        Screens.CardEditor(
+        Screens.DeckCardList(
             card: cardChoiceList.SelectedItem,
             currentCardNumber: cardChoiceList.selectedIndex + 1,
             maxCardNumber: cardChoiceList.MaxIndex + 1,

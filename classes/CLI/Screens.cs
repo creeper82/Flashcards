@@ -48,7 +48,7 @@ public static class Screens
         Console.WriteLine(KeyboardActionList(deck.Cards.Any() ? KeyboardActions.DeckScreen : KeyboardActions.DeckScreenEmpty));
     }
 
-    internal static void CardEditor(Card? card, int currentCardNumber, int maxCardNumber, string deckName)
+    internal static void DeckCardList(Card? card, int currentCardNumber, int maxCardNumber, string deckName)
     {
         ClearConsole();
 
