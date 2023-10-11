@@ -8,9 +8,12 @@ public static partial class Interactions
     {
         ConsoleKey consoleKey = Console.ReadKey().Key;
         Card? card = cardChoiceList.SelectedItem;
+
         // Options only available when there are any cards
-        if (card != null) {
-            switch (consoleKey) {
+        if (card != null)
+        {
+            switch (consoleKey)
+            {
                 case ConsoleKey.LeftArrow:
                     cardChoiceList.MoveBackward();
                     break;
@@ -23,9 +26,10 @@ public static partial class Interactions
                 case ConsoleKey.Delete:
                     RemoveCardAction(database, card);
                     break;
-                
+
             }
         }
+
         // Options available no matter if there are any cards
         switch (consoleKey)
         {
