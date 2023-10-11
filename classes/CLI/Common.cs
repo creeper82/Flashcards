@@ -55,15 +55,22 @@ public static class Components
         return Repeat(' ', count);
     }
 
+    private static string Truncate(string str, int width) {
+        if (str.Length > width) return str[..(width - 3)] + "...";
+        return str;
+    }
+
     internal static string HorizontalLine(char Char, int? length = null)
     {
         return CenteredText(Repeat(Char, length ?? UiWidth));
     }
 
-    internal static string CenteredText(string text, char SurroundChar = ' ')
+    private static string SingleLineCenteredText(string text, char SurroundChar = ' ')
     {
 
         if (text == "") return Repeat(SurroundChar, UiWidth);
+
+        if (text.Length > UiWidth) text = Truncate(text, UiWidth);
 
         float surroundLength = (UiWidth - text.Length) / 2f;
 
@@ -74,14 +81,14 @@ public static class Components
         );
     }
 
-    internal static string MultilineCenteredText(string Text)
+    internal static string CenteredText(string Text, char SurroundChar = ' ')
     {
         var lines = Text.Split("\n");
         string result = "";
 
         for (int i = 0; i < lines.Length; i++)
         {
-            result += CenteredText(lines[i]);
+            result += SingleLineCenteredText(lines[i], SurroundChar);
             if (i < lines.Length - 1) result += "\n";
         }
 
@@ -96,13 +103,13 @@ public static class Components
 
         if (!revealed)
         {
-            return MultilineCenteredText(card.Front);
+            return CenteredText(card.Front);
         }
         else {
             return (
-                MultilineCenteredText(card.Front) + "\n" +
+                CenteredText(card.Front) + "\n" +
                 HorizontalLine('-', Math.Min(maxWidth + 4, UiWidth)) + "\n" +
-                MultilineCenteredText(card.Back) + "\n"
+                CenteredText(card.Back) + "\n"
             );
         }
     }
@@ -147,7 +154,7 @@ public static class Components
             // Bottom border
             list += "\n" + Repeat('-', listWidth);
 
-            return MultilineCenteredText(list);
+            return CenteredText(list);
         }
     }
 

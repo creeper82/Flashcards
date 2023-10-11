@@ -17,7 +17,7 @@ public static class Dialogs
             // Display confirmation dialog
             Console.WriteLine(
                 UiFrame(
-                    inner: MultilineCenteredText(message) + "\n",
+                    inner: CenteredText(message) + "\n",
                     title: title
                 )
             );
@@ -41,7 +41,7 @@ public static class Dialogs
 
             Console.WriteLine(
                 UiFrame(
-                    inner: MultilineCenteredText(message),
+                    inner: CenteredText(message),
                     title: title
                 )
             );

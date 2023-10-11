@@ -11,7 +11,7 @@ public static class Screens
         // Display menu
         Console.WriteLine(
             UiFrame(
-                    MultilineCenteredText("Welcome to Flashcards!\nHere are your decks:\n") +
+                    CenteredText("Welcome to Flashcards!\nHere are your decks:\n") +
                     (
                         decks.Any()
                         ? DeckList(decks, selectedDeckIndex, startIndex)
@@ -35,7 +35,7 @@ public static class Screens
             UiFrame(
                 // CenteredText($"The selected deck has ID {deck.Id}") + "\n" +
                 // CenteredText($"Created at {deck.CreationTimestamp.ToLocalTime()}")
-                MultilineCenteredText(
+                CenteredText(
                     deck.Cards.Any()
                     ? $"This deck has {deck.Cards.Count} cards"
                     : "This deck is empty\nOpen card editor with [C]"
@@ -56,7 +56,7 @@ public static class Screens
         {
             Console.WriteLine(
                 UiFrame(
-                    MultilineCenteredText(
+                    CenteredText(
                         "This deck has no cards\n" +
                         "Add a new card with [N]"
                     ),
