@@ -3,24 +3,25 @@ namespace FlashcardsApp;
 using Flashcards;
 using CLI;
 
-public static partial class App {
-    public static void DeckCardList(FlashcardsDatabase database, Deck deck)
+public static partial class App
 {
-    ChoiceList<Card> cardChoiceList = new(deck.Cards);
-
-    bool running = true;
-
-    while (running)
+    public static void DeckCardList(FlashcardsDatabase database, Deck deck)
     {
-        cardChoiceList.CheckOutOfBoundsPointer();
-        Screens.DeckCardList(
-            card: cardChoiceList.SelectedItem,
-            currentCardNumber: cardChoiceList.selectedIndex + 1,
-            maxCardNumber: cardChoiceList.MaxIndex + 1,
-            deckName: deck.Name
-        );
+        ChoiceList<Card> cardChoiceList = new(deck.Cards);
 
-        running = Interactions.HandleDeckCardList(database, cardChoiceList);
+        bool running = true;
+
+        while (running)
+        {
+            cardChoiceList.CheckOutOfBoundsPointer();
+            Screens.DeckCardList(
+                card: cardChoiceList.SelectedItem,
+                currentCardNumber: cardChoiceList.selectedIndex + 1,
+                maxCardNumber: cardChoiceList.MaxIndex + 1,
+                deckName: deck.Name
+            );
+
+            running = Interactions.HandleDeckCardList(database, cardChoiceList);
+        }
     }
-}
 }
