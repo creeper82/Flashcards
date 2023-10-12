@@ -178,7 +178,7 @@ public static class Components
                 '-'
             ) + "\n\n" +
             inner + "\n" +
-            (verticalScroll ? RightAlignedText("∧") + "\n" + RightAlignedText("∨") : "") +
+            (verticalScroll ? RightAlignedText("↑") + "\n" + RightAlignedText("↓") : "") +
             (horizontalScroll ? RightAlignedText("< >") : "") + "\n" +
             HorizontalLine('-')
         );
