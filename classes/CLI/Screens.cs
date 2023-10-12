@@ -110,7 +110,7 @@ public static class Screens
                     CenteredText("CONTROLS") + "\n" +
                     "The app is controlled using your keyboard. " +
                     "Most of the keys are repetitive and keep their functions across different screens\n" +
-                    "The < > and ∧ ∨ arrows signify either horizontal or vertical scrolling with arrow keys is possible, " +
+                    "The < > and ↑↓ arrows signify, that either horizontal or vertical scrolling with arrow keys is possible, " +
                     "for example to move your selection in a list\n\n" +
                     "Here are some commonly used controls and their alternatives:\n" +
                     "Enter or SPACE  -  select item / open screen\n" +
