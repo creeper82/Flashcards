@@ -5,4 +5,5 @@
 - Friendly command line interface controlled with keyboard
 - Grouping cards into decks
 - Customized study sessions
+- Embedded help menu
 - Import and export the database
