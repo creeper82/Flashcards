@@ -81,4 +81,9 @@ public static class KeyboardActions
         KeyboardAction.LineSeparator,
         new("esc", "discard changes")
     };
+
+    public static List<KeyboardAction> SortPickerScreen { get; } = new() {
+        new("up/down", "move selection"),
+        new("enter", "apply sort")
+    };
 }
