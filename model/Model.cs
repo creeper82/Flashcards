@@ -51,4 +51,8 @@ public class Card
         return new Card() {Front = Front, Back = Back, Deck = Deck, CreationTimestamp = CreationTimestamp};
     }
 
+    public static Card EmptyCard(Deck deck) {
+        return new Card() {Front = "", Back = "", Deck = deck, CreationTimestamp = DateTime.UtcNow};
+    }
+
 }
