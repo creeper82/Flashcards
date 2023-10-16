@@ -47,7 +47,9 @@ public static partial class Interactions
                     RemoveCardAction(database, card);
                     break;
                 case ConsoleKey.S:
-                    return new HandleDeckCardListResult.ChangeSort(Sorting.SortType.DATE_DESCENDING);
+                    return new HandleDeckCardListResult.ChangeSort(
+                        App.SortTypePicker()
+                    );
             }
         }
 
