@@ -35,7 +35,7 @@ public static partial class Interactions
         switch (consoleKey)
         {
             case ConsoleKey.N:
-                // Add new card
+                CreateCardAction(database, deck);
                 break;
             case ConsoleKey.Escape:
                 return false;
