@@ -23,7 +23,7 @@ public static partial class App
                 sortName: sortType.SortFriendlyName()
             );
 
-            Interactions.HandleDeckCardListResult handleResult = Interactions.HandleDeckCardList(database, cardChoiceList, deck);
+            Interactions.HandleDeckCardListResult handleResult = Interactions.HandleDeckCardList(database, cardChoiceList, deck, sortType);
             if (handleResult is Interactions.HandleDeckCardListResult.ChangeSort result)
             {
                 sortType = result.newSortType;

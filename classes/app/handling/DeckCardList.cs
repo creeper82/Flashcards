@@ -22,7 +22,8 @@ public static partial class Interactions
     public static HandleDeckCardListResult HandleDeckCardList(
         FlashcardsDatabase database,
         CLI.ChoiceList<Card> cardChoiceList,
-        Deck deck
+        Deck deck,
+        Sorting.SortType currentSortType
     )
     {
         ConsoleKey consoleKey = Console.ReadKey().Key;
@@ -48,7 +49,7 @@ public static partial class Interactions
                     break;
                 case ConsoleKey.S:
                     return new HandleDeckCardListResult.ChangeSort(
-                        App.SortTypePicker()
+                        App.SortTypePicker(currentSortType)
                     );
             }
         }
