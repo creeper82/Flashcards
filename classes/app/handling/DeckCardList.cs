@@ -4,7 +4,21 @@ using Flashcards;
 
 public static partial class Interactions
 {
-    public static bool HandleDeckCardList(FlashcardsDatabase database, CLI.ChoiceList<Card> cardChoiceList, Deck deck)
+    public class HandleDeckCardListResult
+    {
+        public class ChangeSort : HandleDeckCardListResult
+        {
+            public Sorting.SortType newSortType;
+            public ChangeSort(Sorting.SortType newSortType)
+            {
+                this.newSortType = newSortType;
+            }
+        }
+
+        public class ExitList : HandleDeckCardListResult {}
+        public class ContinueLoop : HandleDeckCardListResult {}
+    }
+    public static HandleDeckCardListResult HandleDeckCardList(FlashcardsDatabase database, CLI.ChoiceList<Card> cardChoiceList, Deck deck)
     {
         ConsoleKey consoleKey = Console.ReadKey().Key;
         Card? card = cardChoiceList.SelectedItem;
@@ -27,7 +41,8 @@ public static partial class Interactions
                 case ConsoleKey.Delete:
                     RemoveCardAction(database, card);
                     break;
-
+                case ConsoleKey.S:
+                    return new HandleDeckCardListResult.ChangeSort(Sorting.SortType.DATE_DESCENDING);
             }
         }
 
@@ -39,9 +54,9 @@ public static partial class Interactions
                 if (newCard != null) cardChoiceList.MoveToChoice(newCard);
                 break;
             case ConsoleKey.Escape:
-                return false;
+                return new HandleDeckCardListResult.ExitList();
         }
 
-        return true;
+        return new HandleDeckCardListResult.ContinueLoop();
     }
 }
