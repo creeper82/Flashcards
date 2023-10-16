@@ -22,7 +22,7 @@ public static partial class Interactions
     }
 
     private static void CreateCardAction(FlashcardsDatabase database, Deck deck) {
-        var newCard = App.CardEditor(database, Card.EmptyCard(deck));
+        var newCard = App.CardEditor(database, Card.EmptyCard(deck), "New card");
         if (newCard.Front != "" && newCard.Back != "") {
             database.AppendCard(newCard);
         }

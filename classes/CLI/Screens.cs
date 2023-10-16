@@ -82,13 +82,13 @@ public static class Screens
         Console.WriteLine(KeyboardActionList(card is not null ? KeyboardActions.DeckCardListScreen : KeyboardActions.DeckCardListScreenEmpty));
     }
 
-    internal static void CardEditor(Card card) {
+    internal static void CardEditor(Card card, string title = "Edit card") {
         ClearConsole();
 
         Console.WriteLine(
                 UiFrame(
                     DeckCard(card, true),
-                    "Edit card"
+                    title
                 )
         );
 
