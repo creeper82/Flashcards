@@ -9,7 +9,7 @@ public class ChoiceList<T>
     {
         get
         {
-            return choices.Any() ? choices.ToList()[selectedIndex] : default;
+            return choices.Any() ? choices.Skip(selectedIndex).Take(1).FirstOrDefault() : default;
         }
     }
 
