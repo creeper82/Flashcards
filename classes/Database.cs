@@ -55,6 +55,11 @@ public class FlashcardsDatabase
         return Card;
     }
 
+    public void AppendCard(Card card) {
+        db.Add(card);
+        db.SaveChanges();
+    }
+
     // UPDATE
     public void RenameDeck(Deck deck, string newName)
     {

@@ -20,4 +20,13 @@ public static partial class Interactions
         var editedCard = App.CardEditor(database, card);
         database.UpdateCard(card, editedCard.Front, editedCard.Back);
     }
+
+    private static Card? CreateCardAction(FlashcardsDatabase database, Deck deck) {
+        var newCard = App.CardEditor(database, Card.EmptyCard(deck), "New card");
+        if (newCard.Front != "" && newCard.Back != "") {
+            database.AppendCard(newCard);
+            return newCard;
+        }
+        return null;
+    }
 }
