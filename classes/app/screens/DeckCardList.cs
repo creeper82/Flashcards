@@ -21,7 +21,7 @@ public static partial class App
                 deckName: deck.Name
             );
 
-            running = Interactions.HandleDeckCardList(database, cardChoiceList);
+            running = Interactions.HandleDeckCardList(database, cardChoiceList, deck);
         }
     }
 }

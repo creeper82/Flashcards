@@ -4,7 +4,7 @@ using Flashcards;
 
 public static partial class Interactions
 {
-    public static bool HandleDeckCardList(FlashcardsDatabase database, CLI.ChoiceList<Card> cardChoiceList)
+    public static bool HandleDeckCardList(FlashcardsDatabase database, CLI.ChoiceList<Card> cardChoiceList, Deck deck)
     {
         ConsoleKey consoleKey = Console.ReadKey().Key;
         Card? card = cardChoiceList.SelectedItem;
