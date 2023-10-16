@@ -74,7 +74,7 @@ public static class KeyboardActions
         new("esc", "go back")
     };
 
-    public static List<KeyboardAction> CardEditorScreen {get; } = new() {
+    public static List<KeyboardAction> CardEditorScreen { get; } = new() {
         new("up", "edit card front"),
         new("down", "edit card back"),
         new("enter", "save changes"),

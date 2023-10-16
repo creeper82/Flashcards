@@ -6,19 +6,23 @@ using CLI;
 public static partial class App
 {
     // accepts a card and then returns the edited one
-    public static Card CardEditor(FlashcardsDatabase database, Card card, string title = "Edit card") {
+    public static Card CardEditor(FlashcardsDatabase database, Card card, string title = "Edit card")
+    {
         bool running = true;
-        
+
         Card cardCopy = card.Clone();
 
-        while (running) {
+        while (running)
+        {
             Screens.CardEditor(cardCopy, title);
             var interactionStatus = Interactions.HandleCardEditor(database, cardCopy);
 
-            if (interactionStatus is Interactions.HandleCardEditorResult.SaveChanges) {
+            if (interactionStatus is Interactions.HandleCardEditorResult.SaveChanges)
+            {
                 return cardCopy;
             }
-            if (interactionStatus is Interactions.HandleCardEditorResult.CancelChanges) {
+            if (interactionStatus is Interactions.HandleCardEditorResult.CancelChanges)
+            {
                 running = false;
             }
         }

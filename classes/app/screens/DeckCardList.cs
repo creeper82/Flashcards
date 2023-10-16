@@ -24,7 +24,8 @@ public static partial class App
             );
 
             Interactions.HandleDeckCardListResult handleResult = Interactions.HandleDeckCardList(database, cardChoiceList, deck);
-            if (handleResult is Interactions.HandleDeckCardListResult.ChangeSort result) {
+            if (handleResult is Interactions.HandleDeckCardListResult.ChangeSort result)
+            {
                 sortType = result.newSortType;
             }
             if (handleResult is Interactions.HandleDeckCardListResult.ExitList) running = false;

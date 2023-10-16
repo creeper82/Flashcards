@@ -15,10 +15,15 @@ public static partial class Interactions
             }
         }
 
-        public class ExitList : HandleDeckCardListResult {}
-        public class ContinueLoop : HandleDeckCardListResult {}
+        public class ExitList : HandleDeckCardListResult { }
+        public class ContinueLoop : HandleDeckCardListResult { }
     }
-    public static HandleDeckCardListResult HandleDeckCardList(FlashcardsDatabase database, CLI.ChoiceList<Card> cardChoiceList, Deck deck)
+    
+    public static HandleDeckCardListResult HandleDeckCardList(
+        FlashcardsDatabase database,
+        CLI.ChoiceList<Card> cardChoiceList,
+        Deck deck
+    )
     {
         ConsoleKey consoleKey = Console.ReadKey().Key;
         Card? card = cardChoiceList.SelectedItem;
