@@ -10,6 +10,10 @@ public static partial class Interactions
 
         switch (consoleKey)
         {
+            case ConsoleKey.Enter:
+            case ConsoleKey.Spacebar:
+                App.StudySession(database, deck.Cards);
+                break;
             case ConsoleKey.Delete:
                 RemoveDeckAction(database, deck);
                 return false;
