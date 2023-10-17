@@ -5,7 +5,11 @@ public static class Sorting
     public enum SortType
     {
         DATE_ASCENDING,
-        DATE_DESCENDING
+        DATE_DESCENDING,
+        FRONT_ASCENDING,
+        FRONT_DESCENDING,
+        BACK_ASCENDING,
+        BACK_DESCENDING
     }
 
     public static string SortFriendlyName(this SortType sortType) {
@@ -13,6 +17,10 @@ public static class Sorting
         {
             SortType.DATE_ASCENDING => "oldest first",
             SortType.DATE_DESCENDING => "newest first",
+            SortType.FRONT_ASCENDING => "A-Z card front",
+            SortType.FRONT_DESCENDING => "Z-A card front",
+            SortType.BACK_ASCENDING => "A-Z card back",
+            SortType.BACK_DESCENDING => "Z-A card back",
             _ => "unknown sort type",
         };
     }
