@@ -49,7 +49,12 @@ public static class Screens
         Console.WriteLine(KeyboardActionList(deck.Cards.Any() ? KeyboardActions.DeckScreen : KeyboardActions.DeckScreenEmpty));
     }
 
-    internal static void DeckCardList(Card? card, int currentCardNumber, int maxCardNumber, string deckName)
+    internal static void DeckCardList(
+        Card? card, int currentCardNumber,
+        int maxCardNumber,
+        string deckName,
+        string sortName = "not sorted"
+    )
     {
         ClearConsole();
 
@@ -70,7 +75,7 @@ public static class Screens
             Console.WriteLine(
                 UiFrame(
                     inner: CenteredText(
-                        $"Card {currentCardNumber} of {maxCardNumber}  **  ASCENDING"
+                        $"Card {currentCardNumber} of {maxCardNumber}  **  {sortName}"
                     ) + "\n\n" +
                     DeckCard(card, true),
                     title: deckName,
@@ -82,7 +87,8 @@ public static class Screens
         Console.WriteLine(KeyboardActionList(card is not null ? KeyboardActions.DeckCardListScreen : KeyboardActions.DeckCardListScreenEmpty));
     }
 
-    internal static void CardEditor(Card card, string title = "Edit card") {
+    internal static void CardEditor(Card card, string title = "Edit card")
+    {
         ClearConsole();
 
         Console.WriteLine(
@@ -126,5 +132,19 @@ public static class Screens
                 title: "Flashcards"
             )
         );
+    }
+
+    internal static void SortTypePicker(List<string> sortTypes, int selectedIndex)
+    {
+        ClearConsole();
+        Console.WriteLine(
+            UiFrame(
+                inner: List(sortTypes, selectedIndex),
+                title: "Sort by",
+                verticalScroll: true
+            )
+        );
+        
+        Console.WriteLine(KeyboardActionList(KeyboardActions.SortPickerScreen));
     }
 }

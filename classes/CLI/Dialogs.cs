@@ -36,7 +36,8 @@ public static class Dialogs
             string title,
             string message = "",
             string bottomNote = ""
-        ) {
+        )
+        {
             ClearConsole();
 
             Console.WriteLine(

@@ -12,6 +12,7 @@ public static partial class Interactions
 
         public class ContinueLoop : HandleCardEditorResult { }
     }
+
     public static HandleCardEditorResult HandleCardEditor(FlashcardsDatabase database, Card card)
     {
         ConsoleKey consoleKey = Console.ReadKey().Key;
@@ -24,7 +25,7 @@ public static partial class Interactions
             case ConsoleKey.F:
             case ConsoleKey.UpArrow:
                 string newFront = CLI.Dialogs.Input("Edit front", $"Currently: {card.Front}").Trim();
-                if(newFront != "") card.Front = newFront;
+                if (newFront != "") card.Front = newFront;
                 break;
             case ConsoleKey.B:
             case ConsoleKey.DownArrow:
