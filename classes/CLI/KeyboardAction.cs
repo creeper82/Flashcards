@@ -86,4 +86,11 @@ public static class KeyboardActions
         new("up/down", "move selection"),
         new("enter", "apply sort")
     };
+
+    public static List<KeyboardAction> StudySessionScreen {get; } = new() {
+        new("enter", "reveal / next card"),
+        new("left", "previous card"),
+        KeyboardAction.LineSeparator,
+        new("esc", "go back")
+    };
 }
