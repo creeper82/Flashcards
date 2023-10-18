@@ -1,9 +1,9 @@
 # Screens #
 App screens are used to display a CLI screen, handle the user input, call the appropriate logic methods and refresh. These screens should not be confused with [CLI screens](../../CLI/Screens.cs), which only display a screen based on the parameters and don't handle any inputs. They only render the screen components
 
-Typically, the screens have a *running* boolean variable which determines if the screen should be refreshed after handling the input, or closed (for example when the user presses the Esc key).
+Typically, the screens have a *running* boolean variable which determines, if the screen should be refreshed after handling the input, or closed (for example when the user presses the Esc key).
 
-A lot more about handling can be found [here](../handling/README.md), essentially most of the handling methods return true or false (true if the screen should be refreshed, false - aborted). Consider the simple example from [Deck screen](Deck.cs), which shows info about the deck (from there you can start studying, manage the deck and edit that deck's cards)
+A lot more about handling can be found [here](../handling/README.md). Essentially most of the handling methods return true or false (true if the screen should be refreshed, false - aborted). Consider the simple example from [Deck screen](Deck.cs), which shows info about the deck (from there you can start studying, manage the deck and edit that deck's cards)
 
 ```cs
 public static void Deck(FlashcardsDatabase database, Deck deck)
@@ -20,13 +20,13 @@ public static void Deck(FlashcardsDatabase database, Deck deck)
 
     }
 ```
-In case of the *HandleDeck* method, the *false* value is returned for example upon deleting the deck (first checking if the user actually accepted the delete dialog by the if statement) or upon pressing Esc key:
+In case of the [HandleDeck](../handling/Deck.cs) method, the *false* value is returned for example upon deleting the deck (first checking if the user actually accepted the delete dialog by the if statement), or upon pressing Esc key:
 ```cs
 switch (consoleKey)
         {
             // skipped code
             case ConsoleKey.Delete:
-                if(RemoveDeck(database, deck)) return false;
+                if (RemoveDeck(database, deck)) return false;
                 break;
             // skipped code
             case ConsoleKey.Escape:
@@ -34,3 +34,41 @@ switch (consoleKey)
                 return false;
         }
 ```
+
+# Front-end handling #
+On the example above, the [HandleDeck](../handling/Deck.cs) method simply returns true/false to signify if the screen should be refreshed. However sometimes it is needed to change a local variable based on the user interaction, for example reveal a card on the study screen upon pressing space.
+
+That's why a handling function sometimes return custom status types ([read more here](../handling/README.md)). In such case, the handle function does all the back-end job, but the front-end job, such as revealing the card is done in the screen method directly. Consider the [StudySession](StudySession.cs) screen:
+```cs
+public static void StudySession(FlashcardsDatabase database, List<Card> cards) {
+    // skipped code
+
+    bool running = true;
+    bool isCardRevealed = false;
+
+    while (running) {
+        Screens.StudySession(
+            // skipped screen params
+        );
+        // Back-end job (if any) is done in HandleStudySession()
+        var handleResult = Logic.HandleStudySession(cardChoiceList);
+
+        // Remaining front-end job is done here
+        if (handleResult is Logic.HandleStudySessionResult.RevealOrNext) {
+            if (isCardRevealed && (cardChoiceList.selectedIndex != cardChoiceList.MaxIndex)) {
+                cardChoiceList.MoveForward();
+                isCardRevealed = false;
+            }
+            else isCardRevealed = true;
+            
+        }
+        if (handleResult is Logic.HandleStudySessionResult.MoveBackward) {
+            cardChoiceList.MoveBackward();
+            isCardRevealed = true;
+        }
+        if (handleResult is Logic.HandleStudySessionResult.Exit) running = false;
+    }
+
+    }
+```
+In this case, the card revealing is handled inside the StudySession screen. The same goes for moving the card backward (upon the left arrow press). It doesn't change anything on the back-end and needs to change the screen's local variables
