@@ -15,11 +15,11 @@ public static partial class Logic
                 App.StudySession(database, deck.Cards);
                 break;
             case ConsoleKey.Delete:
-                RemoveDeckAction(database, deck);
+                RemoveDeck(database, deck);
                 return false;
             case ConsoleKey.R:
             case ConsoleKey.F2:
-                RenameDeckAction(database, deck);
+                RenameDeck(database, deck);
                 break;
             case ConsoleKey.C:
                 App.DeckCardList(database, deck);
