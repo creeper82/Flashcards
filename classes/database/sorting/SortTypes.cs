@@ -15,13 +15,13 @@ public static class Sorting
     public static string SortFriendlyName(this SortType sortType) {
         return sortType switch
         {
-            SortType.DATE_ASCENDING => "oldest first",
-            SortType.DATE_DESCENDING => "newest first",
+            SortType.DATE_ASCENDING => "Oldest first",
+            SortType.DATE_DESCENDING => "Newest first",
             SortType.FRONT_ASCENDING => "A-Z card front",
             SortType.FRONT_DESCENDING => "Z-A card front",
             SortType.BACK_ASCENDING => "A-Z card back",
             SortType.BACK_DESCENDING => "Z-A card back",
-            _ => "unknown sort type",
+            _ => "Unknown sort",
         };
     }
 
