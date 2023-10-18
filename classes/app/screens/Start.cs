@@ -39,7 +39,7 @@ public static partial class App
             deckChoiceList.CheckOutOfBoundsPointer();
             Screens.Menu(deckChoiceList.PaginatedChoices, deckChoiceList.selectedIndex, deckChoiceList.PaginationStartIndex);
 
-            running = Interactions.HandleMenu(database, deckChoiceList);
+            running = Logic.HandleMenu(database, deckChoiceList);
         }
 
     }

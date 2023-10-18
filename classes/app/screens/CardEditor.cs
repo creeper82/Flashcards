@@ -15,13 +15,13 @@ public static partial class App
         while (running)
         {
             Screens.CardEditor(cardCopy, title);
-            var interactionStatus = Interactions.HandleCardEditor(database, cardCopy);
+            var interactionStatus = Logic.HandleCardEditor(database, cardCopy);
 
-            if (interactionStatus is Interactions.HandleCardEditorResult.SaveChanges)
+            if (interactionStatus is Logic.HandleCardEditorResult.SaveChanges)
             {
                 return cardCopy;
             }
-            if (interactionStatus is Interactions.HandleCardEditorResult.CancelChanges)
+            if (interactionStatus is Logic.HandleCardEditorResult.CancelChanges)
             {
                 running = false;
             }

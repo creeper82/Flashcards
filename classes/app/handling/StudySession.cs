@@ -2,7 +2,7 @@ namespace FlashcardsApp;
 
 using Flashcards;
 
-public static partial class Interactions
+public static partial class Logic
 {
     public class HandleStudySessionResult
     {

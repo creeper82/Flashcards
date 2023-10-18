@@ -23,12 +23,12 @@ public static partial class App
                 sortName: sortType.SortFriendlyName()
             );
 
-            Interactions.HandleDeckCardListResult handleResult = Interactions.HandleDeckCardList(database, cardChoiceList, deck, sortType);
-            if (handleResult is Interactions.HandleDeckCardListResult.ChangeSort result)
+            Logic.HandleDeckCardListResult handleResult = Logic.HandleDeckCardList(database, cardChoiceList, deck, sortType);
+            if (handleResult is Logic.HandleDeckCardListResult.ChangeSort result)
             {
                 sortType = result.newSortType;
             }
-            if (handleResult is Interactions.HandleDeckCardListResult.ExitList) running = false;
+            if (handleResult is Logic.HandleDeckCardListResult.ExitList) running = false;
         }
     }
 }

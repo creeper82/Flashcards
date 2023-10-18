@@ -12,7 +12,7 @@ public static partial class App
         while (running)
         {
             Screens.Deck(deck);
-            running = Interactions.HandleDeck(database, deck);
+            running = Logic.HandleDeck(database, deck);
         }
 
     }
