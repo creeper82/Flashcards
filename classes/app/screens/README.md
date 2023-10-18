@@ -72,3 +72,7 @@ public static void StudySession(FlashcardsDatabase database, List<Card> cards) {
     }
 ```
 In this case, the card revealing is handled inside the StudySession screen. The same goes for moving the card backward (upon the left arrow press). It doesn't change anything on the back-end and needs to change the screen's local variables
+
+# Non-void return types #
+In some rare cases the screen may need to return something, so effectively it acts as an upgraded hybrid screen-dialog.
+Example of such screen is [CardEditor](CardEditor.cs), which returns a *Card* type of the edited card. By design, the CardEditor screen doesn't change the actual card. It only changes the copy of the card and returns it after modifications. This allows for bigger flexibility.
