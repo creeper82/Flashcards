@@ -4,7 +4,7 @@ using Flashcards;
 
 public static partial class Logic
 {
-    private static void RemoveCardAction(FlashcardsDatabase database, Card card)
+    private static void RemoveCard(FlashcardsDatabase database, Card card)
     {
 
         if (CLI.Dialogs.Confirm(
@@ -18,13 +18,13 @@ public static partial class Logic
         }
     }
 
-    private static void EditCardAction(FlashcardsDatabase database, Card card)
+    private static void EditCard(FlashcardsDatabase database, Card card)
     {
         var editedCard = App.CardEditor(database, card);
         database.UpdateCard(card, editedCard.Front, editedCard.Back);
     }
 
-    private static Card? CreateCardAction(FlashcardsDatabase database, Deck deck)
+    private static Card? CreateCard(FlashcardsDatabase database, Deck deck)
     {
         var newCard = App.CardEditor(database, Card.EmptyCard(deck), "New card");
         if (newCard.Front != "" && newCard.Back != "")

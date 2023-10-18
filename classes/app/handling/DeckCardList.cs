@@ -42,10 +42,10 @@ public static partial class Logic
                     break;
                 case ConsoleKey.Enter:
                 case ConsoleKey.F2:
-                    EditCardAction(database, card);
+                    EditCard(database, card);
                     break;
                 case ConsoleKey.Delete:
-                    RemoveCardAction(database, card);
+                    RemoveCard(database, card);
                     break;
                 case ConsoleKey.S:
                     return new HandleDeckCardListResult.ChangeSort(
@@ -58,7 +58,7 @@ public static partial class Logic
         switch (consoleKey)
         {
             case ConsoleKey.N:
-                var newCard = CreateCardAction(database, deck);
+                var newCard = CreateCard(database, deck);
                 if (newCard != null) cardChoiceList.MoveToChoice(newCard);
                 break;
             case ConsoleKey.Escape:

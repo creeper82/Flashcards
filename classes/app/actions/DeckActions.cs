@@ -4,7 +4,7 @@ using Flashcards;
 
 public static partial class Logic
 {
-    private static void RemoveDeckAction(FlashcardsDatabase database, Deck deck)
+    private static void RemoveDeck(FlashcardsDatabase database, Deck deck)
     {
         int cards = deck.Cards.Count;
 
@@ -21,7 +21,7 @@ public static partial class Logic
         }
     }
 
-    private static Deck RenameDeckAction(FlashcardsDatabase database, Deck deck)
+    private static Deck RenameDeck(FlashcardsDatabase database, Deck deck)
     {
         string newName = CLI.Dialogs.Input(
             title: "Rename deck",
@@ -33,7 +33,7 @@ public static partial class Logic
         return deck;
     }
 
-    private static Deck? NewDeckAction(FlashcardsDatabase database)
+    private static Deck? NewDeck(FlashcardsDatabase database)
     {
         string newName = CLI.Dialogs.Input(
             title: "New deck",

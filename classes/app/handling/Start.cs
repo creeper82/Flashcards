@@ -19,7 +19,7 @@ public static partial class Logic
                 break;
             // New deck
             case ConsoleKey.N:
-                Deck? newDeck = NewDeckAction(database);
+                Deck? newDeck = NewDeck(database);
                 if (newDeck is not null) deckChoiceList.MoveToChoice(newDeck);
                 break;
             // Help menu
@@ -42,11 +42,11 @@ public static partial class Logic
                     break;
                 // Deck editing
                 case ConsoleKey.Delete:
-                    RemoveDeckAction(database, deckChoiceList.SelectedItem);
+                    RemoveDeck(database, deckChoiceList.SelectedItem);
                     break;
                 case ConsoleKey.R:
                 case ConsoleKey.F2:
-                    Deck renamedDeck = RenameDeckAction(database, deckChoiceList.SelectedItem);
+                    Deck renamedDeck = RenameDeck(database, deckChoiceList.SelectedItem);
                     deckChoiceList.MoveToChoice(renamedDeck);
                     break;
             }
