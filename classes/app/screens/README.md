@@ -20,7 +20,7 @@ public static void Deck(FlashcardsDatabase database, Deck deck)
 
     }
 ```
-In case of the [HandleDeck](../handling/Deck.cs) method, the *false* value is returned for example upon deleting the deck (first checking if the user actually accepted the delete dialog by the if statement), or upon pressing Esc key:
+In case of the [HandleDeck](../handling/Deck.cs) method, the *false* value is returned for example upon deleting the deck (first checking if the user actually accepted the delete dialog by the if statement), or upon pressing Esc key. So when a false value is returned, the loop ends, the screen is closed and goes back to menu
 ```cs
 switch (consoleKey)
         {
