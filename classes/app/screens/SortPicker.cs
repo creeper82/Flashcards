@@ -19,7 +19,7 @@ public static partial class App
         while (running)
         {
             Screens.SortTypePicker(sortTypeNames, sortTypeChoiceList.selectedIndex);
-            running = Interactions.HandleSortPicker(sortTypeChoiceList);
+            running = Logic.HandleSortPicker(sortTypeChoiceList);
         }
 
         return (SortType)sortTypeChoiceList.selectedIndex;

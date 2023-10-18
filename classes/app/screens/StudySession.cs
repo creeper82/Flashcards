@@ -19,9 +19,9 @@ public static partial class App {
                 sessionFinished: (cardChoiceList.selectedIndex == cardChoiceList.MaxIndex) && isCardRevealed
             );
             
-            var handleResult = Interactions.HandleStudySession(cardChoiceList);
+            var handleResult = Logic.HandleStudySession(cardChoiceList);
 
-            if (handleResult is Interactions.HandleStudySessionResult.RevealOrNext) {
+            if (handleResult is Logic.HandleStudySessionResult.RevealOrNext) {
                 if (isCardRevealed && (cardChoiceList.selectedIndex != cardChoiceList.MaxIndex)) {
                     cardChoiceList.MoveForward();
                     isCardRevealed = false;
@@ -29,11 +29,11 @@ public static partial class App {
                 else isCardRevealed = true;
                 
             }
-            if (handleResult is Interactions.HandleStudySessionResult.MoveBackward) {
+            if (handleResult is Logic.HandleStudySessionResult.MoveBackward) {
                 cardChoiceList.MoveBackward();
                 isCardRevealed = true;
             }
-            if (handleResult is Interactions.HandleStudySessionResult.Exit) running = false;
+            if (handleResult is Logic.HandleStudySessionResult.Exit) running = false;
         }
 
     }
