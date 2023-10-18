@@ -4,7 +4,8 @@ using Flashcards;
 
 public static partial class Logic
 {
-    private static void RemoveDeck(FlashcardsDatabase database, Deck deck)
+    // tries to remove a deck and returns true if it was removed (if users accepts the dialog)
+    private static bool RemoveDeck(FlashcardsDatabase database, Deck deck)
     {
         int cards = deck.Cards.Count;
 
@@ -18,7 +19,10 @@ public static partial class Logic
         ))
         {
             database.RemoveDeck(deck);
+            return true;
         }
+
+        return false;
     }
 
     private static Deck RenameDeck(FlashcardsDatabase database, Deck deck)
