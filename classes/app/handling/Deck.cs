@@ -15,8 +15,8 @@ public static partial class Logic
                 App.StudySession(database, deck.Cards);
                 break;
             case ConsoleKey.Delete:
-                RemoveDeck(database, deck);
-                return false;
+                if(RemoveDeck(database, deck)) return false;
+                break;
             case ConsoleKey.R:
             case ConsoleKey.F2:
                 RenameDeck(database, deck);
