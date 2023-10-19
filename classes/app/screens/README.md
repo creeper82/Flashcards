@@ -1,5 +1,5 @@
 # Screens #
-App screens are used to display a CLI screen, handle the user input, call the appropriate logic methods and refresh. These screens should not be confused with [CLI screens](../../CLI/Screens.cs), which only display a screen based on the parameters and don't handle any inputs. They only render the screen components
+App screens are used to display a [CLI screen](../../CLI/screens), handle the user input, call the appropriate logic methods and refresh. These screens should not be confused with [CLI screens](../../CLI/screens), which only display a screen based on the parameters and don't handle any inputs. They only render the screen components
 
 Typically, the screens have a *running* boolean variable which determines, if the screen should be refreshed after handling the input, or closed (for example when the user presses the Esc key).
 
