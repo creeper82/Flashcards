@@ -1,7 +1,7 @@
 # Screens #
 App screens are used to display a [CLI screen](../../CLI/screens), handle the user input, call the appropriate logic methods and refresh. These screens should not be confused with [CLI screens](../../CLI/screens), which only display a screen based on the parameters and don't handle any inputs. They only render the screen components
 
-Typically, the screens have a *running* boolean variable which determines, if the screen should be refreshed after handling the input, or closed (for example when the user presses the Esc key).
+Typically, the screens have a `running` boolean variable which determines, if the screen should be refreshed after handling the input, or closed (for example when the user presses the Esc key).
 
 A lot more about handling can be found [here](../handling/README.md). Essentially most of the handling methods return true or false (true if the screen should be refreshed, false - aborted). Consider the simple example from [Deck screen](Deck.cs), which shows info about the deck (from there you can start studying, manage the deck and edit that deck's cards)
 
@@ -20,7 +20,8 @@ public static void Deck(FlashcardsDatabase database, Deck deck)
 
     }
 ```
-In case of the [HandleDeck](../handling/Deck.cs) method, the *false* value is returned for example upon deleting the deck (first checking if the user actually accepted the delete dialog by the if statement), or upon pressing Esc key. So when a false value is returned, the loop ends, the screen is closed and goes back to menu
+In case of the [HandleDeck](../handling/Deck.cs) method, the `false` value is returned for example upon deleting the deck (first checking if the user actually accepted the delete dialog by the if statement), or upon pressing Esc key. So when a false value is returned, the loop ends, the screen is closed and goes back to menu.
+Here's what it looks like in the [HandleDeck](../handling/Deck.cs) method:
 ```cs
 switch (consoleKey)
         {
@@ -75,4 +76,4 @@ In this case, the card revealing is handled inside the StudySession screen. The 
 
 # Non-void return types #
 In some rare cases the screen may need to return something, so effectively it acts as an upgraded hybrid screen-dialog.
-Example of such screen is [CardEditor](CardEditor.cs), which returns a *Card* type of the edited card. By design, the CardEditor screen doesn't change the actual card. It only changes the copy of the card and returns it after modifications. This allows for bigger flexibility.
+Example of such screen is [CardEditor](CardEditor.cs), which returns a `Card` type of the edited card. By design, the CardEditor screen doesn't change the actual card. It only changes the copy of the card and returns it after modifications. This allows for bigger flexibility.

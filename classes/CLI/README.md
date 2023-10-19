@@ -16,9 +16,9 @@ That creates a new list with all the decks and sets the pagination count to 5, w
 
 Later, in the Menu screen loop, which is responsible for drawing the UI and handling potential user interactions, we pass the following values to [Screens.Menu](screens/Menu.cs):
 
-- *PaginatedChoices*, which returns the list of items according to the previously set pagination. In case of count 5, it'll only return 5 decks (from deck 1 to deck 5), and as we scroll the list further (i.e. move the selectedIndex), it'll show the next decks, trying to make the currently selected choice appear ideally in the center. For no pagination, you can use *choices*
-- *selectedIndex*, which returns the index of currently selected item (used to later show the \[•\] mark on the appropriate deck)
-- *PaginationStartIndex*, which returns the first index of the paginated choices in relation to all choices. For example - having 10 decks, when you scroll to deck 5 - thus seeing decks: 3,4,5,6,7 - the PaginationStartIndex will be 2 (because choices are 0-indexed, and the top-positioned deck 3 has index 2). It is needed to be substracted to correctly calculate which list element should have the \[•\] selection mark
+- `PaginatedChoices`, which returns the list of items according to the previously set pagination. In case of count 5, it'll only return 5 decks (from deck 1 to deck 5), and as we scroll the list further (i.e. move the selectedIndex), it'll show the next decks, trying to make the currently selected choice appear ideally in the center. For no pagination, you can use `choices`
+- `selectedIndex`, which returns the index of currently selected item (used to later show the \[•\] mark on the appropriate deck)
+- `PaginationStartIndex`, which returns the first index of the paginated choices in relation to all choices. For example - having 10 decks, when you scroll to deck 5 - thus seeing decks: 3,4,5,6,7 - the PaginationStartIndex will be 2 (because choices are 0-indexed, and the top-positioned deck 3 has index 2). It is needed to be substracted to correctly calculate which list element should have the \[•\] selection mark
 ```cs
 while (running)
         {
@@ -33,10 +33,10 @@ while (running)
         }
 ```
 ### CheckOutOfBoundsPointer ###
-At the start of each loop, *CheckOutOfBoundsPointer* is called. Effectively, it checks whether the currently selected index still exists in the list. If not, then move to the closest optimal index. For example having 4 decks, the user removed deck 4. After calling the function, the ChoiceList will move selection to deck 3.
+At the start of each loop, `CheckOutOfBoundsPointer` is called. Effectively, it checks whether the currently selected index still exists in the list. If not, then move to the closest optimal index. For example having 4 decks, the user removed deck 4. After calling the function, the ChoiceList will move selection to deck 3.
 
 ### Moving forward and backward ###
-Then, the *HandleMenu* function is called. You can read more about handling [here](../app/handling/), but generally the handler function checks which key have you pressed, and moves the list in case of the up/down arrow key press. All that happens in the [HandleMenu](../app/handling/Menu.cs) file, as follows:
+Then, the `HandleMenu` function is called. You can read more about handling [here](../app/handling/), but generally the handler function checks which key have you pressed, and moves the list in case of the up/down arrow key press. All that happens in the [HandleMenu](../app/handling/Menu.cs) file, as follows:
 
 ```cs
 switch (consoleKey)
