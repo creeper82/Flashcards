@@ -6,7 +6,7 @@ var db = new FlashcardsDatabase();
 
 try
 {
-    App.Start(db);
+    App.Menu(db);
 }
 catch (SqliteException)
 {
