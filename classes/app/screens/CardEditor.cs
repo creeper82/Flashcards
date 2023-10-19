@@ -15,7 +15,7 @@ public static partial class App
         while (running)
         {
             Screens.CardEditor(cardCopy, title);
-            var interactionStatus = Logic.HandleCardEditor(database, cardCopy);
+            var interactionStatus = Logic.HandleCardEditor(cardCopy);
 
             if (interactionStatus is Logic.HandleCardEditorResult.SaveChanges)
             {
