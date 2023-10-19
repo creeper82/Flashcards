@@ -81,6 +81,10 @@ switch (consoleKey)
     }
 ```
 
+Side note: on some handling functions, the *ChoiceList* is not controlled by using a custom status, but is passed as an argument to the Handle function and for example moved forward/backward inside the handle function, and not in the screen like on the example with *RevealOrNext* above. However, the ideal way would be to return a custom handle status type such as *MoveForward* and handle it in screen, where front-end should be handled.
+
+But simple front-end variables like boolean (*isRevealed*), int, string etc should 100% be controlled on the front-end. The *ChoiceList* is a quite complex type, thus its reference is passed and it can be modified directly in the handle function. It's not ideal, but slightly reduces the amount of these custom status types.
+
 ## Actions ##
 When an user interactions requires more than just one or two code lines (for example when a dialog needs to be shown and some conditions must be checked), the code should be wrapped into a method of the *Logic* class in the [Actions](../actions/) folder.
 
