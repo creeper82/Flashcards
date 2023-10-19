@@ -40,6 +40,12 @@ public partial class Screens
             );
         }
         // Display keyboard actions
-        Console.WriteLine(KeyboardActionList(card is not null ? KeyboardActions.DeckCardListScreen : KeyboardActions.DeckCardListScreenEmpty));
+        Console.WriteLine(
+            KeyboardActionList(
+                card is not null
+                ? KeyboardActions.DeckCardListScreen :
+                KeyboardActions.DeckCardListScreenEmpty
+            )
+        );
     }
 }
