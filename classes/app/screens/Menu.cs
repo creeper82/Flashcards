@@ -5,7 +5,7 @@ using CLI;
 
 public static partial class App
 {
-    public static void Start(FlashcardsDatabase database)
+    public static void Menu(FlashcardsDatabase database)
     {
         database.ResetAll();
         // sample decks
