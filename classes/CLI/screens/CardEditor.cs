@@ -10,10 +10,10 @@ public partial class Screens
         ClearConsole();
 
         Console.WriteLine(
-                UiFrame(
-                    DeckCard(card, true),
-                    title
-                )
+            UiFrame(
+                DeckCard(card, true),
+                title
+            )
         );
 
         Console.WriteLine(KeyboardActionList(KeyboardActions.CardEditorScreen));

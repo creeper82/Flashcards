@@ -82,7 +82,8 @@ public static class Components
         );
     }
 
-    internal static string RightAlignedText(string text, char SurroundChar = ' ') {
+    internal static string RightAlignedText(string text, char SurroundChar = ' ')
+    {
         if (text == "") return Repeat(SurroundChar, UiWidth);
 
         int surroundLength = UiWidth - text.Length;
@@ -140,8 +141,9 @@ public static class Components
         const string SELECTED_STRING = "[•]";
 
         // Map the list to add unicode prefixes listed in constants above, depending on the selected element
-        List<string> strings = sourceStrings.Select((elem, index) => (index + startIndex == selectedIndex ? SELECTED_STRING : NONSELECTED_STRING) + " " + elem).ToList();
-
+        List<string> strings = sourceStrings.Select(
+            (elem, index) => (index + startIndex == selectedIndex ? SELECTED_STRING : NONSELECTED_STRING) + " " + elem
+        ).ToList();
 
         // Determine the element with largest width
         foreach (string listElement in strings)
@@ -169,7 +171,12 @@ public static class Components
         }
     }
 
-    internal static string UiFrame(string inner, string title = "", bool horizontalScroll = false, bool verticalScroll = false)
+    internal static string UiFrame(
+        string inner,
+        string title = "",
+        bool horizontalScroll = false,
+        bool verticalScroll = false
+    )
     {
         return (
             CenteredText(

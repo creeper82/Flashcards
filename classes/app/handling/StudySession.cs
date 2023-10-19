@@ -11,7 +11,7 @@ public static partial class Logic
         public class ContinueLoop : HandleStudySessionResult { }
         public class MoveBackward : HandleStudySessionResult { }
     }
-    
+
     public static HandleStudySessionResult HandleStudySession(
         CLI.ChoiceList<Card> cardChoiceList
     )

@@ -23,6 +23,12 @@ public partial class Screens
         );
 
         // Display keyboard actions
-        Console.WriteLine(KeyboardActionList(deck.Cards.Any() ? KeyboardActions.DeckScreen : KeyboardActions.DeckScreenEmpty));
+        Console.WriteLine(
+            KeyboardActionList(
+                deck.Cards.Any()
+                ? KeyboardActions.DeckScreen
+                : KeyboardActions.DeckScreenEmpty
+            )
+        );
     }
 }

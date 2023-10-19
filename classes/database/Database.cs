@@ -55,7 +55,8 @@ public class FlashcardsDatabase
         return Card;
     }
 
-    public void AppendCard(Card card) {
+    public void AppendCard(Card card)
+    {
         db.Add(card);
         db.SaveChanges();
     }
@@ -67,9 +68,10 @@ public class FlashcardsDatabase
         db.SaveChanges();
     }
 
-    public void UpdateCard(Card card, string? newFront = null, string? newBack = null) {
-        if(newFront is not null) card.Front = newFront;
-        if(newBack is not null) card.Back = newBack;
+    public void UpdateCard(Card card, string? newFront = null, string? newBack = null)
+    {
+        if (newFront is not null) card.Front = newFront;
+        if (newBack is not null) card.Back = newBack;
         db.SaveChanges();
     }
 
@@ -86,7 +88,8 @@ public class FlashcardsDatabase
         db.SaveChanges();
     }
 
-    public void RemoveCard(Card card) {
+    public void RemoveCard(Card card)
+    {
         db.Remove(card);
         db.SaveChanges();
     }

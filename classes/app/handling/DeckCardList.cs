@@ -18,7 +18,7 @@ public static partial class Logic
         public class ExitList : HandleDeckCardListResult { }
         public class ContinueLoop : HandleDeckCardListResult { }
     }
-    
+
     public static HandleDeckCardListResult HandleDeckCardList(
         FlashcardsDatabase database,
         CLI.ChoiceList<Card> cardChoiceList,

@@ -12,7 +12,8 @@ public static class Sorting
         BACK_DESCENDING
     }
 
-    public static string SortFriendlyName(this SortType sortType) {
+    public static string SortFriendlyName(this SortType sortType)
+    {
         return sortType switch
         {
             SortType.DATE_DESCENDING => "Newest first",

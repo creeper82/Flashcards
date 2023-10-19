@@ -13,7 +13,7 @@ public static partial class Logic
         public class ContinueLoop : HandleCardEditorResult { }
     }
 
-    public static HandleCardEditorResult HandleCardEditor(FlashcardsDatabase database, Card card)
+    public static HandleCardEditorResult HandleCardEditor(Card card)
     {
         ConsoleKey consoleKey = Console.ReadKey().Key;
 
