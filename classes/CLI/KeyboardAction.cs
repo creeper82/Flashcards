@@ -87,7 +87,7 @@ public static class KeyboardActions
         new("enter", "apply sort")
     };
 
-    public static List<KeyboardAction> StudySessionScreen {get; } = new() {
+    public static List<KeyboardAction> StudySessionScreen { get; } = new() {
         new("enter", "reveal / next card"),
         new("left", "previous card"),
         KeyboardAction.LineSeparator,

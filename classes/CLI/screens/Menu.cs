@@ -3,7 +3,8 @@ namespace CLI;
 
 using static Components;
 
-public partial class Screens {
+public partial class Screens
+{
     public static void Menu(IEnumerable<Deck> decks, int selectedDeckIndex, int startIndex = 0)
     {
         ClearConsole();

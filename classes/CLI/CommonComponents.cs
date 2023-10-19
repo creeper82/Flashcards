@@ -82,7 +82,8 @@ public static class Components
         );
     }
 
-    internal static string RightAlignedText(string text, char SurroundChar = ' ') {
+    internal static string RightAlignedText(string text, char SurroundChar = ' ')
+    {
         if (text == "") return Repeat(SurroundChar, UiWidth);
 
         int surroundLength = UiWidth - text.Length;
