@@ -32,6 +32,9 @@ public static partial class Logic
                 string newBack = CLI.Dialogs.Input("Edit back", $"Currently: {card.Back}").Trim();
                 if (newBack != "") card.Back = newBack;
                 break;
+            case ConsoleKey.S:
+                (card.Back, card.Front) = (card.Front, card.Back);
+                break;
             case ConsoleKey.Escape:
                 return new HandleCardEditorResult.CancelChanges();
         }
