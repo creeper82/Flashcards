@@ -11,8 +11,6 @@ public partial class Screens
 
         Console.WriteLine(
             UiFrame(
-                // CenteredText($"The selected deck has ID {deck.Id}") + "\n" +
-                // CenteredText($"Created at {deck.CreationTimestamp.ToLocalTime()}")
                 CenteredText(
                     "Deck details" + "\n\n" +
                     $"Card count: {deck.Cards.Count}" + "\n" +
