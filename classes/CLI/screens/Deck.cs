@@ -11,8 +11,6 @@ public partial class Screens
 
         Console.WriteLine(
             UiFrame(
-                // CenteredText($"The selected deck has ID {deck.Id}") + "\n" +
-                // CenteredText($"Created at {deck.CreationTimestamp.ToLocalTime()}")
                 CenteredText(
                     deck.Cards.Any()
                     ? $"This deck has {deck.Cards.Count} cards"

@@ -25,7 +25,7 @@ public static partial class Logic
                 App.DeckCardList(database, deck);
                 break;
             case ConsoleKey.I:
-                //TODO: implement deck details
+                App.DeckDetails(deck);
                 break;
             case ConsoleKey.Escape:
             case ConsoleKey.Q:
