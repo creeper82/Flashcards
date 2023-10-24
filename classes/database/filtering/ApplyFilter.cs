@@ -7,7 +7,7 @@ public static partial class Filtering
         IEnumerable<Card> filteredCards = cards;
 
         // filter the cards by keyword
-        if (cardFilter.Keyword != "")
+        if (cardFilter.HasKeywordFilter)
         {
             filteredCards = filteredCards.Where(card =>
         {
@@ -26,7 +26,7 @@ public static partial class Filtering
         }
 
         // filter the cards by date
-        if (cardFilter.RecentDays is not null)
+        if (cardFilter.HasDaysFilter)
         {
             filteredCards = filteredCards.Where(card => (DateTime.UtcNow - card.CreationTimestamp).Days <= cardFilter.RecentDays);
         }
