@@ -9,7 +9,8 @@ public partial class Screens
             Card? card, int currentCardNumber,
             int maxCardNumber,
             string deckName,
-            string sortName = "not sorted"
+            string sortName = "not sorted",
+            bool isFiltered = false
         )
     {
         ClearConsole();
@@ -19,8 +20,10 @@ public partial class Screens
             Console.WriteLine(
                 UiFrame(
                     CenteredText(
-                        "This deck has no cards\n" +
-                        "Add a new card with [N]"
+                        isFiltered
+                        ? "No cards meet the filter criteria"
+                        :   "This deck has no cards\n" +
+                            "Add a new card with [N]"
                     ),
                     deckName
                 )
@@ -31,6 +34,7 @@ public partial class Screens
             Console.WriteLine(
                 UiFrame(
                     inner: CenteredText(
+                        (isFiltered ? "(Filtering applied)\n" : "") +
                         $"Card {currentCardNumber} of {maxCardNumber}  **  {sortName}"
                     ) + "\n\n" +
                     DeckCard(card, true),
@@ -43,8 +47,12 @@ public partial class Screens
         Console.WriteLine(
             KeyboardActionList(
                 card is not null
-                ? KeyboardActions.DeckCardListScreen :
-                KeyboardActions.DeckCardListScreenEmpty
+                ? KeyboardActions.DeckCardListScreen
+                : (
+                    isFiltered
+                    ? KeyboardActions.DeckCardListScreenEmptyFiltered
+                    : KeyboardActions.DeckCardListScreenEmpty
+                )
             )
         );
     }
