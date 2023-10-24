@@ -9,7 +9,8 @@ public static partial class Filtering
     }
 
     // Returns a friendly name for a KeywordMatchMode
-    public static string FriendlyName(this KeywordMatchMode matchMode) {
+    public static string FriendlyName(this KeywordMatchMode matchMode)
+    {
         return matchMode switch
         {
             KeywordMatchMode.Any => "Search the whole card",
@@ -22,8 +23,8 @@ public static partial class Filtering
     public class CardFilter
     {
 
-        public KeywordMatchMode MatchMode = KeywordMatchMode.Any;
         public string Keyword = "";
+        public KeywordMatchMode MatchMode = KeywordMatchMode.Any;
         public int? RecentDays = null;
 
         public CardFilter(string keyword = "", KeywordMatchMode matchMode = 0, int? recentDays = null)
@@ -33,7 +34,30 @@ public static partial class Filtering
             RecentDays = recentDays;
         }
 
+        public void ResetFilter()
+        {
+            MatchMode = KeywordMatchMode.Any;
+            Keyword = "";
+            RecentDays = null;
+        }
+
+        public CardFilter Clone() {
+            return new CardFilter (Keyword, MatchMode, RecentDays);
+        }
+
+        public bool HasKeywordFilter {
+            get => Keyword != "";
+        }
+
+        public bool HasDaysFilter {
+            get => RecentDays is not null;
+        }
+
+        public bool HasAnyFilter {
+            get => HasKeywordFilter || HasDaysFilter;
+        }
+
     }
 
-    
+
 }
