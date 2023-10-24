@@ -47,7 +47,6 @@ public static class Dialogs
                 )
             );
             if (bottomNote != "") Console.WriteLine(bottomNote);
-            Console.WriteLine("Leave empty to cancel");
             Console.Write(">>> ");
         }
     }
@@ -73,7 +72,7 @@ public static class Dialogs
     public static string Input(
         string title,
         string message = "",
-        string bottomNote = ""
+        string bottomNote = "Leave empty to cancel"
     )
     {
         DialogScreens.InputScreen(title: title, message: message, bottomNote: bottomNote);
