@@ -7,7 +7,7 @@ public static partial class Filtering
         IEnumerable<Card> filteredCards = cards;
 
         // filter the cards by keyword
-        if (cardFilter.Keyword is not null)
+        if (cardFilter.Keyword != "")
         {
             filteredCards = filteredCards.Where(card =>
         {

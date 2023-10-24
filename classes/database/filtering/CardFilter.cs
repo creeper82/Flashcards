@@ -23,10 +23,10 @@ public static partial class Filtering
     {
 
         public KeywordMatchMode MatchMode = KeywordMatchMode.Any;
-        public string? Keyword = null;
+        public string Keyword = "";
         public int? RecentDays = null;
 
-        public CardFilter(string? keyword = null, KeywordMatchMode matchMode = 0, int? recentDays = null)
+        public CardFilter(string keyword = "", KeywordMatchMode matchMode = 0, int? recentDays = null)
         {
             MatchMode = matchMode;
             Keyword = keyword;
