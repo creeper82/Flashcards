@@ -9,9 +9,9 @@ public static partial class Filtering
         // filter the cards by keyword
         if (cardFilter.Keyword is not null)
         {
-            filteredCards = cards.Where(card =>
+            filteredCards = filteredCards.Where(card =>
         {
-            string keyword = cardFilter.Keyword;
+            string keyword = cardFilter.Keyword.ToLower();
             string front = card.Front.ToLower();
             string back = card.Back.ToLower();
 
@@ -28,7 +28,7 @@ public static partial class Filtering
         // filter the cards by date
         if (cardFilter.RecentDays is not null)
         {
-            filteredCards = cards.Where(card => (DateTime.UtcNow - card.CreationTimestamp).Days <= cardFilter.RecentDays);
+            filteredCards = filteredCards.Where(card => (DateTime.UtcNow - card.CreationTimestamp).Days <= cardFilter.RecentDays);
         }
 
         return filteredCards;
