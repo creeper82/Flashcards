@@ -63,7 +63,9 @@ public static class KeyboardActions
         new("left/right", "move selection"),
         new("enter", "edit card"),
         new("del", "delete card"),
+        KeyboardAction.LineSeparator,
         new("s", "change sort order"),
+        new("f", "filter cards (search etc)"),
         KeyboardAction.LineSeparator,
         new("n", "create new card"),
         new("esc", "go back")
@@ -71,6 +73,12 @@ public static class KeyboardActions
 
     public static List<KeyboardAction> DeckCardListScreenEmpty { get; } = new() {
         new("n", "create new card"),
+        new("esc", "go back")
+    };
+
+    public static List<KeyboardAction> DeckCardListScreenEmptyFiltered { get; } = new() {
+        new("n", "create new card"),
+        new("f", "filter cards (search etc)"),
         new("esc", "go back")
     };
 
@@ -93,5 +101,16 @@ public static class KeyboardActions
         new("left", "previous card"),
         KeyboardAction.LineSeparator,
         new("esc", "go back")
+    };
+
+    public static List<KeyboardAction> CardFilterPickerScreen { get; } = new() {
+        new("1", "search the whole card"),
+        new("2", "search the card fronts"),
+        new("3", "search the card backs"),
+        new("4", "show only cards added last X days"),
+        new("C", "clear all filters"),
+        KeyboardAction.LineSeparator,
+        new("enter", "apply filter"),
+        new("esc", "cancel")
     };
 }

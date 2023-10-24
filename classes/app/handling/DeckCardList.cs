@@ -15,6 +15,15 @@ public static partial class Logic
             }
         }
 
+        public class ChangeFilter : HandleDeckCardListResult
+        {
+            public Filtering.CardFilter newCardFilter;
+            public ChangeFilter(Filtering.CardFilter newCardFilter)
+            {
+                this.newCardFilter = newCardFilter;
+            }
+        }
+
         public class ExitList : HandleDeckCardListResult { }
         public class ContinueLoop : HandleDeckCardListResult { }
     }
@@ -23,7 +32,8 @@ public static partial class Logic
         FlashcardsDatabase database,
         CLI.ChoiceList<Card> cardChoiceList,
         Deck deck,
-        Sorting.SortType currentSortType
+        Sorting.SortType currentSortType,
+        Filtering.CardFilter currentCardFilter
     )
     {
         ConsoleKey consoleKey = Console.ReadKey().Key;
@@ -63,6 +73,17 @@ public static partial class Logic
                 break;
             case ConsoleKey.Escape:
                 return new HandleDeckCardListResult.ExitList();
+        }
+
+        // When there are none or some cards, but filtering is already applied, allow to change the filter
+        if (card is not null || currentCardFilter.HasAnyFilter)
+        {
+            if (consoleKey == ConsoleKey.F)
+            {
+                return new HandleDeckCardListResult.ChangeFilter(
+                        App.CardFilterPicker(currentCardFilter)
+                );
+            }
         }
 
         return new HandleDeckCardListResult.ContinueLoop();
