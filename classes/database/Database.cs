@@ -18,7 +18,8 @@ public class FlashcardsDatabase
     public IEnumerable<Deck> GetDecks()
     {
         var decks = db.Decks
-            .OrderBy(Deck => Deck.Name);
+            .OrderBy(Deck => Deck.Name)
+            .Include(Deck => Deck.Cards);
         return decks;
     }
 
