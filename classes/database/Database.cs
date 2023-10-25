@@ -4,20 +4,21 @@ namespace Flashcards;
 
 public class FlashcardsDatabase
 {
-    public FlashcardsContext db = new();
+    public FlashcardsContext context = new();
     public string Path = "";
 
     public FlashcardsDatabase()
     {
-        Path = db.DbPath;
-        db.Database.Migrate();
+        Path = context.DbPath;
+        context.Database.SetCommandTimeout(5);
+        context.Database.Migrate();
     }
 
     // READ
 
     public IEnumerable<Deck> GetDecks()
     {
-        var decks = db.Decks
+        var decks = context.Decks
             .OrderBy(Deck => Deck.Name)
             .Include(Deck => Deck.Cards);
         return decks;
@@ -25,7 +26,7 @@ public class FlashcardsDatabase
 
     public IEnumerable<Card> GetAllCards()
     {
-        var cards = db.Cards
+        var cards = context.Cards
             .OrderBy(Card => Card.Id);
         return cards;
     }
@@ -41,8 +42,8 @@ public class FlashcardsDatabase
     public Deck CreateDeck(string Name)
     {
         var Deck = new Deck { Name = Name, CreationTimestamp = DateTime.UtcNow };
-        db.Add(Deck);
-        db.SaveChanges();
+        context.Add(Deck);
+        context.SaveChanges();
 
         return Deck;
     }
@@ -51,47 +52,47 @@ public class FlashcardsDatabase
     {
         var Card = new Card { Front = Front, Back = Back, Deck = Deck, CreationTimestamp = DateTime.UtcNow };
         Deck.Cards.Add(Card);
-        db.SaveChanges();
+        context.SaveChanges();
 
         return Card;
     }
 
     public void AppendCard(Card card)
     {
-        db.Add(card);
-        db.SaveChanges();
+        context.Add(card);
+        context.SaveChanges();
     }
 
     // UPDATE
     public void RenameDeck(Deck deck, string newName)
     {
         deck.Name = newName;
-        db.SaveChanges();
+        context.SaveChanges();
     }
 
     public void UpdateCard(Card card, string? newFront = null, string? newBack = null)
     {
         if (newFront is not null) card.Front = newFront;
         if (newBack is not null) card.Back = newBack;
-        db.SaveChanges();
+        context.SaveChanges();
     }
 
     // DELETE
 
     public void ResetAll()
     {
-        db.Decks.ExecuteDelete();
+        context.Decks.ExecuteDelete();
     }
 
     public void RemoveDeck(Deck deck)
     {
-        db.Remove(deck);
-        db.SaveChanges();
+        context.Remove(deck);
+        context.SaveChanges();
     }
 
     public void RemoveCard(Card card)
     {
-        db.Remove(card);
-        db.SaveChanges();
+        context.Remove(card);
+        context.SaveChanges();
     }
 }
