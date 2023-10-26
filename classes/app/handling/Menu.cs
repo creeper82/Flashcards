@@ -24,7 +24,7 @@ public static partial class Logic
                 break;
             // Help menu
             case ConsoleKey.H:
-                App.Help();
+                App.Help(database.Path);
                 break;
             // Exit app
             case ConsoleKey.Escape:

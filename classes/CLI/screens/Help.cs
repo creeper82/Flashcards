@@ -1,11 +1,10 @@
-using Flashcards;
 namespace CLI;
 
 using static Components;
 
 public partial class Screens
 {
-    internal static void Help()
+    internal static void Help(string dbPath = "Unknown path")
     {
         ClearConsole();
 
@@ -27,6 +26,18 @@ public partial class Screens
                     "R or F2  -  rename currently selected item\n" +
                     "N  -  add a new item\n" +
                     "Esc  -  go back\n\n" +
+
+                    CenteredText("PROBLEMS") + "\n" +
+                    "There should be no database problems if the app is used correctly.\n" +
+                    "Modifying the database with external programs may force the app to be reloaded, " +
+                    "or in the worst case break the database structure.\n" +
+                    "Most common errors are described and have interactive menus.\n\n" + 
+                    "However, when you encounter an unknown error, " +
+                    "or the app works in some unintended way (crashes when modifying decks, cards), you may need to:\n" +
+                    "- fix the database manually, if you're experienced with SQL\n" +
+                    "- remove the corrupt database file and let it be recreated\n\n" +
+                    "You can find the database file here: " + dbPath + "\n" +
+                    "WARNING: Removing the file should be the last resort. It will result in a COMPLETE DATA LOSS\n\n" +
 
                     CenteredText("AUTHOR") + "\n" +
                     "The whole project is made by me (creeper82), you can see my other projects there ^^\n" +
