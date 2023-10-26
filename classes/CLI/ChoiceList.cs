@@ -17,7 +17,7 @@ public class ChoiceList<T>
     {
         get
         {
-            return choices.Count() - 1;
+            return Math.Max(choices.Count() - 1, 0);
         }
     }
 
