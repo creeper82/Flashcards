@@ -3,9 +3,9 @@ using CLI;
 
 public static partial class App
 {
-    public static void Help()
+    public static void Help(string dbPath = "Unknown path")
     {
-        Screens.Help();
+        Screens.Help(dbPath);
         Console.ReadKey();
     }
 

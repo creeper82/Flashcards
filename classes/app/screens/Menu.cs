@@ -7,24 +7,6 @@ public static partial class App
 {
     public static void Menu(FlashcardsDatabase database)
     {
-        database.ResetAll();
-        // sample decks
-        database.CreateDeck("Deck #01");
-        database.CreateDeck("Deck #02");
-        database.CreateDeck("Deck #03");
-        database.CreateDeck("Deck #04");
-        database.CreateDeck("Deck #05");
-        database.CreateDeck("Deck #06");
-        database.CreateDeck("Deck #07");
-        database.CreateDeck("Deck #08");
-        database.CreateDeck("Deck #09");
-        database.CreateDeck("Deck #10");
-        database.CreateDeck("Deck #11");
-        database.CreateDeck("Deck #12");
-        // sample cards
-        database.CreateCard(database.GetDecks().First(), "feeble", "słaby");
-        database.CreateCard(database.GetDecks().First(), "shrubs", "kitel");
-
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
         ChoiceList<Deck> deckChoiceList = new(database.GetDecks())
