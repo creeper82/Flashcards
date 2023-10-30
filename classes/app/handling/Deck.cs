@@ -12,7 +12,7 @@ public static partial class Logic
         {
             case ConsoleKey.Enter:
             case ConsoleKey.Spacebar:
-                App.StudySession(database, deck.Cards);
+                App.StudySession(deck.Cards);
                 break;
             case ConsoleKey.Delete:
                 if (RemoveDeck(database, deck)) return false;
