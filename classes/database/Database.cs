@@ -70,10 +70,11 @@ public class FlashcardsDatabase
         context.SaveChanges();
     }
 
-    public void UpdateCard(Card card, string? newFront = null, string? newBack = null)
+    public void UpdateCard(Card card, string? newFront = null, string? newBack = null, bool? newTaggedState = null)
     {
         if (newFront is not null) card.Front = newFront;
         if (newBack is not null) card.Back = newBack;
+        if (newTaggedState is not null) card.Tagged = newTaggedState ?? false;
         context.SaveChanges();
     }
 

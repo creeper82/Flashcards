@@ -63,6 +63,7 @@ public static class KeyboardActions
         new("left/right", "move selection"),
         new("enter", "edit card"),
         new("del", "delete card"),
+        new("t", "tag/untag for repetition"),
         KeyboardAction.LineSeparator,
         new("s", "change sort order"),
         new("f", "filter cards (search etc)"),
