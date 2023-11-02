@@ -109,6 +109,7 @@ public static class KeyboardActions
         new("2", "search the card fronts"),
         new("3", "search the card backs"),
         new("4", "show only cards added last X days"),
+        new("5", "show only tagged cards"),
         new("C", "clear all filters"),
         KeyboardAction.LineSeparator,
         new("enter", "apply filter"),

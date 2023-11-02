@@ -29,6 +29,9 @@ public static partial class Logic
             case ConsoleKey.D4:
                 UpdateRecentDaysFilter(cardFilter);
                 break;
+            case ConsoleKey.D5:
+                UpdateTaggedFilter(cardFilter);
+                break;
             case ConsoleKey.C:
                 ResetCardFilter(cardFilter);
                 break;

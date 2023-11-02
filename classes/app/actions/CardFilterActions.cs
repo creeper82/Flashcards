@@ -44,6 +44,10 @@ public static partial class Logic
         else cardFilter.RecentDays = null;
     }
 
+    private static void UpdateTaggedFilter(CardFilter cardFilter) {
+        cardFilter.OnlyTagged = !cardFilter.OnlyTagged;
+    }
+
     private static void ResetCardFilter(CardFilter cardFilter)
     {
         if (CLI.Dialogs.Confirm(
