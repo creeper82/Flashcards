@@ -31,6 +31,12 @@ public static partial class Filtering
             filteredCards = filteredCards.Where(card => (DateTime.UtcNow - card.CreationTimestamp).Days <= cardFilter.RecentDays);
         }
 
+        // filter the cards by tagged state
+        if (cardFilter.HasTaggedFilter)
+        {
+            filteredCards = filteredCards.Where(card => card.Tagged);
+        }
+
         return filteredCards;
     }
 }

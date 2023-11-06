@@ -23,6 +23,10 @@ public partial class Screens
             cardFilter.HasDaysFilter
             ? $"Only cards added last {cardFilter.RecentDays} days\n"
             : ""
+        ) + (
+            cardFilter.HasTaggedFilter
+            ? $"Only tagged cards\n"
+            : ""
         );
 
         Console.WriteLine(

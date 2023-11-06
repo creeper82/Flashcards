@@ -57,6 +57,9 @@ public static partial class Logic
                 case ConsoleKey.Delete:
                     RemoveCard(database, card);
                     break;
+                case ConsoleKey.T:
+                    TagOrUntagCard(database, card);
+                    break;
                 case ConsoleKey.S:
                     return new HandleDeckCardListResult.ChangeSort(
                         App.SortTypePicker(currentSortType)

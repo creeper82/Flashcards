@@ -61,6 +61,27 @@ public static class Components
         return str;
     }
 
+    private static string[] DivideStringIntoArray(this string sourceString, int maxElementLength)
+    {
+        // check if splitting is needed
+        if (sourceString.Length <= maxElementLength) return new string[1] { sourceString };
+        else
+        {
+            // split the string
+            int parts = (int)Math.Ceiling(sourceString.Length / (float)maxElementLength);
+            string[] dividedString = new string[parts];
+
+            for (int part = 0; part < parts; part++)
+            {
+                if (part == parts - 1) dividedString[part] = sourceString[(part * maxElementLength)..];
+                else dividedString[part] = sourceString.Substring(part * maxElementLength, maxElementLength);
+            }
+
+            return dividedString;
+        }
+
+    }
+
     internal static string HorizontalLine(char Char, int? length = null)
     {
         return CenteredText(Repeat(Char, length ?? UiWidth));
@@ -94,9 +115,22 @@ public static class Components
 
     }
 
-    internal static string CenteredText(string Text, char SurroundChar = ' ')
+    internal static string CenteredText(string Text, char SurroundChar = ' ', bool wrapText = false)
     {
         var lines = Text.Split("\n");
+
+        if (wrapText) {
+            List<string> wrappedLines = new();
+
+            // Wrap lines that are too long
+            foreach (string line in lines)
+            {
+                wrappedLines.AddRange(line.DivideStringIntoArray(UiWidth));
+            }
+
+            lines = wrappedLines.ToArray();
+        }
+
         string result = "";
 
         for (int i = 0; i < lines.Length; i++)
@@ -119,9 +153,9 @@ public static class Components
         else
         {
             return (
-                CenteredText(card.Front) + "\n" +
+                CenteredText(Text: card.Front, wrapText: true) + "\n" +
                 HorizontalLine('-', Math.Min(maxWidth + 4, UiWidth)) + "\n" +
-                CenteredText(card.Back) + "\n"
+                CenteredText(Text: card.Back, wrapText: true) + "\n"
             );
         }
     }

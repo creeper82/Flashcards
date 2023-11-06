@@ -5,7 +5,7 @@ using CLI;
 
 public static partial class App
 {
-    public static void StudySession(FlashcardsDatabase database, List<Card> cards)
+    public static void StudySession(List<Card> cards)
     {
         ChoiceList<Card> cardChoiceList = new(cards);
 

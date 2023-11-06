@@ -26,12 +26,14 @@ public static partial class Filtering
         public string Keyword = "";
         public KeywordMatchMode MatchMode = KeywordMatchMode.Any;
         public int? RecentDays = null;
+        public bool OnlyTagged = false;
 
-        public CardFilter(string keyword = "", KeywordMatchMode matchMode = 0, int? recentDays = null)
+        public CardFilter(string keyword = "", KeywordMatchMode matchMode = 0, int? recentDays = null, bool onlyTagged = false)
         {
             MatchMode = matchMode;
             Keyword = keyword;
             RecentDays = recentDays;
+            OnlyTagged = onlyTagged;
         }
 
         public void ResetFilter()
@@ -42,7 +44,7 @@ public static partial class Filtering
         }
 
         public CardFilter Clone() {
-            return new CardFilter (Keyword, MatchMode, RecentDays);
+            return new CardFilter (Keyword, MatchMode, RecentDays, OnlyTagged);
         }
 
         public bool HasKeywordFilter {
@@ -54,7 +56,11 @@ public static partial class Filtering
         }
 
         public bool HasAnyFilter {
-            get => HasKeywordFilter || HasDaysFilter;
+            get => HasKeywordFilter || HasDaysFilter || HasTaggedFilter;
+        }
+
+        public bool HasTaggedFilter {
+            get => OnlyTagged;
         }
 
     }

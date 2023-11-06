@@ -43,16 +43,19 @@ public class Card
     public required string Front { get; set; }
     public required string Back { get; set; }
     public required DateTime CreationTimestamp { get; set; }
+    public bool Tagged { get; set; } = false;
 
     public int DeckId { get; set; }
     public required Deck Deck { get; set; }
 
-    public Card Clone() {
-        return new Card() {Front = Front, Back = Back, Deck = Deck, CreationTimestamp = CreationTimestamp};
+    public Card Clone()
+    {
+        return new Card() { Front = Front, Back = Back, Deck = Deck, CreationTimestamp = CreationTimestamp };
     }
 
-    public static Card EmptyCard(Deck deck) {
-        return new Card() {Front = "", Back = "", Deck = deck, CreationTimestamp = DateTime.UtcNow};
+    public static Card EmptyCard(Deck deck)
+    {
+        return new Card() { Front = "", Back = "", Deck = deck, CreationTimestamp = DateTime.UtcNow };
     }
 
 }

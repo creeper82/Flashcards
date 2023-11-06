@@ -31,13 +31,18 @@ public partial class Screens
         }
         else
         {
+            string topText = "" +
+                (isFiltered ? "   FILTERING APPLIED" : new(' ', 20)) +
+                (card.Tagged ? "   TAGGED" : new(' ', 9));
+
             Console.WriteLine(
                 UiFrame(
-                    inner: CenteredText(
-                        (isFiltered ? "(Filtering applied)\n" : "") +
-                        $"Card {currentCardNumber} of {maxCardNumber}  **  {sortName}"
-                    ) + "\n\n" +
-                    DeckCard(card, true),
+                    inner: 
+                        RightAlignedText(topText) + "\n" +
+                        CenteredText(
+                            $"Card {currentCardNumber} of {maxCardNumber}  **  {sortName}"
+                        ) + "\n\n" +
+                        DeckCard(card, true),
                     title: deckName,
                     horizontalScroll: true
                 )

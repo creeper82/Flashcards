@@ -17,10 +17,10 @@ public static partial class App
 
         while (running)
         {
-            cardChoiceList.CheckOutOfBoundsPointer();
             cardChoiceList.choices = deck.Cards
                 .SortBy(sortType)
                 .ApplyFilter(cardFilter);
+            cardChoiceList.CheckOutOfBoundsPointer();
 
             Screens.DeckCardList(
                 card: cardChoiceList.SelectedItem,
