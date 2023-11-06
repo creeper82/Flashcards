@@ -3,6 +3,11 @@ using static Sorting;
 
 public static class SortExtensionMethods
 {
+    public static List<Card> Shuffle(this IEnumerable<Card> cards)
+    {
+        Random rng = new();
+        return cards.OrderBy(card => rng.Next()).ToList();
+    }
     public static IEnumerable<Card> SortBy(this IEnumerable<Card> cards, SortType sortType)
     {
         return sortType switch
