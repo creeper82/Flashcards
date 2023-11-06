@@ -28,6 +28,7 @@ public static partial class Logic
                     return new HandleStudySessionResult.MoveBackward();
                 case ConsoleKey.Enter:
                 case ConsoleKey.Spacebar:
+                case ConsoleKey.RightArrow:
                     return new HandleStudySessionResult.RevealOrNext();
             }
         }
