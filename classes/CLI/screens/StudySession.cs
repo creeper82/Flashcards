@@ -18,29 +18,43 @@ public partial class Screens
         {
             Console.WriteLine(
                 UiFrame(
-                    inner: CenteredText("Empty study session\nA study session must have at least one card"),
+                    inner: CenteredText("Good job!\nYou have finished the study session"),
                     title: "Study session"
                 )
             );
         }
         else
         {
+            string topText =
+                card.Tagged ? "TAGGED" : "";
+
             Console.WriteLine(
                 UiFrame(
-                    inner: CenteredText(
+                    inner: 
+                        RightAlignedText(topText) + "\n" +
+                        CenteredText(
                         $"Card {currentCardNumber} of {maxCardNumber}"
                     ) + "\n\n" +
                     DeckCard(card, revealCard) +
                     (
                         sessionFinished
-                        ? CenteredText("\nYou have finished the study session!")
+                        ? CenteredText(
+                            "\nYou have finished the study session!" +
+                            "\nContinue studying tagged cards with [C]" +
+                            "\nRestart the whole study session with [R]"
+                        )
                         : ""
-                    ),
+                    ) + 
+                    (currentCardNumber == 1 && maxCardNumber > 1 ? "\n\nPro tip: Tag difficult cards with [T] to study them later" : ""),
                     title: "Study session"
                 )
             );
         }
         // Display keyboard actions
-        Console.WriteLine(KeyboardActionList(KeyboardActions.StudySessionScreen));
+        Console.WriteLine(
+            card is null
+            ? KeyboardActionList(KeyboardActions.StudySessionScreenEmpty)
+            : KeyboardActionList(KeyboardActions.StudySessionScreen)
+        );
     }
 }

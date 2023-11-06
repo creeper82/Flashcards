@@ -100,7 +100,14 @@ public static class KeyboardActions
     public static List<KeyboardAction> StudySessionScreen { get; } = new() {
         new("enter", "reveal / next card"),
         new("left", "previous card"),
+        new("t", "tag/untag for repetition"),
         KeyboardAction.LineSeparator,
+        new("c", "study only tagged cards"),
+        new("r", "restart study session"),
+        new("esc", "go back")
+    };
+
+    public static List<KeyboardAction> StudySessionScreenEmpty { get; } = new() {
         new("esc", "go back")
     };
 

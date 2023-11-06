@@ -10,9 +10,12 @@ public static partial class Logic
         public class Exit : HandleStudySessionResult { }
         public class ContinueLoop : HandleStudySessionResult { }
         public class MoveBackward : HandleStudySessionResult { }
+        public class RestartSession : HandleStudySessionResult { }
+        public class ContinueOnlyTagged : HandleStudySessionResult { }
     }
 
     public static HandleStudySessionResult HandleStudySession(
+        FlashcardsDatabase database,
         CLI.ChoiceList<Card> cardChoiceList
     )
     {
@@ -30,6 +33,13 @@ public static partial class Logic
                 case ConsoleKey.Spacebar:
                 case ConsoleKey.RightArrow:
                     return new HandleStudySessionResult.RevealOrNext();
+                case ConsoleKey.T:
+                    TagOrUntagCard(database, card);
+                    break;
+                case ConsoleKey.C:
+                    return new HandleStudySessionResult.ContinueOnlyTagged();
+                case ConsoleKey.R:
+                    return new HandleStudySessionResult.RestartSession();
             }
         }
 
