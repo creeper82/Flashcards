@@ -134,3 +134,6 @@ _NCrunch*
 
 # Visual Studio Code assets
 .vscode/
+
+# output folder of builds
+release_build/
