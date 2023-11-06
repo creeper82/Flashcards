@@ -27,6 +27,15 @@ public partial class Screens
                     "N  -  add a new item\n" +
                     "Esc  -  go back\n\n" +
 
+                    CenteredText("STUDYING") + "\n" +
+                    "When in a deck, press Enter to enter a study session. " +
+                    "In this mode, the cards aren't revealed until you reveal them.\n\n" +
+                    "Ideally, you should tag all the cards that are difficult for you while studying, " +
+                    "to later narrow down the study material only to these cards.\n" +
+                    "After tagging the difficult cards, you should proceed to untag the cards you feel like you've learned. " +
+                    "Otherwise, you'd end up studying the same set over and over and never finishing the session.\n\n" +
+                    "The end of a study session is when you manage to learn all the tagged cards and untag them\n\n" +
+
                     CenteredText("PROBLEMS") + "\n" +
                     "There should be no database problems if the app is used correctly.\n" +
                     "Modifying the database with external programs may force the app to be reloaded, " +
@@ -40,7 +49,7 @@ public partial class Screens
                     "WARNING: Removing the file should be the last resort. It will result in a COMPLETE DATA LOSS\n\n" +
 
                     CenteredText("AUTHOR") + "\n" +
-                    "The whole project is made by me (creeper82), you can see my other projects there ^^\n" +
+                    "The whole project is made by me (creeper82), you can see my other projects on GitHub ^^\n" +
                     "Have fun using the app! Report issues on the GitHub page, if any.\n\n" +
                     "Press any key to go back..."
                 ),
