@@ -8,12 +8,19 @@ public static partial class Logic
     {
         ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
 
+        if (deck.Cards.Any())
+        {
+            switch (consoleKey)
+            {
+                case ConsoleKey.Enter:
+                case ConsoleKey.Spacebar:
+                    App.StudySession(database, deck.Cards);
+                    break;
+            }
+        }
+
         switch (consoleKey)
         {
-            case ConsoleKey.Enter:
-            case ConsoleKey.Spacebar:
-                App.StudySession(database, deck.Cards);
-                break;
             case ConsoleKey.Delete:
                 if (RemoveDeck(database, deck)) return false;
                 break;
