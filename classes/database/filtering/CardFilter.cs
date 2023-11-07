@@ -41,6 +41,7 @@ public static partial class Filtering
             MatchMode = KeywordMatchMode.Any;
             Keyword = "";
             RecentDays = null;
+            OnlyTagged = false;
         }
 
         public CardFilter Clone() {
