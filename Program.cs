@@ -28,7 +28,7 @@ while (running)
         Console.WriteLine("Press any key to restart the app and reflect the unexpected changes");
         Console.WriteLine("At the moment there is no way to ignore these changes");
 
-        Console.ReadKey();
+        CLI.ConsoleInput.WaitForAnyKey();
 
     }
 
@@ -103,5 +103,5 @@ static void ShowHelpScreen(string dbPath = "Unknown path")
         "WARNING: DELETING THE DATABASE WILL RESULT IN COMPLETE DATA LOSS. ALL DECKS AND CARDS WILL BE LOST FOREVER"
     );
     Console.WriteLine("\nPress any key to close the help screen");
-    Console.ReadKey(true);
+    CLI.ConsoleInput.WaitForAnyKey();
 }

@@ -6,7 +6,7 @@ public static partial class App
     public static void Help(string dbPath = "Unknown path")
     {
         Screens.Help(dbPath);
-        Console.ReadKey();
+        ConsoleInput.WaitForAnyKey();
     }
 
 }

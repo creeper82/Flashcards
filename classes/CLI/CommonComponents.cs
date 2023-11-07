@@ -8,6 +8,11 @@ public static class ConsoleInput
     {
         return Console.ReadKey(true).Key;
     }
+
+    public static void WaitForAnyKey()
+    {
+        Console.ReadKey(true);
+    }
 }
 
 public static class Components
