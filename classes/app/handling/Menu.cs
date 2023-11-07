@@ -6,7 +6,7 @@ public static partial class Logic
 {
     public static bool HandleMenu(FlashcardsDatabase database, CLI.ChoiceList<Deck> deckChoiceList)
     {
-        ConsoleKey consoleKey = Console.ReadKey().Key;
+        ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
 
         switch (consoleKey)
         {

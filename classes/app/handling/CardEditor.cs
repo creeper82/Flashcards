@@ -15,7 +15,7 @@ public static partial class Logic
 
     public static HandleCardEditorResult HandleCardEditor(Card card)
     {
-        ConsoleKey consoleKey = Console.ReadKey().Key;
+        ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
 
         switch (consoleKey)
         {

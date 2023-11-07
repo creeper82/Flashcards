@@ -19,7 +19,7 @@ public static partial class Logic
         CLI.ChoiceList<Card> cardChoiceList
     )
     {
-        ConsoleKey consoleKey = Console.ReadKey().Key;
+        ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
         Card? card = cardChoiceList.SelectedItem;
 
         // Options only available when there are any cards

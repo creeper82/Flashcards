@@ -6,7 +6,7 @@ public static partial class Logic
 {
     public static bool HandleDeck(FlashcardsDatabase database, Deck deck)
     {
-        ConsoleKey consoleKey = Console.ReadKey().Key;
+        ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
 
         switch (consoleKey)
         {

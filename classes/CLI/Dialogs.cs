@@ -60,7 +60,7 @@ public static class Dialogs
     {
         DialogScreens.ConfirmScreen(title, message, okButton, cancelButton);
 
-        switch (Console.ReadKey().Key)
+        switch (ConsoleInput.GetConsoleKey())
         {
             case ConsoleKey.Y:
                 return true;
