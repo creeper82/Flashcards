@@ -43,7 +43,8 @@ public static partial class App
             {
                 sortType = changeSortResult.newSortType;
             }
-            if (handleResult is Logic.HandleDeckCardListResult.ChangeFilter changeFilterResult) {
+            if (handleResult is Logic.HandleDeckCardListResult.ChangeFilter changeFilterResult)
+            {
                 cardFilter = changeFilterResult.newCardFilter;
             }
             else if (handleResult is Logic.HandleDeckCardListResult.ExitList) running = false;

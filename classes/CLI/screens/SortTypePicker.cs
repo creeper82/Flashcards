@@ -1,4 +1,3 @@
-using Flashcards;
 namespace CLI;
 
 using static Components;

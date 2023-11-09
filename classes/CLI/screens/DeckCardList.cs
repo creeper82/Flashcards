@@ -22,8 +22,8 @@ public partial class Screens
                     CenteredText(
                         isFiltered
                         ? "No cards meet the filter criteria"
-                        :   "This deck has no cards\n" +
-                            "Add a new card with [N]"
+                        : "This deck has no cards\n" +
+                          "Add a new card with [N]"
                     ),
                     deckName
                 )
@@ -37,7 +37,7 @@ public partial class Screens
 
             Console.WriteLine(
                 UiFrame(
-                    inner: 
+                    inner:
                         RightAlignedText(topText) + "\n" +
                         CenteredText(
                             $"Card {currentCardNumber} of {maxCardNumber}  **  {sortName}"

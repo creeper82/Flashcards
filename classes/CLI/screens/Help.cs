@@ -40,7 +40,7 @@ public partial class Screens
                     "There should be no database problems if the app is used correctly.\n" +
                     "Modifying the database with external programs may force the app to be reloaded, " +
                     "or in the worst case break the database structure.\n" +
-                    "Most common errors are described and have interactive menus.\n\n" + 
+                    "Most common errors are described and have interactive menus.\n\n" +
                     "However, when you encounter an unknown error, " +
                     "or the app works in some unintended way (crashes when modifying decks, cards), you may need to:\n" +
                     "- fix the database manually, if you're experienced with SQL\n" +

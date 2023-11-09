@@ -44,23 +44,28 @@ public static partial class Filtering
             OnlyTagged = false;
         }
 
-        public CardFilter Clone() {
-            return new CardFilter (Keyword, MatchMode, RecentDays, OnlyTagged);
+        public CardFilter Clone()
+        {
+            return new CardFilter(Keyword, MatchMode, RecentDays, OnlyTagged);
         }
 
-        public bool HasKeywordFilter {
+        public bool HasKeywordFilter
+        {
             get => Keyword != "";
         }
 
-        public bool HasDaysFilter {
+        public bool HasDaysFilter
+        {
             get => RecentDays is not null;
         }
 
-        public bool HasAnyFilter {
+        public bool HasAnyFilter
+        {
             get => HasKeywordFilter || HasDaysFilter || HasTaggedFilter;
         }
 
-        public bool HasTaggedFilter {
+        public bool HasTaggedFilter
+        {
             get => OnlyTagged;
         }
 

@@ -30,7 +30,7 @@ public partial class Screens
 
             Console.WriteLine(
                 UiFrame(
-                    inner: 
+                    inner:
                         RightAlignedText(topText) + "\n" +
                         CenteredText(
                         $"Card {currentCardNumber} of {maxCardNumber}"
@@ -44,7 +44,7 @@ public partial class Screens
                             "\nRestart the whole study session with [R]"
                         )
                         : ""
-                    ) + 
+                    ) +
                     (currentCardNumber == 1 && maxCardNumber > 1 ? "\n\nPro tip: Tag difficult cards with [T] to study them later" : ""),
                     title: "Study session"
                 )
