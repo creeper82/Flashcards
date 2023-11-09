@@ -11,7 +11,7 @@
 - Import and export decks
 
 ## Installation ##
-To simply install and use the app, go to the [**Releases**](releases) section and install a compressed folder with the newest release. Unpack the zip. Inside the folder there are a lot libraries and an executable file (**Flashcards.exe** if you're on Windows), which you should run.
+To simply install and use the app, go to the **Releases** section and install a compressed folder with the newest release. Unpack the zip. Inside the folder there are a lot libraries and an executable file (**Flashcards.exe** if you're on Windows), which you should run.
 
 There is no automatic installer yet. Just put the app folder in any location, and add a shortcut to the .exe file on desktop, if you want to have an easy access to the app.
 
@@ -20,7 +20,7 @@ The app is self-contained, so there should theoretically be no need to install a
 Please use [Windows Terminal](https://apps.microsoft.com/detail/9N0DX20HK701) for this app (or just set it as default windows terminal) if you want smooth console experience. This applies to pre-Windows 11 users as Windows Terminal is not installed yet by default
 
 ### Linux note ###
-There is a release build for Linux. Tt should work (execute the Flashcards file), but I prefer to focus on the Windows version
+There is a release build for Linux. It should work (execute the Flashcards file), but I prefer to focus on the Windows version
 
 ## Screenshots ##
 ### Home screen ###
