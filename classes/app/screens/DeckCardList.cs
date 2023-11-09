@@ -8,7 +8,7 @@ public static partial class App
 {
     public static void DeckCardList(FlashcardsDatabase database, Deck deck, SortType sortType = 0, CardFilter? cardFilter = null)
     {
-        ChoiceList<Card> cardChoiceList = new(deck.Cards.SortBy(sortType));
+        ChoiceList<Card> cardChoiceList = new(deck.Cards.ApplySort(sortType));
 
         // if the card filter wasn't specified, create a new one
         cardFilter ??= new();
@@ -18,7 +18,7 @@ public static partial class App
         while (running)
         {
             cardChoiceList.choices = deck.Cards
-                .SortBy(sortType)
+                .ApplySort(sortType)
                 .ApplyFilter(cardFilter);
             cardChoiceList.CheckOutOfBoundsPointer();
 
@@ -43,7 +43,8 @@ public static partial class App
             {
                 sortType = changeSortResult.newSortType;
             }
-            if (handleResult is Logic.HandleDeckCardListResult.ChangeFilter changeFilterResult) {
+            if (handleResult is Logic.HandleDeckCardListResult.ChangeFilter changeFilterResult)
+            {
                 cardFilter = changeFilterResult.newCardFilter;
             }
             else if (handleResult is Logic.HandleDeckCardListResult.ExitList) running = false;

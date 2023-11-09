@@ -8,7 +8,7 @@ public static class SortExtensionMethods
         Random rng = new();
         return cards.OrderBy(card => rng.Next()).ToList();
     }
-    public static IEnumerable<Card> SortBy(this IEnumerable<Card> cards, SortType sortType)
+    public static IEnumerable<Card> ApplySort(this IEnumerable<Card> cards, SortType sortType)
     {
         return sortType switch
         {

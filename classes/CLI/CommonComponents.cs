@@ -2,6 +2,19 @@ using Flashcards;
 
 namespace CLI;
 
+public static class ConsoleInput
+{
+    public static ConsoleKey GetConsoleKey()
+    {
+        return Console.ReadKey(true).Key;
+    }
+
+    public static void WaitForAnyKey()
+    {
+        Console.ReadKey(true);
+    }
+}
+
 public static class Components
 {
     internal static int UiWidth
@@ -27,6 +40,7 @@ public static class Components
         try
         {
             Console.Clear();
+            Console.WriteLine();
         }
         // Other method to clear console
         catch (Exception)
@@ -119,7 +133,8 @@ public static class Components
     {
         var lines = Text.Split("\n");
 
-        if (wrapText) {
+        if (wrapText)
+        {
             List<string> wrappedLines = new();
 
             // Wrap lines that are too long

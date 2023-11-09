@@ -137,3 +137,4 @@ _NCrunch*
 
 # output folder of builds
 release_build/
+linux_release_build/

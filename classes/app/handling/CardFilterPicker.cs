@@ -13,7 +13,7 @@ public static partial class Logic
     }
     public static HandleCardFilterResult HandleCardFilterPicker(CardFilter cardFilter)
     {
-        ConsoleKey consoleKey = Console.ReadKey().Key;
+        ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
 
         switch (consoleKey)
         {
