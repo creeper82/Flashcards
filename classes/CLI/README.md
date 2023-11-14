@@ -36,7 +36,7 @@ while (running)
 At the start of each loop, `CheckOutOfBoundsPointer` is called. Effectively, it checks whether the currently selected index still exists in the list. If not, then move to the closest optimal index. For example having 4 decks, the user removed deck 4. After calling the function, the ChoiceList will move selection to deck 3.
 
 ### Moving forward and backward ###
-Then, the `HandleMenu` function is called. You can read more about handling [here](../app/handling/), but generally the handler function checks which key have you pressed, and moves the list in case of the up/down arrow key press. All that happens in the [HandleMenu](../app/handling/Menu.cs) file, as follows:
+Then, the `HandleMenu` function is called. You can read more about handling [here](../app/controllers/), but generally the handler function checks which key have you pressed, and moves the list in case of the up/down arrow key press. All that happens in the [HandleMenu](../app/controllers/Menu.cs) file, as follows:
 
 ```cs
 switch (consoleKey)
@@ -53,7 +53,7 @@ switch (consoleKey)
 These methods already have built-in checking whether the list can be moved, and if the list can't be moved (user wants to go forward on the last index and so on), then the call will be ignored
 
 ### Moving to specific item ###
-You can also move the list to a specific item. This can be useful if the item has changed its position in the list (let's say - the deck was renamed, and now is at the end of the list due to alphabetical sort) and you want to keep the selection on it. Here's what it looks like - again - in the [HandleMenu](../app/handling/Menu.cs) file:
+You can also move the list to a specific item. This can be useful if the item has changed its position in the list (let's say - the deck was renamed, and now is at the end of the list due to alphabetical sort) and you want to keep the selection on it. Here's what it looks like - again - in the [HandleMenu](../app/controllers/Menu.cs) file:
 ```cs
 switch (consoleKey) {
     // skipped code

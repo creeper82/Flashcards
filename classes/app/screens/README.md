@@ -3,7 +3,9 @@ App screens are used to display a [CLI screen](../../CLI/screens), handle the us
 
 Typically, the screens have a `running` boolean variable which determines, if the screen should be refreshed after handling the input, or closed (for example when the user presses the Esc key).
 
-A lot more about handling can be found [here](../handling/README.md). Essentially most of the handling methods return true or false (true if the screen should be refreshed, false - aborted). Consider the simple example from [Deck screen](Deck.cs), which shows info about the deck (from there you can start studying, manage the deck and edit that deck's cards)
+A lot more about handling can be found [here](../controllers/README.md). Essentially most of the handling methods return true or false (true if the screen should be refreshed, false - aborted). Consider the simple example from [Deck screen](Deck.cs), which shows info about the deck (from there you can start studying, manage the deck and edit that deck's cards)
+
+In MVC architecture, these screens are simply views
 
 ```cs
 public static void Deck(FlashcardsDatabase database, Deck deck)
@@ -20,8 +22,8 @@ public static void Deck(FlashcardsDatabase database, Deck deck)
 
     }
 ```
-In case of the [HandleDeck](../handling/Deck.cs) method, the `false` value is returned for example upon deleting the deck (first checking if the user actually accepted the delete dialog by the if statement), or upon pressing Esc key. So when a false value is returned, the loop ends, the screen is closed and goes back to menu.
-Here's what it looks like in the [HandleDeck](../handling/Deck.cs) method:
+In case of the [HandleDeck](../controllers/Deck.cs) method, the `false` value is returned for example upon deleting the deck (first checking if the user actually accepted the delete dialog by the if statement), or upon pressing Esc key. So when a false value is returned, the loop ends, the screen is closed and goes back to menu.
+Here's what it looks like in the [HandleDeck](../controllers/Deck.cs) method:
 ```cs
 switch (consoleKey)
         {
@@ -37,9 +39,9 @@ switch (consoleKey)
 ```
 
 # Front-end handling #
-On the example above, the [HandleDeck](../handling/Deck.cs) method simply returns true/false to signify if the screen should be refreshed. However sometimes it is needed to change a local variable based on the user interaction, for example reveal a card on the study screen upon pressing space.
+On the example above, the [HandleDeck](../controllers/Deck.cs) method simply returns true/false to signify if the screen should be refreshed. However sometimes it is needed to change a local variable based on the user interaction, for example reveal a card on the study screen upon pressing space.
 
-That's why a handling function sometimes return custom status types ([read more here](../handling/README.md)). In such case, the handle function does all the back-end job, but the front-end job, such as revealing the card is done in the screen method directly. Consider the [StudySession](StudySession.cs) screen:
+That's why a handling function sometimes return custom status types ([read more here](../controllers/README.md)). In such case, the handle function does all the back-end job, but the front-end job, such as revealing the card is done in the screen method directly. Consider the [StudySession](StudySession.cs) screen:
 ```cs
 public static void StudySession(FlashcardsDatabase database, List<Card> cards) {
     // skipped code
