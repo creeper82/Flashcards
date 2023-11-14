@@ -13,7 +13,7 @@
 - Import and export decks
 
 ## Installation ##
-To simply install and use the app, go to the **Releases** section and install a compressed folder with the newest release. Unpack the zip file
+To simply install and use the app, go to the [**Releases**](https://github.com/creeper82/Flashcards/releases) section and install a compressed folder with the newest release. Unpack the zip file
 
 The folder contains .dll libraries and an executable file (**Flashcards.exe** if you're on Windows). You should run the executable file
 
