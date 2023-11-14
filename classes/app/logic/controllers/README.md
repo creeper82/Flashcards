@@ -1,7 +1,7 @@
-## Handling #
+## Controllers #
 This folder contains methods of the **Logic** class. Each app screen has a method that handles the user input for that screen and does some logic based on the input. For example - create a new card, or change the sorting method.
 
-It may either only affect the backend, or also modify the screen state directly (for example reveal the current card). For this reason, some methods return the **bool** type and some return a custom **status** type.
+It may either only affect the backend, or also modify the interface directly (for example reveal the current card). For this reason, some methods return the **bool** type and some return a custom **status** type.
 
 ## Return types ##
 
