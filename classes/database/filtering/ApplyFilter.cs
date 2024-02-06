@@ -34,7 +34,7 @@ public static partial class Filtering
         // filter the cards by tagged state
         if (cardFilter.HasTaggedFilter)
         {
-            filteredCards = filteredCards.Where(card => card.Tagged);
+            filteredCards = filteredCards.Where(card => card.TaggedAsLearning);
         }
 
         return filteredCards;

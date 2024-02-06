@@ -36,6 +36,6 @@ public static partial class Logic
     }
 
     private static void TagOrUntagCard(FlashcardsDatabase database, Card card) {
-        database.UpdateCard(card: card, newTaggedState: !card.Tagged);
+        database.UpdateCard(card: card, newTaggedState: !card.TaggedAsLearning);
     }
 }

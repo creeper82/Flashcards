@@ -43,7 +43,7 @@ public class Card
     public required string Front { get; set; }
     public required string Back { get; set; }
     public required DateTime CreationTimestamp { get; set; }
-    public bool Tagged { get; set; } = false;
+    public bool TaggedAsLearning { get; set; } = true;
 
     public int DeckId { get; set; }
     public required Deck Deck { get; set; }
