@@ -25,7 +25,7 @@ public partial class Screens
             : ""
         ) + (
             cardFilter.HasTaggedFilter
-            ? $"Only tagged cards\n"
+            ? $"Only cards tagged \"still learning\"\n"
             : ""
         );
 

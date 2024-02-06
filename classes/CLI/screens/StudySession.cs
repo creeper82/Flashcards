@@ -26,7 +26,7 @@ public partial class Screens
         else
         {
             string topText =
-                card.TaggedAsLearning ? "TAGGED" : "";
+                card.TaggedAsLearning ? "STILL LEARNING" : "";
 
             Console.WriteLine(
                 UiFrame(
@@ -45,7 +45,7 @@ public partial class Screens
                         )
                         : ""
                     ) +
-                    (currentCardNumber == 1 && maxCardNumber > 1 ? "\n\nPro tip: Tag difficult cards with [T] to study them later" : ""),
+                    (currentCardNumber == 1 && maxCardNumber > 1 ? "\n\nNote: Tag difficult cards with [T] to study them later" : ""),
                     title: "Study session"
                 )
             );

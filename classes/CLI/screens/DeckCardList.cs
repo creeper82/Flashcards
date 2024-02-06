@@ -33,7 +33,7 @@ public partial class Screens
         {
             string topText = "" +
                 (isFiltered ? "   FILTERING APPLIED" : new(' ', 20)) +
-                (card.TaggedAsLearning ? "   TAGGED" : new(' ', 9));
+                (card.TaggedAsLearning ? "   STILL LEARNING" : new(' ', 17));
 
             Console.WriteLine(
                 UiFrame(

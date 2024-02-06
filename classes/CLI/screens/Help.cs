@@ -30,9 +30,10 @@ public partial class Screens
                     CenteredText("STUDYING") + "\n" +
                     "When in a deck, press Enter to enter a study session. " +
                     "In this mode, the cards aren't revealed until you reveal them.\n\n" +
+                    "By default, the cards are tagged as still learning. " +
                     "Ideally, you should tag all the cards that are difficult for you while studying, " +
                     "to later narrow down the study material only to these cards.\n" +
-                    "After tagging the difficult cards, you should proceed to untag the cards you feel like you've learned. " +
+                    "After tagging these cards as \"still learning\", proceed to untag the cards you feel like you've learned. " +
                     "Otherwise, you'd end up studying the same set over and over and never finishing the session.\n\n" +
                     "The end of a study session is when you manage to learn all the tagged cards and untag them\n\n" +
 
