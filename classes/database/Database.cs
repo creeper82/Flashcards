@@ -74,7 +74,7 @@ public class FlashcardsDatabase
     {
         if (newFront is not null) card.Front = newFront;
         if (newBack is not null) card.Back = newBack;
-        if (newTaggedState is not null) card.Tagged = newTaggedState ?? false;
+        if (newTaggedState is not null) card.TaggedAsLearning = newTaggedState ?? false;
         context.SaveChanges();
     }
 

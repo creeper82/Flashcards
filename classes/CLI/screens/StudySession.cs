@@ -26,7 +26,7 @@ public partial class Screens
         else
         {
             string topText =
-                card.Tagged ? "TAGGED" : "";
+                card.TaggedAsLearning ? "TAGGED" : "";
 
             Console.WriteLine(
                 UiFrame(
