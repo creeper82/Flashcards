@@ -6,7 +6,7 @@ public static class SortExtensionMethods
     public static List<Card> Shuffle(this IEnumerable<Card> cards)
     {
         Random rng = new();
-        return cards.OrderBy(card => rng.Next()).ToList();
+        return [.. cards.OrderBy(card => rng.Next())];
     }
     public static IEnumerable<Card> ApplySort(this IEnumerable<Card> cards, SortType sortType)
     {

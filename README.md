@@ -37,7 +37,7 @@ There is a release build for Linux. It should work (permit execution and execute
 ![Filtering menu](screenshots/filtering.png)
 
 ## Building ##
-This app was built using C# with [Microsoft .NET 7.0](https://dotnet.microsoft.com/en-us/download)
+This app was built using C# with [Microsoft .NET 8.0.4](https://dotnet.microsoft.com/en-us/download)
 
 ## Documentation ##
 You can find app usage instructions in the help menu. The app is rather intuitive to use, just follow the on-screen messages and possible options

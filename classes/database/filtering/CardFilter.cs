@@ -20,21 +20,13 @@ public static partial class Filtering
         };
     }
 
-    public class CardFilter
+    public class CardFilter(string keyword = "", Filtering.KeywordMatchMode matchMode = 0, int? recentDays = null, bool onlyTagged = false)
     {
 
-        public string Keyword = "";
-        public KeywordMatchMode MatchMode = KeywordMatchMode.Any;
-        public int? RecentDays = null;
-        public bool OnlyTagged = false;
-
-        public CardFilter(string keyword = "", KeywordMatchMode matchMode = 0, int? recentDays = null, bool onlyTagged = false)
-        {
-            MatchMode = matchMode;
-            Keyword = keyword;
-            RecentDays = recentDays;
-            OnlyTagged = onlyTagged;
-        }
+        public string Keyword = keyword;
+        public KeywordMatchMode MatchMode = matchMode;
+        public int? RecentDays = recentDays;
+        public bool OnlyTagged = onlyTagged;
 
         public void ResetFilter()
         {

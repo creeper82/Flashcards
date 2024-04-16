@@ -78,7 +78,7 @@ public static class Components
     private static string[] DivideStringIntoArray(this string sourceString, int maxElementLength)
     {
         // check if splitting is needed
-        if (sourceString.Length <= maxElementLength) return new string[1] { sourceString };
+        if (sourceString.Length <= maxElementLength) return [sourceString];
         else
         {
             // split the string
@@ -135,7 +135,7 @@ public static class Components
 
         if (wrapText)
         {
-            List<string> wrappedLines = new();
+            List<string> wrappedLines = [];
 
             // Wrap lines that are too long
             foreach (string line in lines)

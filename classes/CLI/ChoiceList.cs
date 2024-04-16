@@ -1,9 +1,9 @@
 namespace CLI;
 
-public class ChoiceList<T>
+public class ChoiceList<T>(IEnumerable<T> choices)
 {
     public int selectedIndex = 0;
-    public int PaginationCount = 10;
+    public int PaginationCount = 9;
 
     public T? SelectedItem
     {
@@ -30,7 +30,7 @@ public class ChoiceList<T>
         }
     }
 
-    public IEnumerable<T> choices;
+    public IEnumerable<T> choices = choices;
 
     public IEnumerable<T> PaginatedChoices
     {
@@ -38,11 +38,6 @@ public class ChoiceList<T>
         {
             return choices.Skip(PaginationStartIndex).Take(PaginationCount);
         }
-    }
-
-    public ChoiceList(IEnumerable<T> choices)
-    {
-        this.choices = choices;
     }
 
     public void MoveForward()
