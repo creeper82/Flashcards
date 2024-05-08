@@ -8,7 +8,7 @@ It may either only affect the backend, or also modify the interface directly (fo
 ### Bool return type ###
 Less complicated logic handlers, such as the [HandleDeck](Deck.cs) method don't affect the screen state variables. They only do certain backendish logic and then either **exit** the screen (in case of Escape key press) **or stay** at the screen to let it refresh (continue the screen loop).
 
-So the returned value is used to determine whether the screen should still be shown, or not. Thus, the handler function value is assigned to the `running` variable which decides if the screen will be refreshed again. See this example from the [Deck screen](../screens/Deck.cs):
+So the returned value is used to determine whether the screen should still be shown, or not. Thus, the handler function value is assigned to the `running` variable which decides if the screen will be refreshed again. See this example from the [Deck screen](../../screens/Deck.cs):
 ```cs
 public static void Deck(FlashcardsDatabase database, Deck deck)
     {
@@ -22,7 +22,7 @@ public static void Deck(FlashcardsDatabase database, Deck deck)
 
     }
 ```
-This is the [Deck.cs](../screens/Deck.cs) screen. We want to exit the deck screen when the currently viewed deck is removed, or when the user presses the Escape key. This can be seen in [HandleDeck](Deck.cs) method fragment:
+This is the [Deck.cs](../../screens/Deck.cs) screen. We want to exit the deck screen when the currently viewed deck is removed, or when the user presses the Escape key. This can be seen in [HandleDeck](Deck.cs) method fragment:
 ```cs
 switch (consoleKey)
         {
@@ -42,7 +42,7 @@ The false value is returned, the running variable is set to `false` and the loop
 When the true/false is not enough, aside from changing whether the screen continues running, we also want to modify some local screen variables (so essentially front-end) and not only the back-end logic.
 In that case, the Handle method returns a custom status type, which is later handled not in the `Logic` class, but in the screen directly. Consider the following example:
 
-In the [StudySession screen](../screens/StudySession.cs) the spacebar key is used to reveal the current card's back side. So the screen's local `isRevealed` boolean variable must be modified upon handling the spacebar key. A simple true/false is not enough, because it's not known whether the screen should just continue showing with the current state, or continue while revealing the card.
+In the [StudySession screen](../../screens/StudySession.cs) the spacebar key is used to reveal the current card's back side. So the screen's local `isRevealed` boolean variable must be modified upon handling the spacebar key. A simple true/false is not enough, because it's not known whether the screen should just continue showing with the current state, or continue while revealing the card.
 
 For that reason the [HandleStudySession](StudySession.cs) method returs a custom `HandleStudySessionResult` type, which has multiple classes:
 ```cs
