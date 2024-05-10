@@ -20,13 +20,13 @@ public static partial class Logic
 
     private static void EditCard(FlashcardsDatabase database, Card card)
     {
-        var editedCard = App.CardEditor(database, card);
+        var editedCard = App.CardEditor(card);
         database.UpdateCard(card, editedCard.Front, editedCard.Back);
     }
 
     private static Card? CreateCard(FlashcardsDatabase database, Deck deck)
     {
-        var newCard = App.CardEditor(database, Card.EmptyCard(deck), "New card");
+        var newCard = App.CardEditor(Card.EmptyCard(deck), "New card");
         if (newCard.Front != "" && newCard.Back != "")
         {
             database.AppendCard(newCard);
