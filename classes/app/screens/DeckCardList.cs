@@ -1,5 +1,5 @@
 namespace Flashcards;
-using Flashcards;
+
 using SharpViews;
 using static Flashcards.Sorting;
 using static Flashcards.Filtering;

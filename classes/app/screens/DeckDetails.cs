@@ -1,6 +1,4 @@
 namespace Flashcards;
-
-using Flashcards;
 using SharpViews;
 
 public static partial class App

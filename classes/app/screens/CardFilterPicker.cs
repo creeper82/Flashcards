@@ -1,7 +1,5 @@
 namespace Flashcards;
 
-using SharpViews;
-
 using static Flashcards.Filtering;
 
 public static partial class App

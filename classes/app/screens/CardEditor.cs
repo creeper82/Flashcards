@@ -1,11 +1,9 @@
 namespace Flashcards;
 
-using SharpViews;
-
 public static partial class App
 {
     // accepts a card and then returns the edited one
-    public static Card CardEditor(FlashcardsDatabase database, Card card, string title = "Edit card")
+    public static Card CardEditor(Card card, string title = "Edit card")
     {
         bool running = true;
 

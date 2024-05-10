@@ -1,8 +1,6 @@
 namespace Flashcards.CLI;
 using static SharpViews.Components;
 
-
-
 public static class Components
 {
 

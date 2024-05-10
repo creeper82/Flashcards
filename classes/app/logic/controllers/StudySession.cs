@@ -1,5 +1,4 @@
 namespace Flashcards;
-
 using SharpViews;
 
 public static partial class Logic
