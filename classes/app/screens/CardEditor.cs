@@ -1,7 +1,6 @@
-namespace FlashcardsApp;
+namespace Flashcards;
 
-using Flashcards;
-using CLI;
+using SharpViews;
 
 public static partial class App
 {
@@ -14,7 +13,7 @@ public static partial class App
 
         while (running)
         {
-            Screens.CardEditor(cardCopy, title);
+            CLI.Screens.CardEditor(cardCopy, title);
             var interactionStatus = Logic.HandleCardEditor(cardCopy);
 
             if (interactionStatus is Logic.HandleCardEditorResult.SaveChanges)

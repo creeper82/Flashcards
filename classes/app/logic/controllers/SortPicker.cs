@@ -1,10 +1,11 @@
-namespace FlashcardsApp;
+namespace Flashcards;
+using SharpViews;
 
 public static partial class Logic
 {
-    public static bool HandleSortPicker(CLI.ChoiceList<string> choiceList)
+    public static bool HandleSortPicker(ChoiceList<string> choiceList)
     {
-        ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
+        ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
 
         switch (consoleKey)
         {

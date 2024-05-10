@@ -1,11 +1,11 @@
-namespace FlashcardsApp;
-using CLI;
+namespace Flashcards;
+using SharpViews;
 
 public static partial class App
 {
     public static void Help(string dbPath = "Unknown path")
     {
-        Screens.Help(dbPath);
+        CLI.Screens.Help(dbPath);
         ConsoleInput.WaitForAnyKey();
     }
 

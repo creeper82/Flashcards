@@ -1,7 +1,7 @@
-using Flashcards;
-namespace CLI;
+namespace Flashcards.CLI;
 
-using static Components;
+using static SharpViews.Components;
+using static Flashcards.Filtering;
 
 public partial class Screens
 {

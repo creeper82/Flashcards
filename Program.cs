@@ -1,5 +1,5 @@
 ﻿using Flashcards;
-using FlashcardsApp;
+using SharpViews;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,7 +28,7 @@ while (running)
         Console.WriteLine("Press any key to restart the app and reflect the unexpected changes");
         Console.WriteLine("At the moment there is no way to ignore these changes");
 
-        CLI.ConsoleInput.WaitForAnyKey();
+        ConsoleInput.WaitForAnyKey();
 
     }
 
@@ -44,7 +44,7 @@ while (running)
             Console.WriteLine("Inner error message (if any): " + e.InnerException?.Message);
 
             Console.WriteLine("\nPress R to try reloading the app, or any other key to exit");
-            running = CLI.ConsoleInput.GetConsoleKey() == ConsoleKey.R;
+            running = ConsoleInput.GetConsoleKey() == ConsoleKey.R;
 
         }
     }
@@ -74,14 +74,14 @@ static bool HandleSqliteError(int? code = null, string? message = null, string d
     Console.WriteLine("\nPress R to try reloading the app, or any other key to exit");
     Console.WriteLine("If the error persists, press H for more info");
 
-    ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
+    ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
 
     switch (consoleKey)
     {
         case ConsoleKey.H:
             ShowHelpScreen(dbPath);
             Console.WriteLine("\nPress R to try reloading the app, or any other key to exit");
-            return CLI.ConsoleInput.GetConsoleKey() == ConsoleKey.R;
+            return ConsoleInput.GetConsoleKey() == ConsoleKey.R;
         case ConsoleKey.R:
             return true;
         default:
@@ -103,5 +103,5 @@ static void ShowHelpScreen(string dbPath = "Unknown path")
         "WARNING: DELETING THE DATABASE WILL RESULT IN COMPLETE DATA LOSS. ALL DECKS AND CARDS WILL BE LOST FOREVER"
     );
     Console.WriteLine("\nPress any key to close the help screen");
-    CLI.ConsoleInput.WaitForAnyKey();
+    ConsoleInput.WaitForAnyKey();
 }

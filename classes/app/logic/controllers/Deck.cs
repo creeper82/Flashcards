@@ -1,12 +1,12 @@
-namespace FlashcardsApp;
+namespace Flashcards;
 
-using Flashcards;
+using SharpViews;
 
 public static partial class Logic
 {
     public static bool HandleDeck(FlashcardsDatabase database, Deck deck)
     {
-        ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
+        ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
 
         if (deck.Cards.Any())
         {

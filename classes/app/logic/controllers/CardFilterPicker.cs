@@ -1,6 +1,6 @@
-namespace FlashcardsApp;
+namespace Flashcards;
 
-using Flashcards;
+using SharpViews;
 using static Flashcards.Filtering;
 
 public static partial class Logic
@@ -13,7 +13,7 @@ public static partial class Logic
     }
     public static HandleCardFilterResult HandleCardFilterPicker(CardFilter cardFilter)
     {
-        ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
+        ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
 
         switch (consoleKey)
         {

@@ -1,13 +1,13 @@
-namespace FlashcardsApp;
+namespace Flashcards;
 
 using Flashcards;
-using CLI;
+using SharpViews;
 
 public static partial class App
 {
     public static void DeckDetails(Deck deck)
     {
-        Screens.DeckDetails(deck);
+        CLI.Screens.DeckDetails(deck);
         ConsoleInput.WaitForAnyKey();
     }
 }

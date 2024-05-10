@@ -1,6 +1,6 @@
-namespace FlashcardsApp;
+namespace Flashcards;
 
-using CLI;
+using SharpViews;
 using static Flashcards.Sorting;
 
 public static partial class App
@@ -11,17 +11,17 @@ public static partial class App
         var sortTypeNames = sortTypes.Cast<SortType>().Select(v => v.SortFriendlyName()).ToList();
         var sortTypeChoiceList = new ChoiceList<string>(sortTypeNames)
         {
-            selectedIndex = (int)currentSortType
+            SelectedIndex = (int)currentSortType
         };
 
         bool running = true;
 
         while (running)
         {
-            Screens.SortTypePicker(sortTypeNames, sortTypeChoiceList.selectedIndex);
+            CLI.Screens.SortTypePicker(sortTypeNames, sortTypeChoiceList.SelectedIndex);
             running = Logic.HandleSortPicker(sortTypeChoiceList);
         }
 
-        return (SortType)sortTypeChoiceList.selectedIndex;
+        return (SortType)sortTypeChoiceList.SelectedIndex;
     }
 }

@@ -1,6 +1,6 @@
-namespace FlashcardsApp;
+namespace Flashcards;
 using Flashcards;
-using CLI;
+using SharpViews;
 using static Flashcards.Sorting;
 using static Flashcards.Filtering;
 
@@ -17,14 +17,14 @@ public static partial class App
 
         while (running)
         {
-            cardChoiceList.choices = deck.Cards
+            cardChoiceList.Choices = deck.Cards
                 .ApplySort(sortType)
                 .ApplyFilter(cardFilter);
             cardChoiceList.CheckOutOfBoundsPointer();
 
-            Screens.DeckCardList(
+            CLI.Screens.DeckCardList(
                 card: cardChoiceList.SelectedItem,
-                currentCardNumber: cardChoiceList.selectedIndex + 1,
+                currentCardNumber: cardChoiceList.SelectedIndex + 1,
                 maxCardNumber: cardChoiceList.MaxIndex + 1,
                 deckName: deck.Name,
                 sortName: sortType.SortFriendlyName(),

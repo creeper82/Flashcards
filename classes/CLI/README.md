@@ -23,9 +23,9 @@ Later, in the Menu screen loop, which is responsible for drawing the UI and hand
 while (running)
         {
             deckChoiceList.CheckOutOfBoundsPointer();
-            Screens.Menu(
+            CLI.Screens.Menu(
                 deckChoiceList.PaginatedChoices,
-                deckChoiceList.selectedIndex,
+                deckChoiceList.SelectedIndex,
                 deckChoiceList.PaginationStartIndex
             );
 

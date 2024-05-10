@@ -1,13 +1,13 @@
-namespace FlashcardsApp;
+namespace Flashcards;
 
-using Flashcards;
+using SharpViews;
 
 public static partial class Logic
 {
     private static void RemoveCard(FlashcardsDatabase database, Card card)
     {
 
-        if (CLI.Dialogs.Confirm(
+        if (Dialogs.Confirm(
             title: "Remove card",
             message: "Do you want to remove this card?",
             okButton: "remove",

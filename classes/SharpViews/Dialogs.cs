@@ -1,4 +1,4 @@
-namespace CLI;
+namespace SharpViews;
 
 using static Components;
 
