@@ -1,48 +1,162 @@
-# Flashcards
-**Flashcards** is a simple C# console app to help you studying using, well, flashcards. You can create, manage and study your flashcards all within one friendly command line interface. I made it as a personal project, due to the fact that I love C# lol.
+# CLI #
+CLI (command-line interface) is used for rendering all the app screens. The library mainly consists of components, which resemble these from actual GUIs, dialogs, keyboard actions and more...
 
-## Features
+## Important note ##
+Recently, I've moved all that CLI into a separate `SharpViews` library. This documentation was written long long ago, and **might contain errors!!** I try to update it, but it's hard to keep up to date with hundreds of lines of text. The most fresh documentation is always in the doc comments, i.e. comments above each method, automatically displayed by IDEs in auto-completion. I still decided to leave the README documentation.
 
-### Current ###
-- Friendly command line interface controlled with keyboard
-- Grouping cards into decks
-- Customized study sessions
-- Embedded help menu
-- Sorting and filtering cards
-### Planned ###
-- Import and export decks
+There is a chance that some of the code examples won't work anymore, due to renamed properties, etc. Also, if I ever say `SharpText`, then I meant `SharpViews`. I confuse these names lol. `SharpText` is my WIP game engine.
 
-## Installation ##
-To simply install and use the app, go to the [**Releases**](https://github.com/creeper82/Flashcards/releases) section and install a compressed folder with the newest release. Unpack the zip file
+## ChoiceList ##
+The ChoiceList class is used to manage vertical or horizontal item lists consistently around the whole app. Its task is to handle moving the list selection (for example signified by the dot on deck list), and to paginate the choices (also on the deck list, to create the effect of scrolling and not occupy too much space).
 
-The folder contains .dll libraries and an executable file (**Flashcards.exe** if you're on Windows). You should run the executable file
+### Sample usage ###
+Let's consider the usage from the Menu screen, which lists all your decks. The ChoiceList is set up in the [Menu screen](../app/screens/Menu.cs) the following way:
+```cs
+ChoiceList<Deck> deckChoiceList = new(database.GetDecks())
+    {
+        PaginationCount = 5
+    };
+```
+That creates a new list with all the decks and sets the pagination count to 5, which means that maximum 5 decks can be seen on the screen at once, to not overflow the screen space in case the user has many decks. The pagination is fully optional
 
-There is no automatic installer yet. Just put the app folder into any location, and add a shortcut to the .exe file on your desktop. This way, you will have an easy access to the app.
+Later, in the Menu screen loop, which is responsible for drawing the UI and handling potential user interactions, we pass the following values to [Screens.Menu](screens/Menu.cs):
 
-The app is self-contained, meaning there should theoretically be no need to install anything additionally, but tell me if it doesn't work on your device.
+- `PaginatedChoices`, which returns the list of items according to the previously set pagination. In case of count 5, it'll only return 5 decks (from deck 1 to deck 5), and as we scroll the list further (i.e. move the selectedIndex), it'll show the next decks, trying to make the currently selected choice appear ideally in the center. For no pagination, you can use `Choices`
+- `SelectedIndex`, which returns the index of currently selected item (used to later show the \[•\] mark on the appropriate deck)
+- `PaginationStartIndex`, which returns the first index of the paginated choices in relation to all choices. For example - having 10 decks, when you scroll to deck 5 - thus seeing decks: 3,4,5,6,7 - the PaginationStartIndex will be 2 (because choices are 0-indexed, and the top-positioned deck 3 has index 2). It is needed to be substracted to correctly calculate which list element should have the \[•\] selection mark
+```cs
+while (running)
+        {
+            deckChoiceList.CheckOutOfBoundsPointer();
+            Screens.Menu(
+                deckChoiceList.PaginatedChoices,
+                deckChoiceList.SelectedIndex,
+                deckChoiceList.PaginationStartIndex
+            );
 
-**Please use [Windows Terminal](https://apps.microsoft.com/detail/9N0DX20HK701)** for this app (or just set it as default terminal), if you want a smooth console experience with no visible lags. This applies to pre-Windows 11 users, as Windows Terminal is not installed yet by default
+            running = Logic.HandleMenu(database, deckChoiceList);
+        }
+```
+### CheckOutOfBoundsPointer ###
+At the start of each loop, `CheckOutOfBoundsPointer` is called. Effectively, it checks whether the currently selected index still exists in the list. If not, then move to the closest optimal index. For example having 4 decks, the user removed deck 4. After calling the function, the ChoiceList will move selection to deck 3.
 
-### Linux note ###
-There is a release build for Linux. It should work (permit execution and execute the Flashcards file), but I prefer to focus on the Windows version
+### Moving forward and backward ###
+Then, the `HandleMenu` function is called. You can read more about handling [here](../app/logic/controllers/), but generally the handler function checks which key have you pressed, and moves the list in case of the up/down arrow key press. All that happens in the [HandleMenu](../app/logic/controllers/Menu.cs) file, as follows:
 
-## Screenshots ##
-### Home screen ###
-![App menu](screenshots/menu.png)
-### Study session ###
-![Study session menu](screenshots/studysession.png)
-### Sorting cards ###
-![Sorting menu](screenshots/sorting.png)
-### Filtering cards ###
-![Filtering menu](screenshots/filtering.png)
+```cs
+switch (consoleKey)
+        {
+            case ConsoleKey.UpArrow:
+                deckChoiceList.MoveBackward();
+                break;
+            case ConsoleKey.DownArrow:
+                deckChoiceList.MoveForward();
+                break;
+            // skipped code (other keys)
+        }
+```
+These methods already have built-in checking whether the list can be moved, and if the list can't be moved (user wants to go forward on the last index and so on), then the call will be ignored
 
-## Building ##
-This app was built using C# with [Microsoft .NET 8.0.4](https://dotnet.microsoft.com/en-us/download)
+### Moving to a specific item ###
+You can also move the list to a specific item. This can be useful if the item has changed its position in the list (let's say - the deck was renamed, and now is at the end of the list due to alphabetical sort) and you want to keep the selection on it. Here's what it looks like - again - in the [HandleMenu](../app/logic/controllers/Menu.cs) file:
+```cs
+switch (consoleKey) {
+    // skipped code
+    case ConsoleKey.R:
+    case ConsoleKey.F2:
+        Deck renamedDeck = RenameDeck(database, deckChoiceList.SelectedItem);
+        deckChoiceList.MoveToChoice(renamedDeck);
+        break;
+    // skipped code
+}
+```
+After handling the deck rename, the list is moved to the renamed deck even if it changes its index.
 
-## Documentation ##
-You can find app usage instructions in the help menu. The app is rather intuitive to use, just follow the on-screen messages and possible options
+## Most common CLI components ##
 
-For code documentation, most of the folders are documented along with simple to understand C# code examples. Just browse the project folders to find an explanation
+### UiFrame ###
+One of most important components is the *UiFrame*, which is used for essentially every app screen. It takes such arguments:
+```cs
+string inner
+string title = ""
+bool horizontalScroll = false
+bool verticalScroll = false
+```
+- inner - the content that should be displayed inside the UiFrame. May be multiline
+- title (optional) - the title that should be displayed and centered at the top border of the UiFrame
+- horizontalScroll (optional) - whether the horizontal scroll arrows should be shown (to signify scroll possibility)
+- verticalScroll (optional) - whether the vertical scroll arrows should be shown (to signify scroll possibility)
 
-## Future updates ##
-I can't guarantee there will be any big updates, but for sure you can suggest a feature or a bugfix in **Issues** section. I'll try to keep this project alive, but I have plans for other projects as well.
+Here's an example usage. The static method should be in the *CLI* namespace (e.g. `Flashcards.CLI`), for example in *public partial class Screens*:
+```cs
+namespace AnyApp.CLI;
+using static SharpViews.Components; // needed to not type Components.UiFrame each time
+
+public partial class Screens 
+{
+    internal static void Greeting() 
+    {
+        ClearConsole();
+        Console.WriteLine(
+            UiFrame(
+                inner: "Have a good day!\n.....",
+                title: "Hello",
+                verticalScroll: true
+            )
+        );
+    }
+}
+```
+Calling `Screens.Greeting()` will provide the following output:
+```
+---------------------- Hello ----------------------  
+
+Have a good day!
+.....
+                                                  ↑
+                                                  ↓
+--------------------------------------------------- 
+```
+
+## Keyboard actions ##
+[KeyboardActions](../SharpViews/KeyboardAction.cs) are the little tips that signify which keys can be used to interact with the screen. Under `Flashcards.CLI.KeyboardActions` public class, there are pre-coded interactions for every app screen. For example:
+```cs
+public static List<KeyboardAction> DeckListScreen { get; } = new() {
+        new("up/down", "move selection"),
+        new("enter", "open deck"),
+        new("del", "delete deck"),
+        new("r", "rename deck"),
+        KeyboardAction.LineSeparator,
+        new("n", "create new deck"),
+        new("h", "open help")
+    };
+```
+Example output when displayed with `SharpViews.Components.KeyboardActionList`:
+```
+[ up/down ] - move selection
+[ enter ] - open deck
+[ del ] - delete deck
+[ r ] - rename deck
+
+[ n ] - create new deck
+[ h ] - open help
+```
+The line separator is essentially just `new("", "")`. To display the list of keyboard actions, use the *KeyboardActionList* component, which accepts the list as a parameter. The keyboard action list should be rendered separately from the whole UiFrame. Take a look at the *SortTypePicker* screen:
+```cs
+internal static void SortTypePicker(List<string> sortTypes, int selectedIndex)
+    {
+        ClearConsole();
+        Console.WriteLine(
+            UiFrame(
+                inner: List(sortTypes, selectedIndex),
+                title: "Sort by",
+                verticalScroll: true
+            )
+        );
+        // render the keyboard action list
+        Console.WriteLine(KeyboardActionList(KeyboardActions.SortPickerScreen));
+    }
+```
+It's as simple as that. Render the screen, render the keyboard actions and later handle user input (they are not handled in provided example function - `CLI/screens`, but in `app/screens`. CLI screens only display the information)
+
+For handling the user input and more info about screens, see the [app/screens](../app/screens/) folder.
