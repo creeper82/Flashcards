@@ -1,6 +1,11 @@
 # CLI #
 CLI (command-line interface) is used for rendering all the app screens. The library mainly consists of components, which resemble these from actual GUIs, dialogs, keyboard actions and more...
 
+## Important note ##
+Recently, I've moved all that CLI into a separate `SharpViews` library. This documentation was written long long ago, and **might contain errors!!** I try to update it, but it's hard to keep up to date with hundreds of lines of text. The most fresh documentation is always in the doc comments, i.e. comments above each method, automatically displayed by IDEs in auto-completion. I still decided to leave the README documentation.
+
+There is a chance that some of the code examples won't work anymore, due to renamed properties, etc. Also, if I ever say `SharpText`, then I meant `SharpViews`. I confuse these names lol. `SharpText` is my WIP game engine.
+
 ## ChoiceList ##
 The ChoiceList class is used to manage vertical or horizontal item lists consistently around the whole app. Its task is to handle moving the list selection (for example signified by the dot on deck list), and to paginate the choices (also on the deck list, to create the effect of scrolling and not occupy too much space).
 
@@ -16,14 +21,14 @@ That creates a new list with all the decks and sets the pagination count to 5, w
 
 Later, in the Menu screen loop, which is responsible for drawing the UI and handling potential user interactions, we pass the following values to [Screens.Menu](screens/Menu.cs):
 
-- `PaginatedChoices`, which returns the list of items according to the previously set pagination. In case of count 5, it'll only return 5 decks (from deck 1 to deck 5), and as we scroll the list further (i.e. move the selectedIndex), it'll show the next decks, trying to make the currently selected choice appear ideally in the center. For no pagination, you can use `choices`
-- `selectedIndex`, which returns the index of currently selected item (used to later show the \[•\] mark on the appropriate deck)
+- `PaginatedChoices`, which returns the list of items according to the previously set pagination. In case of count 5, it'll only return 5 decks (from deck 1 to deck 5), and as we scroll the list further (i.e. move the selectedIndex), it'll show the next decks, trying to make the currently selected choice appear ideally in the center. For no pagination, you can use `Choices`
+- `SelectedIndex`, which returns the index of currently selected item (used to later show the \[•\] mark on the appropriate deck)
 - `PaginationStartIndex`, which returns the first index of the paginated choices in relation to all choices. For example - having 10 decks, when you scroll to deck 5 - thus seeing decks: 3,4,5,6,7 - the PaginationStartIndex will be 2 (because choices are 0-indexed, and the top-positioned deck 3 has index 2). It is needed to be substracted to correctly calculate which list element should have the \[•\] selection mark
 ```cs
 while (running)
         {
             deckChoiceList.CheckOutOfBoundsPointer();
-            CLI.Screens.Menu(
+            Screens.Menu(
                 deckChoiceList.PaginatedChoices,
                 deckChoiceList.SelectedIndex,
                 deckChoiceList.PaginationStartIndex
@@ -52,7 +57,7 @@ switch (consoleKey)
 ```
 These methods already have built-in checking whether the list can be moved, and if the list can't be moved (user wants to go forward on the last index and so on), then the call will be ignored
 
-### Moving to specific item ###
+### Moving to a specific item ###
 You can also move the list to a specific item. This can be useful if the item has changed its position in the list (let's say - the deck was renamed, and now is at the end of the list due to alphabetical sort) and you want to keep the selection on it. Here's what it looks like - again - in the [HandleMenu](../app/logic/controllers/Menu.cs) file:
 ```cs
 switch (consoleKey) {
@@ -82,8 +87,11 @@ bool verticalScroll = false
 - horizontalScroll (optional) - whether the horizontal scroll arrows should be shown (to signify scroll possibility)
 - verticalScroll (optional) - whether the vertical scroll arrows should be shown (to signify scroll possibility)
 
-Here's an example usage. The static method should be in the *CLI* namespace, for example in *public partial class Screens*:
+Here's an example usage. The static method should be in the *CLI* namespace (e.g. `Flashcards.CLI`), for example in *public partial class Screens*:
 ```cs
+namespace AnyApp.CLI;
+using static SharpViews.Components; // needed to not type Components.UiFrame each time
+
 public partial class Screens 
 {
     internal static void Greeting() 
@@ -111,7 +119,7 @@ Have a good day!
 ```
 
 ## Keyboard actions ##
-[KeyboardActions](KeyboardAction.cs) are the little tips that signify which keys can be used to interact with the screen. Under `CLI.KeyboardActions` public class, there are pre-coded interactions for every app screen. For example:
+[KeyboardActions](../SharpViews/KeyboardAction.cs) are the little tips that signify which keys can be used to interact with the screen. Under `Flashcards.CLI.KeyboardActions` public class, there are pre-coded interactions for every app screen. For example:
 ```cs
 public static List<KeyboardAction> DeckListScreen { get; } = new() {
         new("up/down", "move selection"),
@@ -123,7 +131,7 @@ public static List<KeyboardAction> DeckListScreen { get; } = new() {
         new("h", "open help")
     };
 ```
-Example output when displayed with *KeyboardActionList*:
+Example output when displayed with `SharpViews.Components.KeyboardActionList`:
 ```
 [ up/down ] - move selection
 [ enter ] - open deck
