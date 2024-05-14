@@ -36,9 +36,9 @@ public partial class FormattedText(List<FormattedTextPart> textParts)
     /// Displays the formatted text to console. Alternative syntax: <c>FormattedText.DisplayFormatted("...");</c>
     /// </summary>
     /// <param name="newLine">Whether to place a new line after all the text. By default <c>false</c>.</param>
-    /// <param name="useSpeed">Whether to account for speed while displaying text. By default <c>true</c></param>
+    /// <param name="useSpeed">Whether to account for speed while displaying text. By default <c>false</c></param>
     /// <param name="QuickDraw">Use to additionally speed up the drawing speed, for example for descriptions already seen before</param>
-    public void DisplayFormatted(bool newLine = false, bool useSpeed = true, bool quickDraw = false)
+    public void DisplayFormatted(bool newLine = false, bool useSpeed = false, bool quickDraw = false)
     {
         foreach (var textPart in TextParts) textPart.WriteToConsole(useSpeed, speedMultiply: quickDraw ? 4f : 1);
         if (newLine) Console.WriteLine();
@@ -49,9 +49,9 @@ public partial class FormattedText(List<FormattedTextPart> textParts)
     /// Alternative syntax: <c>new FormattedText("...").DisplayFormatted();</c>
     /// </summary>
     /// <param name="newLine">Whether to place a new line after all the text. By default <c>false</c>.</param>
-    /// <param name="useSpeed">Whether to account for speed while displaying text. By default <c>true</c></param>
+    /// <param name="useSpeed">Whether to account for speed while displaying text. By default <c>false</c></param>
     /// <param name="QuickDraw">Use to additionally speed up the drawing speed, for example for descriptions already seen before</param>
-    public static void DisplayFormatted(string text, bool newLine = false, bool useSpeed = true, bool quickDraw = false) {
+    public static void DisplayFormatted(string text, bool newLine = false, bool useSpeed = false, bool quickDraw = false) {
         new FormattedText(text).DisplayFormatted(newLine, useSpeed, quickDraw);
     }
 }

@@ -17,12 +17,12 @@ public class FormattedTextPart(string text, ConsoleColor textColor = ConsoleColo
     /// Displays the text part, according to its' color, and display speed (add <c>false</c> parameter to disable).
     /// </summary>
     /// <param name="useSpeed">
-    /// Whether to account for text display speed. By default <c>true</c>. Set to <c>false</c> to render text immediately.
+    /// Whether to account for text display speed. By default <c>false</c>. Set to <c>true</c> to render text char by char according to set speed.
     /// </param>
     /// <param name="speedMultiply">
     /// Additionally make the text drawing x times faster.
     /// </param>
-    public void WriteToConsole(bool useSpeed = true, float speedMultiply = 1)
+    public void WriteToConsole(bool useSpeed = false, float speedMultiply = 1)
     {
         var prevColor = Console.ForegroundColor;
 
