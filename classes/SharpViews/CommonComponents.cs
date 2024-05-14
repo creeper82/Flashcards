@@ -15,7 +15,7 @@ public static class ConsoleInput
 
 public static class Components
 {
-    internal static int UiWidth
+    public static int UiWidth
     {
         get
         {
@@ -33,7 +33,7 @@ public static class Components
         }
     }
 
-    internal static int UiHeight
+    public static int UiHeight
     {
         get
         {
@@ -46,13 +46,13 @@ public static class Components
         }
     }
 
-    internal static void ClearConsole()
+    public static void ClearConsole()
     {
         Console.Clear();
     }
 
     // Adds margin to before and after string
-    internal static string Margin(string str, int margin = 1, char marginChar = ' ') => TextPositioning.Margin(str, margin, marginChar);
+    public static string Margin(string str, int margin = 1, char marginChar = ' ') => TextPositioning.Margin(str, margin, marginChar);
 
     private static string Repeat(char ch, int length) => TextPositioning.Repeat(ch, length);
 
@@ -81,49 +81,60 @@ public static class Components
 
     }
 
-    internal static string HorizontalLine(char ch, int? length = null) => CenteredText(Repeat(ch, length ?? UiWidth));
+    public static string HorizontalLine(char ch, int? length = null) => CenteredText(Repeat(ch, length ?? UiWidth));
 
     private static string SingleLineCenteredText(string text, char surroundChar = ' ', bool isFormatted = false) => TextPositioning.CenteredText(text, surroundChar, isFormatted);
 
-    internal static string RightAlignedText(string text, char surroundChar = ' ') => TextPositioning.RightAlignedText(text, surroundChar);
+    /// <summary>
+    /// Aligns <c>text</c> to the screen's right with spaces, or a char provided in <c>surroundChar</c>. A newline is automatically added at the end.
+    /// </summary>
+    /// <param name="text"Text to align></param>
+    /// <param name="surroundChar">Character to surround the text with. Spaces by default.</param>
+    /// <returns>A string aligned to the right.</returns>
+    public static string RightAlignedText(string text, char surroundChar = ' ') => TextPositioning.RightAlignedText(text, surroundChar);
 
     /// <summary>
-    /// Centers each line of the text horizontally. If the text is too long, it is wrapped (moved into new line).
+    /// Centers each line of the text horizontally. If the text is too long, it is wrapped (moved into new line). A newline is automatically added at the end.
     /// </summary>
     /// <param name="text">Text to center</param>
     /// <param name="surroundChar">Character to surround the text with. Spaces by default.</param>
     /// <remarks>If you want to truncate the long text ("..."), instead of wrapping it, use <c>CenteredText</c> instead.</remarks>
-    /// <returns>String with the centered text.</returns>
-    internal static string CenteredWrappedText(string text, char surroundChar = ' ')
+    /// <returns>A string with the centered text.</returns>
+    public static string CenteredWrappedText(string text, char surroundChar = ' ')
         => CenteredText(string.Join("\n", text.Split("\n").SelectMany(line => line.DivideStringIntoArray(UiWidth))), surroundChar);
 
     /// <summary>
-    /// Centers each line of the text horizontally. <b>If the text is too long, it is truncated ("...")</b>
+    /// Centers each line of the text horizontally. <b>If the text is too long, it is truncated ("...").</b> If you use <c>FormattedText</c>,
+    /// don't put the colors and tags into <c>text</c>. Instead, add the tags before and after this function.
+    /// <para>A newline is automatically added at the end.</para>
     /// </summary>
     /// <param name="text">Text to center</param>
     /// <param name="surroundChar">Character to surround the text with. Spaces by default.</param>
+    /// <param name="isFormatted">Whether the text is bracket-formatted (see <c>FormattedText</c>). Needed for accurate length calculation.
+    /// <b>This is very unstable</b>. Please try to add the formatting tags before and after this function, not into the <c>text</c> argument.</param>
     /// <remarks>If you want to wrap the long text ito new lines instead of truncating it, use <c>CenteredWrappedText</c>. </remarks>
     /// <returns>String with the centered text.</returns>
-    internal static string CenteredText(string text, char surroundChar = ' ', bool isFormatted = false)
+    public static string CenteredText(string text, char surroundChar = ' ', bool isFormatted = false)
     {
         var lines = text.Split("\n");
 
         // Center each line separately, and then join the lines with newline (\n)
-        return string.Join("\n", 
+        return string.Join("\n",
             lines.Select(line => SingleLineCenteredText(line, surroundChar, isFormatted))
-        );
+        ) + "\n";
     }
 
     /// <summary>
     /// Creates a visual list out of given strings. Works best when used in conjuction with <c>ChoiceList</c>. The list width will be equal to
-    /// the longest element's width. Shorter elements will get additional padding.
+    /// the longest element's width. Shorter elements will get additional padding. A newline is automatically added after the list.
     /// </summary>
     /// <param name="sourceStrings">Strings to make the list of.</param>
     /// <param name="selectedIndex">Element index, to which add the selected mark (a dot). By default, in offset to the top element.
-    /// Set <c>startIndex</c> to change that offset, e.g. if the list is scrolled.</param>
-    /// <param name="startIndex">The index of the top-most element. Only affects the <c>selectedIndex</c> calculation.</param>
+    /// Set <c>startIndex</c> to change that offset, e.g. if the list is scrolled. You may use <c>ChoiceList.SelectedIndex</c>.</param>
+    /// <param name="startIndex">The index of the top-most element. Only affects the <c>selectedIndex</c> calculation. You may use
+    /// <c>ChoiceList.PaginationStartIndex</c>.</param>
     /// <returns></returns>
-    internal static string List(IEnumerable<string> sourceStrings, int? selectedIndex = null, int startIndex = 0)
+    public static string List(IEnumerable<string> sourceStrings, int? selectedIndex = null, int startIndex = 0)
     {
         const string NONSELECTED_STRING = "[ ]";
         const string SELECTED_STRING = "[•]";
@@ -141,7 +152,7 @@ public static class Components
         // Top border
         string list = "\n" + Repeat('-', listWidth);
 
-        // Elements
+        // List elements
         foreach (string listElement in strings)
         {
             list += "\n" + listElement;
@@ -155,7 +166,15 @@ public static class Components
         return CenteredText(list);
     }
 
-    internal static string UiFrame(
+    /// <summary>
+    /// Returns a frame with a title, content, and optionally scroll indicators.
+    /// </summary>
+    /// <param name="inner">The content inside the frame.</param>
+    /// <param name="title">The title that will be centered. Leave empty for none.</param>
+    /// <param name="horizontalScroll">Whether to display horizontal scroll arrows.</param>
+    /// <param name="verticalScroll">Whether to display vertical scroll arrows.</param>
+    /// <returns>The frame as string.</returns>
+    public static string UiFrame(
         string inner,
         string title = "",
         bool horizontalScroll = false,
@@ -167,16 +186,22 @@ public static class Components
                 // If title is not empty, then add a margin to it
                 title != "" ? Margin(title) : "",
                 '-'
-            ) + "\n\n" +
+            ) + "\n" +
             inner + "\n" +
-            (verticalScroll ? RightAlignedText("↑") + "\n" + RightAlignedText("↓") : "") +
-            (horizontalScroll ? RightAlignedText("< >") : "") + "\n" +
+            (verticalScroll ? RightAlignedText("↑") + RightAlignedText("↓") : "") +
+            (horizontalScroll ? RightAlignedText("< >") : "") +
             HorizontalLine('-')
         );
 
     }
 
-    internal static string KeyboardActionList(List<KeyboardAction> options)
+    /// <summary>
+    /// A list of keyboard actions. Best displayed under the <c>UiFrame</c> component.
+    /// Every action will be shown in a new line. You can use <c>KeyboardAction.LineSeparator</c> to separate actions with an empty line.
+    /// </summary>
+    /// <param name="options">A list of the keyboard actions to display</param>
+    /// <returns>A string with the keyboard actions.</returns>
+    public static string KeyboardActionList(List<KeyboardAction> options)
     {
         return string.Join(null, options.Select(option => option + "\n"));
     }

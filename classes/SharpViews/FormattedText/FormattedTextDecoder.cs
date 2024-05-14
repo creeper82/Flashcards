@@ -78,7 +78,6 @@ public partial class FormattedText
                 case "magenta":
                     textPart.TextColor = ConsoleColor.Magenta; break;
                 case "/color":
-                case "/":
                 case "/c":
                     textPart.TextColor = ConsoleColor.Gray; break;
                 case "instant":
@@ -86,12 +85,16 @@ public partial class FormattedText
                 case "fast":
                     textPart.Speed = TextSpeed.Fast; break;
                 case "normal":
+                case "/s":
                     textPart.Speed = TextSpeed.Normal; break;
                 case "slow":
                     textPart.Speed = TextSpeed.Slow; break;
                 case "veryslow":
                     textPart.Speed = TextSpeed.VerySlow; break;
-
+                case "/":
+                    textPart.TextColor = ConsoleColor.Gray;
+                    textPart.Speed = TextSpeed.Normal;
+                    break;
             }
         }
     }
