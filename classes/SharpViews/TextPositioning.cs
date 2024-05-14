@@ -63,7 +63,7 @@ public static class TextPositioning
     public static string RightAlignedText(string text, char surroundChar = ' ')
     {
         // if text is empty, simply fill the whole width with surroundChars
-        if (text == "") return Repeat(surroundChar, UiWidth);
+        if (text == "") return Repeat(surroundChar, UiWidth) + "\n";
 
         int surroundLength = UiWidth - text.Length;
 
