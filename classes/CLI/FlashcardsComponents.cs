@@ -15,9 +15,9 @@ public static class Components
         else
         {
             return (
-                CenteredWrappedText(card.Front) + "\n" +
-                HorizontalLine('-', Math.Min(cardWidth + 4, UiWidth)) + "\n" +
-                CenteredWrappedText(card.Back) + "\n"
+                CenteredWrappedText(card.Front) +
+                HorizontalLine('-', Math.Min(cardWidth + 4, UiWidth)) +
+                CenteredWrappedText(card.Back)
             );
         }
     }

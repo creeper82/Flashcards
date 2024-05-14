@@ -9,7 +9,6 @@ public partial class Screens
     {
         ClearConsole();
 
-
         string filterText = (
             !cardFilter.HasAnyFilter
             ? "No filters applied"

@@ -31,10 +31,10 @@ public partial class Screens
             Console.WriteLine(
                 UiFrame(
                     inner:
-                        RightAlignedText(topText) + "\n" +
+                        RightAlignedText(topText) +
                         CenteredText(
                         $"Card {currentCardNumber} of {maxCardNumber}"
-                    ) + "\n\n" +
+                    ) + "\n" +
                     DeckCard(card, revealCard) +
                     (
                         sessionFinished
@@ -45,7 +45,7 @@ public partial class Screens
                         )
                         : ""
                     ) +
-                    (currentCardNumber == 1 && maxCardNumber > 1 ? "\n\nNote: Tag difficult cards with [T] to study them later" : ""),
+                    (currentCardNumber == 1 && maxCardNumber > 1 ? "\nNote: Tag difficult cards with [T] to study them later" : ""),
                     title: "Study session"
                 )
             );

@@ -38,10 +38,10 @@ public partial class Screens
             Console.WriteLine(
                 UiFrame(
                     inner:
-                        RightAlignedText(topText) + "\n" +
+                        RightAlignedText(topText) +
                         CenteredText(
                             $"Card {currentCardNumber} of {maxCardNumber}  **  {sortName}"
-                        ) + "\n\n" +
+                        ) + "\n" +
                         DeckCard(card, true),
                     title: deckName,
                     horizontalScroll: true
