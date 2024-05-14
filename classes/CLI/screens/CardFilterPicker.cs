@@ -15,7 +15,7 @@ public partial class Screens
             : "Filters applied:"
         ) + "\n\n" + (
             cardFilter.HasKeywordFilter
-            ? $"{cardFilter.MatchMode.FriendlyName()}: '{cardFilter.Keyword}'\n"
+            ? $"{cardFilter.MatchMode.GetName()}: '{cardFilter.Keyword}'\n"
             : ""
         ) + (
             cardFilter.HasDaysFilter

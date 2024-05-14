@@ -27,7 +27,7 @@ public static partial class App
                 currentCardNumber: cardChoiceList.SelectedIndex + 1,
                 maxCardNumber: cardChoiceList.MaxIndex + 1,
                 deckName: deck.Name,
-                sortName: sortType.SortFriendlyName(),
+                sortName: sortType.GetName(),
                 isFiltered: cardFilter.HasAnyFilter
             );
 

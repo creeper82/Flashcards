@@ -9,7 +9,7 @@ public static partial class Logic
     {
         string newValue = Dialogs.Input(
             title: "Filter by",
-            message: desiredMatchMode.FriendlyName(),
+            message: desiredMatchMode.GetName(),
             bottomNote: "Leave empty to disable this filter"
         ).TrimStart();
 

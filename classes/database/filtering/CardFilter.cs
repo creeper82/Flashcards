@@ -9,16 +9,15 @@ public static partial class Filtering
     }
 
     // Returns a friendly name for a KeywordMatchMode
-    public static string FriendlyName(this KeywordMatchMode matchMode)
-    {
-        return matchMode switch
+    public static string GetName(this KeywordMatchMode matchMode)
+    =>
+        matchMode switch
         {
             KeywordMatchMode.Any => "Search the whole card",
             KeywordMatchMode.CardFront => "Search the card front",
             KeywordMatchMode.CardBack => "Search the card back",
             _ => "Search",
         };
-    }
 
     public class CardFilter(string keyword = "", Filtering.KeywordMatchMode matchMode = 0, int? recentDays = null, bool onlyTagged = false)
     {

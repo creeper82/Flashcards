@@ -8,7 +8,7 @@ public static partial class App
     public static SortType SortTypePicker(SortType currentSortType = 0)
     {
         var sortTypes = Enum.GetValues(typeof(SortType));
-        var sortTypeNames = sortTypes.Cast<SortType>().Select(v => v.SortFriendlyName()).ToList();
+        var sortTypeNames = sortTypes.Cast<SortType>().Select(v => v.GetName()).ToList();
         var sortTypeChoiceList = new ChoiceList<string>(sortTypeNames)
         {
             SelectedIndex = (int)currentSortType

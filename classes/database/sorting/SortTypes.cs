@@ -12,9 +12,9 @@ public static class Sorting
         BACK_DESCENDING
     }
 
-    public static string SortFriendlyName(this SortType sortType)
-    {
-        return sortType switch
+    public static string GetName(this SortType sortType)
+    =>
+        sortType switch
         {
             SortType.DATE_DESCENDING => "Newest first",
             SortType.DATE_ASCENDING => "Oldest first",
@@ -24,6 +24,5 @@ public static class Sorting
             SortType.BACK_DESCENDING => "Z-A card back",
             _ => "Unknown sort",
         };
-    }
 }
 
