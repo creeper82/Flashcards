@@ -32,14 +32,12 @@ public partial class Screens
                 UiFrame(
                     inner:
                         RightAlignedText(topText) +
-                        CenteredText(
-                        $"Card {currentCardNumber} of {maxCardNumber}"
-                    ) + "\n" +
                     DeckCard(card, revealCard) +
+                    RightAlignedText($"Card {currentCardNumber} of {maxCardNumber}") + 
                     (
                         sessionFinished
                         ? CenteredText(
-                            "\nYou have finished the study session!" +
+                            "You have finished the study session!" +
                             "\nContinue studying tagged cards with [C]" +
                             "\nRestart the whole study session with [R]"
                         )
