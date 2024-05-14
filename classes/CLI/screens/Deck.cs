@@ -11,7 +11,7 @@ public partial class Screens
         Console.WriteLine(
             UiFrame(
                 CenteredText(
-                    deck.Cards.Any()
+                    deck.Cards.Count != 0
                     ? $"This deck has {deck.Cards.Count} cards"
                     : "This deck is empty\nOpen card editor with [C]"
                 ),
@@ -22,7 +22,7 @@ public partial class Screens
         // Display keyboard actions
         Console.WriteLine(
             KeyboardActionList(
-                deck.Cards.Any()
+                deck.Cards.Count != 0
                 ? KeyboardActions.DeckScreen
                 : KeyboardActions.DeckScreenEmpty
             )

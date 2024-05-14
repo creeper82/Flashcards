@@ -8,7 +8,7 @@ public static partial class Logic
     {
         ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
 
-        if (deck.Cards.Any())
+        if (deck.Cards.Count != 0)
         {
             switch (consoleKey)
             {
