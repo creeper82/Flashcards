@@ -24,7 +24,7 @@ public static class KeyboardActions
         new("enter", "study cards"),
         new("del", "delete deck"),
         new("r", "rename deck"),
-        new("c", "cards in deck"),
+        new("c", "card editor"),
         new("i", "deck details"),
         KeyboardAction.LineSeparator,
         new("esc", "go back")
@@ -33,7 +33,7 @@ public static class KeyboardActions
     public static List<KeyboardAction> DeckScreenEmpty { get; } = [
         new("del", "delete deck"),
         new("r", "rename deck"),
-        new("c", "cards in deck"),
+        new("c", "card editor"),
         new("i", "deck details"),
         KeyboardAction.LineSeparator,
         new("esc", "go back")
