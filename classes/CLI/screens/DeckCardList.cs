@@ -19,13 +19,13 @@ public partial class Screens
         {
             Console.WriteLine(
                 UiFrame(
-                    CenteredText(
+                    inner: CenteredText(
                         isFiltered
                         ? "No cards meet the filter criteria"
                         : "This deck has no cards\n" +
                           "Add a new card with [N]"
                     ),
-                    deckName
+                    title: deckName + " ~ card editor"
                 )
             );
         }
@@ -43,7 +43,7 @@ public partial class Screens
                             $"Card {currentCardNumber} of {maxCardNumber}  **  {sortName}"
                         ) + "\n" +
                         DeckCard(card, true),
-                    title: deckName,
+                    title: deckName + " ~ card editor",
                     horizontalScroll: true
                 )
             );
