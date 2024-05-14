@@ -16,7 +16,7 @@ public static void Deck(FlashcardsDatabase database, Deck deck)
 
         while (running)
         {
-            Screens.Deck(deck);
+            CLI.Screens.Deck(deck);
             running = Logic.HandleDeck(database, deck);
         }
 
@@ -61,7 +61,7 @@ As said earlier, revealing the onscreen card must be done from the screen scope,
 var handleResult = Logic.HandleStudySession(cardChoiceList);
 
 if (handleResult is Logic.HandleStudySessionResult.RevealOrNext) {
-    if (isCardRevealed && (cardChoiceList.selectedIndex != cardChoiceList.MaxIndex)) {
+    if (isCardRevealed && (cardChoiceList.SelectedIndex != cardChoiceList.MaxIndex)) {
         cardChoiceList.MoveForward();
         isCardRevealed = false;
     }

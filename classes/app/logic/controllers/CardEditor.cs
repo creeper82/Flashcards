@@ -1,6 +1,6 @@
-namespace FlashcardsApp;
+namespace Flashcards;
 
-using Flashcards;
+using SharpViews;
 
 public static partial class Logic
 {
@@ -15,7 +15,7 @@ public static partial class Logic
 
     public static HandleCardEditorResult HandleCardEditor(Card card)
     {
-        ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
+        ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
 
         switch (consoleKey)
         {
@@ -24,12 +24,12 @@ public static partial class Logic
                 return new HandleCardEditorResult.SaveChanges();
             case ConsoleKey.F:
             case ConsoleKey.UpArrow:
-                string newFront = CLI.Dialogs.Input("Edit front", $"Currently: {card.Front}").Trim();
+                string newFront = Dialogs.Input("Edit front", $"Currently: {card.Front}").Trim();
                 if (newFront != "") card.Front = newFront;
                 break;
             case ConsoleKey.B:
             case ConsoleKey.DownArrow:
-                string newBack = CLI.Dialogs.Input("Edit back", $"Currently: {card.Back}").Trim();
+                string newBack = Dialogs.Input("Edit back", $"Currently: {card.Back}").Trim();
                 if (newBack != "") card.Back = newBack;
                 break;
             case ConsoleKey.S:

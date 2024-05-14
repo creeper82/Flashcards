@@ -1,12 +1,9 @@
-namespace FlashcardsApp;
-
-using Flashcards;
-using CLI;
+namespace Flashcards;
 
 public static partial class App
 {
     // accepts a card and then returns the edited one
-    public static Card CardEditor(FlashcardsDatabase database, Card card, string title = "Edit card")
+    public static Card CardEditor(Card card, string title = "Edit card")
     {
         bool running = true;
 
@@ -14,7 +11,7 @@ public static partial class App
 
         while (running)
         {
-            Screens.CardEditor(cardCopy, title);
+            CLI.Screens.CardEditor(cardCopy, title);
             var interactionStatus = Logic.HandleCardEditor(cardCopy);
 
             if (interactionStatus is Logic.HandleCardEditorResult.SaveChanges)

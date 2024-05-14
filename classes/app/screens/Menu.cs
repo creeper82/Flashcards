@@ -1,7 +1,5 @@
-namespace FlashcardsApp;
-
-using Flashcards;
-using CLI;
+namespace Flashcards;
+using SharpViews;
 
 public static partial class App
 {
@@ -19,7 +17,7 @@ public static partial class App
         while (running)
         {
             deckChoiceList.CheckOutOfBoundsPointer();
-            Screens.Menu(deckChoiceList.PaginatedChoices, deckChoiceList.selectedIndex, deckChoiceList.PaginationStartIndex);
+            CLI.Screens.Menu(deckChoiceList.PaginatedChoices, deckChoiceList.SelectedIndex, deckChoiceList.PaginationStartIndex);
 
             running = Logic.HandleMenu(database, deckChoiceList);
         }

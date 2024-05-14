@@ -1,7 +1,6 @@
-using Flashcards;
-namespace CLI;
+namespace Flashcards.CLI;
 
-using static Components;
+using static SharpViews.Components;
 using static Flashcards.Filtering;
 
 public partial class Screens
@@ -9,7 +8,6 @@ public partial class Screens
     internal static void CardFilterPicker(CardFilter cardFilter)
     {
         ClearConsole();
-
 
         string filterText = (
             !cardFilter.HasAnyFilter

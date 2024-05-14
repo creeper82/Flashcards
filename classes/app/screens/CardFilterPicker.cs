@@ -1,6 +1,4 @@
-namespace FlashcardsApp;
-
-using CLI;
+namespace Flashcards;
 
 using static Flashcards.Filtering;
 
@@ -15,7 +13,7 @@ public static partial class App
 
         while (running)
         {
-            Screens.CardFilterPicker(newCardFilter);
+            CLI.Screens.CardFilterPicker(newCardFilter);
             var handleResult = Logic.HandleCardFilterPicker(newCardFilter);
 
             if (handleResult is Logic.HandleCardFilterResult.ExitScreen) running = false;

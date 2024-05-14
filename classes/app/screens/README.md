@@ -15,7 +15,7 @@ public static void Deck(FlashcardsDatabase database, Deck deck)
         while (running)
         {
             //this renders the deck screen
-            Screens.Deck(deck);
+            CLI.Screens.Deck(deck);
             // this handles the user input and does appropriate logic
             running = Logic.HandleDeck(database, deck);
         }
@@ -50,7 +50,7 @@ public static void StudySession(FlashcardsDatabase database, List<Card> cards) {
     bool isCardRevealed = false;
 
     while (running) {
-        Screens.StudySession(
+        CLI.Screens.StudySession(
             // skipped screen params
         );
         // Back-end job (if any) is done in HandleStudySession()
@@ -58,7 +58,7 @@ public static void StudySession(FlashcardsDatabase database, List<Card> cards) {
 
         // Remaining front-end job is done here
         if (handleResult is Logic.HandleStudySessionResult.RevealOrNext) {
-            if (isCardRevealed && (cardChoiceList.selectedIndex != cardChoiceList.MaxIndex)) {
+            if (isCardRevealed && (cardChoiceList.SelectedIndex != cardChoiceList.MaxIndex)) {
                 cardChoiceList.MoveForward();
                 isCardRevealed = false;
             }

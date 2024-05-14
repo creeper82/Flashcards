@@ -1,6 +1,6 @@
-namespace FlashcardsApp;
+namespace Flashcards;
 
-using Flashcards;
+using SharpViews;
 
 public static partial class Logic
 {
@@ -9,7 +9,7 @@ public static partial class Logic
     {
         int cards = deck.Cards.Count;
 
-        if (CLI.Dialogs.Confirm(
+        if (Dialogs.Confirm(
             title: "Remove deck",
             message: $"Do you want to remove the deck: {deck.Name}?\n\n" +
             (cards > 0 ? $"Number of cards in deck: {deck.Cards.Count}" : "This deck has no cards"),
@@ -27,7 +27,7 @@ public static partial class Logic
 
     private static Deck RenameDeck(FlashcardsDatabase database, Deck deck)
     {
-        string newName = CLI.Dialogs.Input(
+        string newName = Dialogs.Input(
             title: "Rename deck",
             message: $"Enter a new name for deck: {deck.Name}"
         ).Trim();
@@ -39,7 +39,7 @@ public static partial class Logic
 
     private static Deck? NewDeck(FlashcardsDatabase database)
     {
-        string newName = CLI.Dialogs.Input(
+        string newName = Dialogs.Input(
             title: "New deck",
             message: "Enter deck name"
         ).Trim();

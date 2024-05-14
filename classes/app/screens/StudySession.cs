@@ -1,7 +1,5 @@
-namespace FlashcardsApp;
-
-using Flashcards;
-using CLI;
+namespace Flashcards;
+using SharpViews;
 
 public static partial class App
 {
@@ -25,19 +23,19 @@ public static partial class App
                 resetStudySession = false;
             }
 
-            Screens.StudySession(
+            CLI.Screens.StudySession(
                 card: cardChoiceList.SelectedItem,
-                currentCardNumber: cardChoiceList.selectedIndex + 1,
+                currentCardNumber: cardChoiceList.SelectedIndex + 1,
                 maxCardNumber: cardChoiceList.MaxIndex + 1,
                 revealCard: isCardRevealed,
-                sessionFinished: (cardChoiceList.selectedIndex == cardChoiceList.MaxIndex) && isCardRevealed
+                sessionFinished: (cardChoiceList.SelectedIndex == cardChoiceList.MaxIndex) && isCardRevealed
             );
 
             var handleResult = Logic.HandleStudySession(database, cardChoiceList);
 
             if (handleResult is Logic.HandleStudySessionResult.RevealOrNext)
             {
-                if (isCardRevealed && (cardChoiceList.selectedIndex != cardChoiceList.MaxIndex))
+                if (isCardRevealed && (cardChoiceList.SelectedIndex != cardChoiceList.MaxIndex))
                 {
                     cardChoiceList.MoveForward();
                     isCardRevealed = false;

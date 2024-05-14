@@ -25,6 +25,5 @@ public static class Sorting
             _ => "Unknown sort",
         };
     }
-
 }
 

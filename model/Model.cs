@@ -57,5 +57,4 @@ public class Card
     {
         return new Card() { Front = "", Back = "", Deck = deck, CreationTimestamp = DateTime.UtcNow };
     }
-
 }

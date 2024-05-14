@@ -1,6 +1,5 @@
-namespace FlashcardsApp;
-
-using Flashcards;
+namespace Flashcards;
+using SharpViews;
 
 public static partial class Logic
 {
@@ -16,10 +15,10 @@ public static partial class Logic
 
     public static HandleStudySessionResult HandleStudySession(
         FlashcardsDatabase database,
-        CLI.ChoiceList<Card> cardChoiceList
+        ChoiceList<Card> cardChoiceList
     )
     {
-        ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
+        ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
         Card? card = cardChoiceList.SelectedItem;
 
         // Options only available when there are any cards

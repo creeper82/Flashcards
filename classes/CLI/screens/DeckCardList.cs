@@ -1,7 +1,7 @@
-using Flashcards;
-namespace CLI;
+namespace Flashcards.CLI;
 
-using static Components;
+using static SharpViews.Components;
+using static Flashcards.CLI.Components;
 
 public partial class Screens
 {
@@ -38,10 +38,10 @@ public partial class Screens
             Console.WriteLine(
                 UiFrame(
                     inner:
-                        RightAlignedText(topText) + "\n" +
+                        RightAlignedText(topText) +
                         CenteredText(
                             $"Card {currentCardNumber} of {maxCardNumber}  **  {sortName}"
-                        ) + "\n\n" +
+                        ) + "\n" +
                         DeckCard(card, true),
                     title: deckName,
                     horizontalScroll: true

@@ -1,6 +1,6 @@
-namespace FlashcardsApp;
+namespace Flashcards;
 
-using Flashcards;
+using SharpViews;
 
 public static partial class Logic
 {
@@ -30,13 +30,13 @@ public static partial class Logic
 
     public static HandleDeckCardListResult HandleDeckCardList(
         FlashcardsDatabase database,
-        CLI.ChoiceList<Card> cardChoiceList,
+        ChoiceList<Card> cardChoiceList,
         Deck deck,
         Sorting.SortType currentSortType,
         Filtering.CardFilter currentCardFilter
     )
     {
-        ConsoleKey consoleKey = CLI.ConsoleInput.GetConsoleKey();
+        ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
         Card? card = cardChoiceList.SelectedItem;
 
         // Options only available when there are any cards

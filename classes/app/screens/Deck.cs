@@ -1,7 +1,4 @@
-namespace FlashcardsApp;
-
-using Flashcards;
-using CLI;
+namespace Flashcards;
 
 public static partial class App
 {
@@ -11,7 +8,7 @@ public static partial class App
 
         while (running)
         {
-            Screens.Deck(deck);
+            CLI.Screens.Deck(deck);
             running = Logic.HandleDeck(database, deck);
         }
 
