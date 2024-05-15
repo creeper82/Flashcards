@@ -24,7 +24,7 @@ public static partial class App
             }
 
             CLI.Screens.StudySession(
-                card: cardChoiceList.SelectedItem,
+                card: cardChoiceList.SelectedChoice,
                 currentCardNumber: cardChoiceList.SelectedIndex + 1,
                 maxCardNumber: cardChoiceList.MaxIndex + 1,
                 revealCard: isCardRevealed,

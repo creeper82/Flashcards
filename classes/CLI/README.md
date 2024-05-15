@@ -64,7 +64,7 @@ switch (consoleKey) {
     // skipped code
     case ConsoleKey.R:
     case ConsoleKey.F2:
-        Deck renamedDeck = RenameDeck(database, deckChoiceList.SelectedItem);
+        Deck renamedDeck = RenameDeck(database, deckChoiceList.SelectedChoice);
         deckChoiceList.MoveToChoice(renamedDeck);
         break;
     // skipped code

@@ -9,10 +9,7 @@ public static partial class App
     {
         var sortTypes = Enum.GetValues(typeof(SortType));
         var sortTypeNames = sortTypes.Cast<SortType>().Select(v => v.GetName()).ToList();
-        var sortTypeChoiceList = new ChoiceList<string>(sortTypeNames)
-        {
-            SelectedIndex = (int)currentSortType
-        };
+        var sortTypeChoiceList = new ChoiceList<string>(sortTypeNames, (int)currentSortType);
 
         bool running = true;
 

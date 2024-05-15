@@ -8,31 +8,37 @@ namespace SharpViews;
 /// </summary>
 /// <typeparam name="T">Type of the list elements. You can't have mixed types.</typeparam>
 /// <param name="choices">List elements.</param>
-public class ScrollableList<T>(IEnumerable<T> choices)
+/// <param name="initialPosition">The initial list position (index). By default, <c>0</c>.</param>
+public class ScrollableList<T>(IEnumerable<T> choices, int initialPosition = 0)
 {
     /// <summary>
     /// Index of the top-most visible element, based on current scroll position.
     /// </summary>
-    public int Position = 0;
+    public int Position {get; private set;} = initialPosition;
+
     /// <summary>
-    /// Count of visible elements at once. By default, <c>9</c>.
+    /// Count of elements that are visible at once. By default, <c>9</c>.
     /// </summary>
     /// <remarks>
     /// Use <c>PaginatedChoices</c> to get the list content trimmed to only have such number of elements.
     /// </remarks>
     public int PaginationCount = 9;
 
-    private int MaxAllowedPosition
-    {
-        get
-        {
-            return Math.Max(Choices.Count() - PaginationCount, 0);
-        }
-    }
+    private int MaxAllowedPosition => Math.Max(Choices.Count() - PaginationCount, 0);
+
     /// <summary>
     /// All the list elements, ignoring scroll position and <c>PaginationCount</c>. You should use <c>PaginatedChoices</c>.
     /// </summary>
-    public IEnumerable<T> Choices = choices;
+    public IEnumerable<T> Choices {get; private set;} = choices;
+
+    /// <summary>
+    /// Change the list elements to new ones, and automatically fix the scroll position, if it went out of bounds.
+    /// </summary>
+    /// <param name="newElements">The new list elements.</param>
+    public void UpdateChoices(IEnumerable<T> newElements) {
+        Choices = newElements;
+        CheckOutOfBoundsPointer();
+    }
 
     /// <summary>
     /// Return the elements that should be visible based on the current scroll position. Change <c>PaginationCount</c> if you want to allow more or less
@@ -62,9 +68,12 @@ public class ScrollableList<T>(IEnumerable<T> choices)
     }
 
     /// <summary>
-    /// Check if the pointer (list scroll position) got out of bounds and fix it (snap to the closest element), if so.
+    /// Checks if the pointer (list scroll position) got out of bounds and fix it (snap to the closest element), if so.
     /// It might happen if the list content changes.
     /// </summary>
+    /// <remarks>
+    /// <b>It is automatically called</b> when moving the list. In most cases you don't need to call it.
+    /// </remarks>
     public void CheckOutOfBoundsPointer()
     {
         if (Position > MaxAllowedPosition) Position = MaxAllowedPosition;
