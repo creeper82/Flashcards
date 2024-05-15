@@ -17,13 +17,13 @@ public static partial class App
 
         while (running)
         {
-            cardChoiceList.Choices = deck.Cards
+            cardChoiceList.UpdateChoices(
+                deck.Cards
                 .ApplySort(sortType)
-                .ApplyFilter(cardFilter);
-            cardChoiceList.CheckOutOfBoundsPointer();
+                .ApplyFilter(cardFilter));
 
             CLI.Screens.DeckCardList(
-                card: cardChoiceList.SelectedItem,
+                card: cardChoiceList.SelectedChoice,
                 currentCardNumber: cardChoiceList.SelectedIndex + 1,
                 maxCardNumber: cardChoiceList.MaxIndex + 1,
                 deckName: deck.Name,

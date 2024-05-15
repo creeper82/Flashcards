@@ -19,7 +19,7 @@ public static partial class Logic
     )
     {
         ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
-        Card? card = cardChoiceList.SelectedItem;
+        Card? card = cardChoiceList.SelectedChoice;
 
         // Options only available when there are any cards
         if (card is not null)

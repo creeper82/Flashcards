@@ -31,22 +31,22 @@ public static partial class Logic
                 return false;
         }
         // Only if the user has decks
-        if (deckChoiceList.SelectedItem is not null)
+        if (deckChoiceList.SelectedChoice is not null)
         {
             switch (consoleKey)
             {
                 // Navigation
                 case ConsoleKey.Spacebar:
                 case ConsoleKey.Enter:
-                    App.Deck(database, deckChoiceList.SelectedItem);
+                    App.Deck(database, deckChoiceList.SelectedChoice);
                     break;
                 // Deck editing
                 case ConsoleKey.Delete:
-                    RemoveDeck(database, deckChoiceList.SelectedItem);
+                    RemoveDeck(database, deckChoiceList.SelectedChoice);
                     break;
                 case ConsoleKey.R:
                 case ConsoleKey.F2:
-                    Deck renamedDeck = RenameDeck(database, deckChoiceList.SelectedItem);
+                    Deck renamedDeck = RenameDeck(database, deckChoiceList.SelectedChoice);
                     deckChoiceList.MoveToChoice(renamedDeck);
                     break;
             }

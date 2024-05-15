@@ -16,7 +16,6 @@ public static partial class App
 
         while (running)
         {
-            deckChoiceList.CheckOutOfBoundsPointer();
             CLI.Screens.Menu(deckChoiceList.PaginatedChoices, deckChoiceList.SelectedIndex, deckChoiceList.PaginationStartIndex);
 
             running = Logic.HandleMenu(database, deckChoiceList);
