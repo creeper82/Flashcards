@@ -5,7 +5,7 @@ using SharpViews;
 public static partial class Logic
 {
     public enum HandleDeckCardListResult {
-        ContinueLoop, ChangeSort, ChangeFilter, ExitList
+        ContinueLoop, ChangeSort, ChangeFilter, ExitList, MoveRight, MoveLeft
     }
 
     public static HandleDeckCardListResult HandleDeckCardList(
@@ -24,11 +24,9 @@ public static partial class Logic
             switch (consoleKey)
             {
                 case ConsoleKey.LeftArrow:
-                    cardChoiceList.MoveBackward();
-                    break;
+                    return HandleDeckCardListResult.MoveLeft;
                 case ConsoleKey.RightArrow:
-                    cardChoiceList.MoveForward();
-                    break;
+                    return HandleDeckCardListResult.MoveRight;
                 case ConsoleKey.Enter:
                 case ConsoleKey.F2:
                     EditCard(database, card);

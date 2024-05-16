@@ -5,36 +5,21 @@ using SharpViews;
 public static partial class Logic
 {
     public enum HandleCardEditorResult {
-        ContinueLoop, SaveChanges, CancelChanges
+        ContinueLoop, SaveChanges, CancelChanges, EditFront, EditBack, Swap
     }
 
-    public static HandleCardEditorResult HandleCardEditor(Card card)
+    public static HandleCardEditorResult HandleCardEditor()
     {
         ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
 
-        switch (consoleKey)
+        return consoleKey switch
         {
-            case ConsoleKey.Enter:
-            case ConsoleKey.Spacebar:
-                return HandleCardEditorResult.SaveChanges;
-            case ConsoleKey.F:
-            case ConsoleKey.UpArrow:
-                string newFront = Dialogs.Input("Edit front", $"Currently: {card.Front}").Trim();
-                if (newFront != "") card.Front = newFront;
-                break;
-            case ConsoleKey.B:
-            case ConsoleKey.DownArrow:
-                string newBack = Dialogs.Input("Edit back", $"Currently: {card.Back}").Trim();
-                if (newBack != "") card.Back = newBack;
-                break;
-            case ConsoleKey.S:
-                (card.Back, card.Front) = (card.Front, card.Back);
-                break;
-            case ConsoleKey.Escape:
-                return HandleCardEditorResult.CancelChanges;
-        }
-
-        return HandleCardEditorResult.ContinueLoop;
-
+            ConsoleKey.Enter or ConsoleKey.Spacebar => HandleCardEditorResult.SaveChanges,
+            ConsoleKey.F or ConsoleKey.UpArrow => HandleCardEditorResult.EditFront,
+            ConsoleKey.B or ConsoleKey.DownArrow => HandleCardEditorResult.EditBack,
+            ConsoleKey.S => HandleCardEditorResult.Swap,
+            ConsoleKey.Escape => HandleCardEditorResult.CancelChanges,
+            _ => HandleCardEditorResult.ContinueLoop,
+        };
     }
 }

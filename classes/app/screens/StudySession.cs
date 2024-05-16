@@ -33,6 +33,8 @@ public static partial class App
 
             var handleResult = Logic.HandleStudySession(database, cardChoiceList);
 
+            if (handleResult == Logic.HandleStudySessionResult.Exit) break;
+
             if (handleResult == Logic.HandleStudySessionResult.RevealOrNext)
             {
                 if (isCardRevealed && (cardChoiceList.SelectedIndex != cardChoiceList.MaxIndex))
@@ -58,7 +60,7 @@ public static partial class App
                 cards = cards.ApplyFilter(new(onlyTagged: true));
                 resetStudySession = true;
             }
-            if (handleResult == Logic.HandleStudySessionResult.Exit) running = false;
+            
         }
 
     }

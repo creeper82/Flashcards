@@ -37,10 +37,11 @@ public static partial class App
                 deck: deck,
                 hasAnyFilter: cardFilter.HasAnyFilter
             );
-
+            if (handleResult == Logic.HandleDeckCardListResult.ExitList) break;
             if (handleResult == Logic.HandleDeckCardListResult.ChangeSort) sortType = SortTypePicker(sortType);
             if (handleResult == Logic.HandleDeckCardListResult.ChangeFilter) cardFilter = CardFilterPicker(cardFilter);
-            else if (handleResult == Logic.HandleDeckCardListResult.ExitList) running = false;
+            if (handleResult == Logic.HandleDeckCardListResult.MoveRight) cardChoiceList.MoveForward();
+            if (handleResult == Logic.HandleDeckCardListResult.MoveLeft) cardChoiceList.MoveBackward();
         }
     }
 }

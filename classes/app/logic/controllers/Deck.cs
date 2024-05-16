@@ -4,7 +4,10 @@ using SharpViews;
 
 public static partial class Logic
 {
-    public static bool HandleDeck(FlashcardsDatabase database, Deck deck)
+    public enum HandleDeckResult {
+        ContinueLoop, OpenStudySession, OpenCardEditor, OpenDeckDetails, Exit
+    }
+    public static HandleDeckResult HandleDeck(FlashcardsDatabase database, Deck deck)
     {
         ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
 
@@ -14,31 +17,27 @@ public static partial class Logic
             {
                 case ConsoleKey.Enter:
                 case ConsoleKey.Spacebar:
-                    App.StudySession(database, deck.Cards);
-                    break;
+                    return HandleDeckResult.OpenStudySession;
             }
         }
 
         switch (consoleKey)
         {
             case ConsoleKey.Delete:
-                if (RemoveDeck(database, deck)) return false;
+                if (RemoveDeck(database, deck)) return HandleDeckResult.Exit;
                 break;
             case ConsoleKey.R:
             case ConsoleKey.F2:
                 RenameDeck(database, deck);
                 break;
             case ConsoleKey.C:
-                App.DeckCardList(database, deck);
-                break;
+                return HandleDeckResult.OpenCardEditor;
             case ConsoleKey.I:
-                App.DeckDetails(deck);
-                break;
+                return HandleDeckResult.OpenDeckDetails;
             case ConsoleKey.Escape:
             case ConsoleKey.Q:
-                return false;
+                return HandleDeckResult.Exit;
         }
-
-        return true;
+        return HandleDeckResult.ContinueLoop;
     }
 }
