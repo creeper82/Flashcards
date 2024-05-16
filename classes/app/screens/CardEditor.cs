@@ -14,11 +14,11 @@ public static partial class App
             CLI.Screens.CardEditor(cardCopy, title);
             var interactionStatus = Logic.HandleCardEditor(cardCopy);
 
-            if (interactionStatus is Logic.HandleCardEditorResult.SaveChanges)
+            if (interactionStatus == Logic.HandleCardEditorResult.SaveChanges)
             {
                 return cardCopy;
             }
-            if (interactionStatus is Logic.HandleCardEditorResult.CancelChanges)
+            if (interactionStatus == Logic.HandleCardEditorResult.CancelChanges)
             {
                 running = false;
             }

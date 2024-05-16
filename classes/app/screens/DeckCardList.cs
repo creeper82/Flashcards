@@ -35,19 +35,12 @@ public static partial class App
                 database: database,
                 cardChoiceList: cardChoiceList,
                 deck: deck,
-                currentSortType: sortType,
-                currentCardFilter: cardFilter
+                hasAnyFilter: cardFilter.HasAnyFilter
             );
 
-            if (handleResult is Logic.HandleDeckCardListResult.ChangeSort changeSortResult)
-            {
-                sortType = changeSortResult.newSortType;
-            }
-            if (handleResult is Logic.HandleDeckCardListResult.ChangeFilter changeFilterResult)
-            {
-                cardFilter = changeFilterResult.newCardFilter;
-            }
-            else if (handleResult is Logic.HandleDeckCardListResult.ExitList) running = false;
+            if (handleResult == Logic.HandleDeckCardListResult.ChangeSort) sortType = SortTypePicker(sortType);
+            if (handleResult == Logic.HandleDeckCardListResult.ChangeFilter) cardFilter = CardFilterPicker(cardFilter);
+            else if (handleResult == Logic.HandleDeckCardListResult.ExitList) running = false;
         }
     }
 }

@@ -3,14 +3,9 @@ using SharpViews;
 
 public static partial class Logic
 {
-    public class HandleStudySessionResult
+    public enum HandleStudySessionResult
     {
-        public class RevealOrNext : HandleStudySessionResult { }
-        public class Exit : HandleStudySessionResult { }
-        public class ContinueLoop : HandleStudySessionResult { }
-        public class MoveBackward : HandleStudySessionResult { }
-        public class RestartSession : HandleStudySessionResult { }
-        public class ContinueOnlyTagged : HandleStudySessionResult { }
+        ContinueLoop, RevealOrNext, MoveBackward, RestartSession, ContinueOnlyTagged, Exit
     }
 
     public static HandleStudySessionResult HandleStudySession(
@@ -27,18 +22,18 @@ public static partial class Logic
             switch (consoleKey)
             {
                 case ConsoleKey.LeftArrow:
-                    return new HandleStudySessionResult.MoveBackward();
+                    return HandleStudySessionResult.MoveBackward;
                 case ConsoleKey.Enter:
                 case ConsoleKey.Spacebar:
                 case ConsoleKey.RightArrow:
-                    return new HandleStudySessionResult.RevealOrNext();
+                    return HandleStudySessionResult.RevealOrNext;
                 case ConsoleKey.T:
                     TagOrUntagCard(database, card);
                     break;
                 case ConsoleKey.C:
-                    return new HandleStudySessionResult.ContinueOnlyTagged();
+                    return HandleStudySessionResult.ContinueOnlyTagged;
                 case ConsoleKey.R:
-                    return new HandleStudySessionResult.RestartSession();
+                    return HandleStudySessionResult.RestartSession;
             }
         }
 
@@ -46,9 +41,9 @@ public static partial class Logic
         switch (consoleKey)
         {
             case ConsoleKey.Escape:
-                return new HandleStudySessionResult.Exit();
+                return HandleStudySessionResult.Exit;
         }
 
-        return new HandleStudySessionResult.ContinueLoop();
+        return HandleStudySessionResult.ContinueLoop;
     }
 }

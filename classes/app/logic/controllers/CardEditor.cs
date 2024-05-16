@@ -4,13 +4,8 @@ using SharpViews;
 
 public static partial class Logic
 {
-    public class HandleCardEditorResult
-    {
-        public class SaveChanges : HandleCardEditorResult { }
-
-        public class CancelChanges : HandleCardEditorResult { }
-
-        public class ContinueLoop : HandleCardEditorResult { }
+    public enum HandleCardEditorResult {
+        ContinueLoop, SaveChanges, CancelChanges
     }
 
     public static HandleCardEditorResult HandleCardEditor(Card card)
@@ -21,7 +16,7 @@ public static partial class Logic
         {
             case ConsoleKey.Enter:
             case ConsoleKey.Spacebar:
-                return new HandleCardEditorResult.SaveChanges();
+                return HandleCardEditorResult.SaveChanges;
             case ConsoleKey.F:
             case ConsoleKey.UpArrow:
                 string newFront = Dialogs.Input("Edit front", $"Currently: {card.Front}").Trim();
@@ -36,10 +31,10 @@ public static partial class Logic
                 (card.Back, card.Front) = (card.Front, card.Back);
                 break;
             case ConsoleKey.Escape:
-                return new HandleCardEditorResult.CancelChanges();
+                return HandleCardEditorResult.CancelChanges;
         }
 
-        return new HandleCardEditorResult.ContinueLoop();
+        return HandleCardEditorResult.ContinueLoop;
 
     }
 }

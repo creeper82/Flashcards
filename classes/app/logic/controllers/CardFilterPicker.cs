@@ -5,12 +5,10 @@ using static Flashcards.Filtering;
 
 public static partial class Logic
 {
-    // custom return status type
-    public class HandleCardFilterResult {
-        public class ContinueLoop : HandleCardFilterResult { }
-        public class ApplyFilter : HandleCardFilterResult { }
-        public class ExitScreen : HandleCardFilterResult { }
+    public enum HandleCardFilterResult {
+        ContinueLoop, ApplyFilter, ExitScreen
     }
+
     public static HandleCardFilterResult HandleCardFilterPicker(CardFilter cardFilter)
     {
         ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
@@ -36,11 +34,11 @@ public static partial class Logic
                 ResetCardFilter(cardFilter);
                 break;
             case ConsoleKey.Enter:
-                return new HandleCardFilterResult.ApplyFilter();
+                return HandleCardFilterResult.ApplyFilter;
             case ConsoleKey.Escape:
-                return new HandleCardFilterResult.ExitScreen();
+                return HandleCardFilterResult.ExitScreen;
         }
 
-        return new HandleCardFilterResult.ContinueLoop();
+        return HandleCardFilterResult.ContinueLoop;
     }
 }

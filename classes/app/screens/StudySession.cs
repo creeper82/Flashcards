@@ -33,7 +33,7 @@ public static partial class App
 
             var handleResult = Logic.HandleStudySession(database, cardChoiceList);
 
-            if (handleResult is Logic.HandleStudySessionResult.RevealOrNext)
+            if (handleResult == Logic.HandleStudySessionResult.RevealOrNext)
             {
                 if (isCardRevealed && (cardChoiceList.SelectedIndex != cardChoiceList.MaxIndex))
                 {
@@ -43,22 +43,22 @@ public static partial class App
                 else isCardRevealed = true;
 
             }
-            if (handleResult is Logic.HandleStudySessionResult.MoveBackward)
+            if (handleResult == Logic.HandleStudySessionResult.MoveBackward)
             {
                 cardChoiceList.MoveBackward();
                 isCardRevealed = true;
             }
-            if (handleResult is Logic.HandleStudySessionResult.RestartSession)
+            if (handleResult == Logic.HandleStudySessionResult.RestartSession)
             {
                 cards = originalCardSet;
                 resetStudySession = true;
             }
-            if (handleResult is Logic.HandleStudySessionResult.ContinueOnlyTagged)
+            if (handleResult == Logic.HandleStudySessionResult.ContinueOnlyTagged)
             {
                 cards = cards.ApplyFilter(new(onlyTagged: true));
                 resetStudySession = true;
             }
-            if (handleResult is Logic.HandleStudySessionResult.Exit) running = false;
+            if (handleResult == Logic.HandleStudySessionResult.Exit) running = false;
         }
 
     }

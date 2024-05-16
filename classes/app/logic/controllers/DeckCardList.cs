@@ -4,36 +4,15 @@ using SharpViews;
 
 public static partial class Logic
 {
-    public class HandleDeckCardListResult
-    {
-        public class ChangeSort : HandleDeckCardListResult
-        {
-            public Sorting.SortType newSortType;
-            public ChangeSort(Sorting.SortType newSortType)
-            {
-                this.newSortType = newSortType;
-            }
-        }
-
-        public class ChangeFilter : HandleDeckCardListResult
-        {
-            public Filtering.CardFilter newCardFilter;
-            public ChangeFilter(Filtering.CardFilter newCardFilter)
-            {
-                this.newCardFilter = newCardFilter;
-            }
-        }
-
-        public class ExitList : HandleDeckCardListResult { }
-        public class ContinueLoop : HandleDeckCardListResult { }
+    public enum HandleDeckCardListResult {
+        ContinueLoop, ChangeSort, ChangeFilter, ExitList
     }
 
     public static HandleDeckCardListResult HandleDeckCardList(
         FlashcardsDatabase database,
         ChoiceList<Card> cardChoiceList,
         Deck deck,
-        Sorting.SortType currentSortType,
-        Filtering.CardFilter currentCardFilter
+        bool hasAnyFilter
     )
     {
         ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
@@ -61,9 +40,7 @@ public static partial class Logic
                     TagOrUntagCard(database, card);
                     break;
                 case ConsoleKey.S:
-                    return new HandleDeckCardListResult.ChangeSort(
-                        App.SortTypePicker(currentSortType)
-                    );
+                    return HandleDeckCardListResult.ChangeSort;
             }
         }
 
@@ -75,20 +52,18 @@ public static partial class Logic
                 if (newCard != null) cardChoiceList.MoveToChoice(newCard);
                 break;
             case ConsoleKey.Escape:
-                return new HandleDeckCardListResult.ExitList();
+                return HandleDeckCardListResult.ExitList;
         }
 
         // When there are none or some cards, but filtering is already applied, allow to change the filter
-        if (card is not null || currentCardFilter.HasAnyFilter)
+        if (card is not null || hasAnyFilter)
         {
             if (consoleKey == ConsoleKey.F)
             {
-                return new HandleDeckCardListResult.ChangeFilter(
-                        App.CardFilterPicker(currentCardFilter)
-                );
+                return HandleDeckCardListResult.ChangeFilter;
             }
         }
 
-        return new HandleDeckCardListResult.ContinueLoop();
+        return HandleDeckCardListResult.ContinueLoop;
     }
 }

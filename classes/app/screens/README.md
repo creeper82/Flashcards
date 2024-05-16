@@ -57,7 +57,7 @@ public static void StudySession(FlashcardsDatabase database, List<Card> cards) {
         var handleResult = Logic.HandleStudySession(cardChoiceList);
 
         // Remaining front-end job is done here
-        if (handleResult is Logic.HandleStudySessionResult.RevealOrNext) {
+        if (handleResult == Logic.HandleStudySessionResult.RevealOrNext) {
             if (isCardRevealed && (cardChoiceList.SelectedIndex != cardChoiceList.MaxIndex)) {
                 cardChoiceList.MoveForward();
                 isCardRevealed = false;
@@ -65,11 +65,11 @@ public static void StudySession(FlashcardsDatabase database, List<Card> cards) {
             else isCardRevealed = true;
             
         }
-        if (handleResult is Logic.HandleStudySessionResult.MoveBackward) {
+        if (handleResult == Logic.HandleStudySessionResult.MoveBackward) {
             cardChoiceList.MoveBackward();
             isCardRevealed = true;
         }
-        if (handleResult is Logic.HandleStudySessionResult.Exit) running = false;
+        if (handleResult == Logic.HandleStudySessionResult.Exit) running = false;
     }
 
     }
