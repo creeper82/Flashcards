@@ -16,7 +16,11 @@ public static partial class App
         while (running)
         {
             CLI.Screens.SortTypePicker(sortTypeNames, sortTypeChoiceList.SelectedIndex);
-            running = Logic.HandleSortPicker(sortTypeChoiceList);
+            var handleSortPickerResult = Logic.HandleSortPicker();
+
+            if (handleSortPickerResult == Logic.HandleSortPickerResult.Exit) running = false;
+            if (handleSortPickerResult == Logic.HandleSortPickerResult.MoveForward) sortTypeChoiceList.MoveForward();
+            if (handleSortPickerResult == Logic.HandleSortPickerResult.MoveBackward) sortTypeChoiceList.MoveBackward();
         }
 
         return (SortType)sortTypeChoiceList.SelectedIndex;

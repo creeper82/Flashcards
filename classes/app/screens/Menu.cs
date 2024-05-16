@@ -18,7 +18,13 @@ public static partial class App
         {
             CLI.Screens.Menu(deckChoiceList.PaginatedChoices, deckChoiceList.SelectedIndex, deckChoiceList.PaginationStartIndex);
 
-            running = Logic.HandleMenu(database, deckChoiceList);
+            var handleMenuResult = Logic.HandleMenu(database, deckChoiceList);
+
+            if (handleMenuResult == Logic.HandleMenuResult.Exit) break;
+            if (handleMenuResult == Logic.HandleMenuResult.MoveForward) deckChoiceList.MoveForward();
+            if (handleMenuResult == Logic.HandleMenuResult.MoveBackward) deckChoiceList.MoveBackward();
+            if (handleMenuResult == Logic.HandleMenuResult.OpenDeck && deckChoiceList.SelectedChoice is not null) Deck(database, deckChoiceList.SelectedChoice);
+            if (handleMenuResult == Logic.HandleMenuResult.OpenHelp) Help(database.Path);
         }
 
     }

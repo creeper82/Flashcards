@@ -9,7 +9,11 @@ public static partial class App
         while (running)
         {
             CLI.Screens.Deck(deck);
-            running = Logic.HandleDeck(database, deck);
+            var handleDeckResult = Logic.HandleDeck(database, deck);
+            if (handleDeckResult == Logic.HandleDeckResult.Exit) break;
+            if (handleDeckResult == Logic.HandleDeckResult.OpenStudySession) StudySession(database, deck.Cards);
+            if (handleDeckResult == Logic.HandleDeckResult.OpenDeckDetails) DeckDetails(deck);
+            if (handleDeckResult == Logic.HandleDeckResult.OpenCardEditor) DeckCardList(database, deck);
         }
 
     }

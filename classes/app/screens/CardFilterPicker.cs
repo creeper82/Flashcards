@@ -16,8 +16,8 @@ public static partial class App
             CLI.Screens.CardFilterPicker(newCardFilter);
             var handleResult = Logic.HandleCardFilterPicker(newCardFilter);
 
-            if (handleResult is Logic.HandleCardFilterResult.ExitScreen) running = false;
-            if (handleResult is Logic.HandleCardFilterResult.ApplyFilter)
+            if (handleResult == Logic.HandleCardFilterResult.ExitScreen) running = false;
+            if (handleResult == Logic.HandleCardFilterResult.ApplyFilter)
             {
                 return newCardFilter;
             }

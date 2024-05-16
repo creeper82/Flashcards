@@ -4,7 +4,10 @@ using SharpViews;
 
 public static partial class Logic
 {
-    public static bool HandleMenu(FlashcardsDatabase database, ChoiceList<Deck> deckChoiceList)
+    public enum HandleMenuResult {
+        ContinueLoop, MoveForward, MoveBackward, OpenHelp, OpenDeck, Exit
+    }
+    public static HandleMenuResult HandleMenu(FlashcardsDatabase database, ChoiceList<Deck> deckChoiceList)
     {
         ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
 
@@ -12,11 +15,9 @@ public static partial class Logic
         {
             // Navigation
             case ConsoleKey.UpArrow:
-                deckChoiceList.MoveBackward();
-                break;
+                return HandleMenuResult.MoveBackward;
             case ConsoleKey.DownArrow:
-                deckChoiceList.MoveForward();
-                break;
+                return HandleMenuResult.MoveForward;
             // New deck
             case ConsoleKey.N:
                 Deck? newDeck = NewDeck(database);
@@ -24,11 +25,10 @@ public static partial class Logic
                 break;
             // Help menu
             case ConsoleKey.H:
-                App.Help(database.Path);
-                break;
+                return HandleMenuResult.OpenHelp;
             // Exit app
             case ConsoleKey.Escape:
-                return false;
+                return HandleMenuResult.Exit;
         }
         // Only if the user has decks
         if (deckChoiceList.SelectedChoice is not null)
@@ -38,8 +38,7 @@ public static partial class Logic
                 // Navigation
                 case ConsoleKey.Spacebar:
                 case ConsoleKey.Enter:
-                    App.Deck(database, deckChoiceList.SelectedChoice);
-                    break;
+                    return HandleMenuResult.OpenDeck;
                 // Deck editing
                 case ConsoleKey.Delete:
                     RemoveDeck(database, deckChoiceList.SelectedChoice);
@@ -50,9 +49,8 @@ public static partial class Logic
                     deckChoiceList.MoveToChoice(renamedDeck);
                     break;
             }
-
         }
-
-        return true;
+        
+        return HandleMenuResult.ContinueLoop;
     }
 }

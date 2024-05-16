@@ -3,22 +3,19 @@ using SharpViews;
 
 public static partial class Logic
 {
-    public static bool HandleSortPicker(ChoiceList<string> choiceList)
+    public enum HandleSortPickerResult {
+        ContinueLoop, MoveForward, MoveBackward, Exit
+    }
+    public static HandleSortPickerResult HandleSortPicker()
     {
         ConsoleKey consoleKey = ConsoleInput.GetConsoleKey();
 
-        switch (consoleKey)
+        return consoleKey switch
         {
-            case ConsoleKey.Enter:
-                return false;
-            case ConsoleKey.UpArrow:
-                choiceList.MoveBackward();
-                break;
-            case ConsoleKey.DownArrow:
-                choiceList.MoveForward();
-                break;
-        }
-
-        return true;
+            ConsoleKey.Enter => HandleSortPickerResult.Exit,
+            ConsoleKey.UpArrow => HandleSortPickerResult.MoveBackward,
+            ConsoleKey.DownArrow => HandleSortPickerResult.MoveForward,
+            _ => HandleSortPickerResult.ContinueLoop,
+        };
     }
 }
