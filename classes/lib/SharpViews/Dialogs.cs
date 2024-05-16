@@ -80,4 +80,12 @@ public static class Dialogs
 
         return userInput;
     }
+    
+    /// <summary>
+    /// Displays an error screen with options to retry or cancel.
+    /// </summary>
+    /// <param name="windowTitle">The title at the top of the error screen.</param>
+    /// <param name="errorText">Text contents of the error that will be displayed.</param>
+    /// <returns>A boolean determining whether the user wants to retry the action that caused an error.</returns>
+    public static bool ErrorScreen(string windowTitle = "ERROR", string errorText = "Error was not recognized. Sorry") => ErrorHandling.ErrorScreen(windowTitle, errorText);
 }

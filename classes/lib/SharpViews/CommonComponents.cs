@@ -1,18 +1,5 @@
 namespace SharpViews;
 
-public static class ConsoleInput
-{
-    public static ConsoleKey GetConsoleKey()
-    {
-        return Console.ReadKey(true).Key;
-    }
-
-    public static void WaitForAnyKey()
-    {
-        Console.ReadKey(true);
-    }
-}
-
 public static class Components
 {
     public static int UiWidth
