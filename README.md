@@ -1,6 +1,8 @@
 # Flashcards
 **Flashcards** is a simple C# console app to help you studying using, well, flashcards. You can create, manage and study your flashcards all within one friendly command line interface. I made it as a personal project, due to the fact that I love C# lol.
 
+The CLI library will soon be _**completely overhauled**_, and along with that, the whole codebase. App will remain backwards-compatible anyway.
+
 ## Features
 
 ### Current ###
