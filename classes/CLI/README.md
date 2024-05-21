@@ -6,6 +6,8 @@ Recently, I've moved all that CLI into a separate `SharpViews` library. This doc
 
 There is a chance that some of the code examples won't work anymore, due to renamed properties, etc. Also, if I ever say `SharpText`, then I meant `SharpViews`. I confuse these names lol. `SharpText` is my WIP game engine.
 
+Warning: `SharpViews` is undergoing a heavy overhaul. **Everything will be changed soon**. What you see here is already the past.
+
 ## ChoiceList ##
 The ChoiceList class is used to manage vertical or horizontal item lists consistently around the whole app. Its task is to handle moving the list selection (for example signified by the dot on deck list), and to paginate the choices (also on the deck list, to create the effect of scrolling and not occupy too much space).
 
